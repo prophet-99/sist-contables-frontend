@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "sist-contables-frontend"
+    }
+  },
+  "defaultProject": "sist-contables-frontend",
+  "cli": {
+    "analytics": false
+  }
 }
