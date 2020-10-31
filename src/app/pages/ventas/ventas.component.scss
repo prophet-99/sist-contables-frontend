@@ -1,0 +1,115 @@
+.input_error {
+    font-size: 100%;
+    margin-bottom: 0;
+    display: none;
+}
+
+.input_error-activo {
+    display: block;
+}
+
+.estado_validacion {
+    position: absolute;
+    right: 10px;
+    bottom: 12px;
+    font-size: 16px;
+    opacity: 0;
+}
+
+.c-form-dni {
+    position: relative;
+}
+
+.c-form-nombre {
+    position: relative;
+}
+
+.c-form-apellido {
+    position: relative;
+}
+
+.c-form-cel {
+    position: relative;
+}
+
+.c-form-ubicacion {
+    position: relative;
+}
+
+.c-form-dni::after {
+    position: absolute;
+    font-family: 'Font Awesome 5 Free';
+    content: '\f2c2';
+    font-weight: 900;
+    bottom: 50%;
+    left: 1rem;
+    display: block;
+    transform: translateY(50%);
+}
+
+.c-form-nombre::after {
+    position: absolute;
+    font-family: 'Font Awesome 5 Free';
+    content: '\f2bd';
+    font-weight: 900;
+    bottom: 50%;
+    left: 1rem;
+    display: block;
+    transform: translateY(50%);
+}
+
+.c-form-apellido::after {
+    position: absolute;
+    font-family: 'Font Awesome 5 Free';
+    content: '\f2bd';
+    font-weight: 900;
+    bottom: 50%;
+    left: 1rem;
+    display: block;
+    transform: translateY(50%);
+}
+
+.c-form-cel::after {
+    position: absolute;
+    font-family: 'Font Awesome 5 Free';
+    content: '\f3cd';
+    font-weight: 900;
+    bottom: 50%;
+    left: 1rem;
+    display: block;
+    transform: translateY(50%);
+}
+
+.c-form-ubicacion::after {
+    position: absolute;
+    font-family: 'Font Awesome 5 Free';
+    content: '\f5a0';
+    font-weight: 900;
+    bottom: 50%;
+    left: 1rem;
+    display: block;
+    transform: translateY(50%);
+}
+
+.c-form__input {
+    padding-left: 2.5rem;
+}
+
+.form_grupo-correcto .estado_validacion {
+    color: #1ed12d;
+    opacity: 1;
+}
+
+.form_grupo-incorrecto .estado_validacion {
+    color: #bb2929;
+    opacity: 1;
+}
+
+.form_grupo-incorrecto .grupo_icono {
+    color: #bb2929;
+    opacity: 1;
+}
+
+.form_grupo-incorrecto .input_error {
+    color: #bb2929;
+}
