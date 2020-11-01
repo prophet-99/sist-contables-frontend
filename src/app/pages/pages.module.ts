@@ -1,23 +1,29 @@
 import { NgModule } from '@angular/core';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { VentasComponent } from './ventas/ventas.component';
-import { RegistroRecomendacionComponent } from './registro-recomendacion/registro-recomendacion.component';
 import { ClienteComponent } from './cliente/cliente.component';
+import { InventarioComponent } from './inventario/inventario.component';
+import { ProveedorComponent } from './proveedor/proveedor.component';
+import { LibroDiarioComponent } from './libro-diario/libro-diario.component';
+import { EmpleadoComponent } from './empleado/empleado.component';
 
 
 @NgModule({
   declarations: [
+    ClienteComponent,
     DashboardComponent,
-     VentasComponent,
-     RegistroRecomendacionComponent,
-     ClienteComponent
+     InventarioComponent,
+     ProveedorComponent,
+     LibroDiarioComponent,
+     EmpleadoComponent
     ],
     exports: [
+      ClienteComponent,
       DashboardComponent,
-      VentasComponent,
-      RegistroRecomendacionComponent,
-      ClienteComponent
+       InventarioComponent,
+       ProveedorComponent,
+       LibroDiarioComponent,
+       EmpleadoComponent
     ],
 })
 export class PagesModule { }

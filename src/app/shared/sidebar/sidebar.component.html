@@ -15,23 +15,64 @@
     <!-- Divider -->
     <hr class="sidebar-divider">
 
-    <!-- Heading -->
+    <!-- REGISTRO GENERAL DE VENTAS -->
     <div class="sidebar-heading">
         Ventas
     </div>
 
-    <!-- Nav Item - Pages Collapse Menu -->
+    <!-- Nav Item - MENU DESPLEGABLE VENTAS -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
             <i class="fas fa-fw fa-cog"></i>
-            <span>Registos Ventas</span>
+            <span>Registos de Ventas</span>
+        </a>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Formulario de Ventas</h6>
+                <a class="collapse-item" [routerLink]="['ventas']">Ventas</a>
+            </div>
+        </div>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- REGISTRO GENERAL DE CLIENTES -->
+    <div class="sidebar-heading">
+        Clientes
+    </div>
+
+    <!-- Nav Item - MENU DESPLEGABLE DE CLIENTES -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Registos Clientes</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Formularios</h6>
-                <a class="collapse-item" href="cards.html">Realizar Venta</a>
-                <a class="collapse-item" href="buttons.html">Clientes</a>
-                <a class="collapse-item" href="">Comprobande de Venta</a>
+                <a class="collapse-item" [routerLink]="['clientes']">Registro Clientes</a>
+            </div>
+        </div>
+    </li>
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- REGISTRO GENERAL DE PROVEEDORES -->
+    <div class="sidebar-heading">
+        Proveedores
+    </div>
+
+    <!-- Nav Item - MENU DESPLEGABLE DE CLIENTES -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Registos Proveedores</span>
+        </a>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Formularios</h6>
+                <a class="collapse-item" [routerLink]="['proveedor']">Proveedores</a>
             </div>
         </div>
     </li>
@@ -40,12 +81,12 @@
     <hr class="sidebar-divider">
 
 
-    <!-- Heading -->
+    <!-- PROCESO DE COMPRAS -->
     <div class="sidebar-heading">
         Compras
     </div>
 
-    <!-- Nav Item - Pages Collapse Menu -->
+    <!-- Nav Item - MENU DESPLEGABLE DE COMPRAS -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
             <i class="fas fa-fw fa-cog"></i>
@@ -53,10 +94,8 @@
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Formularios</h6>
-                <a class="collapse-item" href="cards.html">Realizar Compras</a>
-                <a class="collapse-item" href="buttons.html">Proveedores</a>
-                <a class="collapse-item" href="cards.html">Vauchers</a>
+                <h6 class="collapse-header">Formulario de Compras</h6>
+                <a class="collapse-item" [routerLink]="['compras']">Compras</a>
             </div>
         </div>
     </li>
@@ -64,12 +103,12 @@
     <!-- Divider -->
     <hr class="sidebar-divider">
 
-    <!-- Heading -->
+    <!-- REGISTRO GENERAL DE INVENTARIO -->
     <div class="sidebar-heading">
         Inventario
     </div>
 
-    <!-- Nav Item - Pages Collapse Menu -->
+    <!-- Nav Item - MENU DESPLEGABLE DE INVENTARIO -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
             <i class="fas fa-fw fa-cog"></i>
@@ -78,13 +117,57 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Formularios</h6>
-                <a class="collapse-item" href="buttons.html">Editar Inventario</a>
-                <a class="collapse-item" href="cards.html">Salidas</a>
-                <a class="collapse-item" href="cards.html">Entradas</a>
+                <a class="collapse-item" [routerLink]="['inventario']">Editar Inventario</a>
             </div>
         </div>
     </li>
 
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+
+    <!-- PROCESO DE COMPRAS -->
+    <div class="sidebar-heading">
+        Libros
+    </div>
+
+    <!-- Nav Item - MENU DESPLEGABLE DE COMPRAS -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Registos de Libros </span>
+        </a>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Libros Contables</h6>
+                <a class="collapse-item" [routerLink]="['diario']">Libro Diario</a>
+                <a class="collapse-item" [routerLink]="['mayor']">Libro Mayor</a>
+            </div>
+        </div>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+
+    <!-- PROCESO DE COMPRAS -->
+    <div class="sidebar-heading">
+        Empleados
+    </div>
+
+    <!-- Nav Item - MENU DESPLEGABLE DE COMPRAS -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Registos de Empleados </span>
+        </a>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Libros Contables</h6>
+                <a class="collapse-item" [routerLink]="['empleados']">Empleados</a>
+            </div>
+        </div>
+    </li>
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">

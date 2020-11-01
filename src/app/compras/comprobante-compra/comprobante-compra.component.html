@@ -1,8 +1,53 @@
-<div class="">
+<div class="container-fluid">
+    <!-- Main content -->
+    <section class="container">
+        <h1 class="text-center text-secondary">Comprobantes de Venta</h1>
+        <table class="table table-light text-center">
+            <thead>
+                <tr>
+                    <th class="text-center" scope="col">PROVEEDOR</th>
+                    <th class="text-center" scope="col">PRODUCTO</th>
+                    <th class="text-center" scope="col">EMPLEADO</th>
+                    <th class="text-center" scope="col">VER</th>
+                    <th class="text-center" scope="col" colspan="2" class="text-center">
+                        ACCIÓN
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>cliente</td>
+                    <td>cliente</td>
+                    <td>cliente</td>
+                    <td class="text-center">
+                        <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#modal-comprobante-compra">
+                            <i class="fas fa-eye"></i></button>
+                    </td>
+                    <td class="text-center">
+                        <button class="btn btn-danger mx-2" data-toggle="modal" data-target="#modal-delete-compra">
+                                <i class="fas fa-trash-alt"></i> 
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</div>
+
+
+
+
+<!-- --------------------- -->
+<!-- MODAL AGREGAR USUARIO -->
+<!-- --------------------- -->
+<div class="modal fade" id="modal-comprobante-compra" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Comprobante de Ventas del producto Laptos</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">Ingrese los datos para Procesar con el Pedido</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body">
                 <form id="formulario" class="formulario" method="POST" action="">
@@ -55,7 +100,6 @@
                             </div>
                         </div>
                         <div class="col-lg-5 d-flex">
-                            <button type="button" class="btn btn-success  mr-3"><i class="fas fa-user-plus"></i></button>
                             <div class="col-9">
                                 <input type="text" class="form-control" id="inlineFormInputName" placeholder="Jane Doe">
                             </div>
@@ -190,14 +234,12 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Divider -->
-                    <hr class="sidebar-divider">
+                    <div class="modal-footer row d-flex justify-content-center">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
                 </form>
             </div>
         </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
+
     </div>
 </div>

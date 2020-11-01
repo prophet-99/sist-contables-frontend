@@ -1,4 +1,140 @@
-<div class="">
+<div class="border col-lg-12">
+    <div class="d-flex">
+        <!-- --------------- -->
+        <!-- Codigo Compra -->
+        <!-- --------------- -->
+        <h3 class="text-muted ml-5 mb-5 mt-3"> /WH/OUT/000005</h3>
+    </div>
+    <div class="col-12 d-flex mb-3">
+        <div class="col-3 border-right">
+            <h6>Empresa</h6>
+        </div>
+        <div class="col-4">
+            <h6 class="text-primary">LAMBAYEQUE TECNOLOGIES</h6>
+        </div>
+        <div class="col-2 ">
+            <h6>Fecha prevista</h6>
+        </div>
+        <div class="col-3">
+            <h5 class="text-primary">12/01/2020 18:48:03</h5>
+        </div>
+    </div>
+    <div class="col-12 d-flex mb-3">
+        <div class="col-3 border-right">
+            <h6>Ubicacion de Origen</h6>
+        </div>
+        <div class="col-4">
+            <h5 class="text-primary">WH/Stock</h5>
+        </div>
+        <div class="col-3">
+            <h6>Documento Origen</h6>
+        </div>
+        <div class="col-2">
+            <h5 class="text-primary">SO022</h5>
+        </div>
+    </div>
+    <div class="col-12 d-flex">
+        <div class="col-8 d-flex">
+            <button class="btn btn-primary">Operaciones</button>
+            <button class="btn btn-primary">Info adicional</button>
+            <button class="btn btn-primary">Nota</button>
+        </div>
+    </div>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th class="text-center" scope="col">Producto</th>
+                <th class="text-center" scope="col">Demanda Inicial</th>
+                <th class="text-center" scope="col">Reservado</th>
+                <th class="text-center" scope="col">Cantidad Disponible para la venta</th>
+                <th class="text-center" scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th class="text-center">Laptop Lenovo</th>
+                <td class="text-center">1,000</td>
+                <td class="text-center">0.0000</td>
+                <td class="text-center">0.000 Unidades</td>
+                <td class="text-center"><i class="fas fa-list"></i></td>
+            </tr>
+            <tr>
+                <th class="text-center">Laptop Lenovo</th>
+                <td class="text-center">1,000</td>
+                <td class="text-center">0.0000</td>
+                <td class="text-center">0.000 Unidades</td>
+                <td class="text-center"><i class="fas fa-list"></i></td>
+            </tr>
+            <tr>
+                <th class="text-center">Laptop Lenovo</th>
+                <td class="text-center">100</td>
+                <td class="text-center">0.0000</td>
+                <td class="text-center">0.000 Unidades</td>
+                <td class="text-center"><i class="fas fa-list"></i></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container-fluid">
+    <!-- Main content -->
+    <section class="container">
+        <h1 class="text-center text-secondary">Comprobantes de Venta</h1>
+        <article class="d-flex justify-content-end mb-3">
+            <button class="btn btn-primary text-lg-center" data-toggle="modal" data-target="#modal-add-verificar">
+                    <i class="fas fa-user-plus"></i>
+                </button>
+        </article>
+        <table class="table table-light text-center">
+            <thead>
+                <tr>
+                    <th class="text-center" scope="col">PROVEEDOR</th>
+                    <th class="text-center" scope="col">PRODUCTO</th>
+                    <th class="text-center" scope="col">FECHA</th>
+                    <th class="text-center" scope="col">TOMAR ORDEN</th>
+                    <th class="text-center" scope="col" colspan="2" class="text-center">
+                        ACCIÓN
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>cliente</td>
+                    <td>cliente</td>
+                    <td>cliente</td>
+                    <td class="text-center">
+                        <button class="btn btn-success mx-2" data-toggle="modal" data-target="#modal-tomar-orden">
+                            <i class="fas fa-truck"></i>
+                        </button>
+                    </td>
+                    <td class="text-center">
+                        <button class="btn btn-danger mx-2" data-toggle="modal" data-target="#modal-delete-verificacion">
+                                <i class="fas fa-trash-alt"></i> 
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</div>
+<div class="modal fade" id="modal-add-verificar" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
@@ -8,9 +144,9 @@
                 <form id="formulario" class="formulario" method="POST" action="">
                     <!-- Campo INGRESO PRODUCTO - INGRESO CLIENTE  -->
                     <div class="form-group row">
-                        <div class="col-lg-4 d-flex">
-                            <label for="codigo" class=" col-form-label">Producto</label>
-                            <div class="col-8">
+                        <div class="col-lg-6 d-flex justify-content-center">
+                            <label for="codigo" class=" col-form-label">Inventario</label>
+                            <div class="col-6">
                                 <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
                                     <option selected>01 REGISTRO VENTAS 1</option>
                                     <option value="1">One</option>
@@ -20,21 +156,9 @@
                             </div>
                             <button type="button" class="btn btn-success  mr-3"><i class="fas fa-user-plus"></i></button>
                         </div>
-                        <div class="col-lg-4 d-flex">
-                            <label for="codigo" class="col-form-label">Cliente</label>
-                            <div class="col-8">
-                                <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                    <option selected>01 REGISTRO VENTAS 1</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                  </select>
-                            </div>
-                            <button type="button" class="btn btn-success  mr-3"><i class="fas fa-user-plus"></i></button>
-                        </div>
-                        <div class="col-lg-4 d-flex">
+                        <div class="col-lg-6 d-flex">
                             <label for="codigo" class="col-form-label">Empleado</label>
-                            <div class="col-8">
+                            <div class="col-6">
                                 <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
                                     <option selected>01 REGISTRO VENTAS 1</option>
                                     <option value="1">One</option>
@@ -71,7 +195,7 @@
                             </div>
                         </div>
                         <div class="col-lg-4 d-flex">
-                            <label for="codigo" class="col-form-label">Disp Venta</label>
+                            <label for="codigo" class="col-form-label">Punto Reorden</label>
                             <div class="col-8">
                                 <input type="text" class="form-control" id="inlineFormInputName" placeholder="Jane Doe" readonly>
                             </div>
@@ -107,15 +231,18 @@
                     <!-- Campo CANTIDAD SOLICITADA - DESCRIPCIÓN  -->
                     <div class="form-group row">
                         <div class="col-lg-4 d-flex">
-                            <label for="codigo" class=" col-form-label">Cant solicitada</label>
-                            <div class="col-8">
+                            <label for="codigo" class=" col-form-label">Cnt. solicitada</label>
+                            <div class="col-7">
                                 <input type="text" class="form-control" id="inlineFormInputName" placeholder="Jane Doe">
                             </div>
                         </div>
                         <div class="col-lg-8 d-flex">
-                            <label for="codigo" class="col-form-label">Descripción</label>
+                            <label for="codigo" class="col-form-label">Reorden</label>
                             <div class="col-10">
-                                <input type="text" class="form-control" id="inlineFormInputName" placeholder="Jane Doe">
+                                <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                                    <option value="1">Realizar Pedido</option>
+                                    <option value="2">Cantidad Normal</option>
+                                  </select>
                             </div>
                         </div>
                     </div>
@@ -131,6 +258,5 @@
                 </form>
             </div>
         </div>
-
     </div>
 </div>

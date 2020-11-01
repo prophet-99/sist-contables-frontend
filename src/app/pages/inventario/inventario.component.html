@@ -1,50 +1,145 @@
-<!-- Main content -->
-<section class="container">
-    <h1 class="text-center text-secondary">Registro de Clientes</h1>
-    <article class="d-flex justify-content-end mb-3">
-        <button class="btn btn-primary text-lg-center" data-toggle="modal" data-target="#modal-add">
+<div class="container-fluid">
+    <!-- Main content -->
+    <section class="container">
+        <h1 class="text-center text-secondary">Registro del Inventario</h1>
+        <article class="d-flex justify-content-end mb-3">
+            <button class="btn btn-primary text-lg-center" data-toggle="modal" data-target="#modal-add-inventario">
                     <i class="fas fa-user-plus"></i>
                 </button>
-    </article>
-    <table class="table table-light text-center">
-        <thead>
-            <tr>
-                <th class="text-center" scope="col">DNI</th>
-                <th class="text-center" scope="col">Nombre</th>
-                <th class="text-center" scope="col">Dirección</th>
-                <th class="text-center" scope="col">Teléfono-celular</th>
-                <th class="text-center" scope="col">Numero Cuenta</th>
-                <th class="text-center" scope="col">Saldo Actual</th>
-                <th class="text-center" scope="col" colspan="2" class="text-center">
-                    ACCIÓN
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>cliente</td>
-                <td>cliente</td>
-                <td>cliente</td>
-                <td>cliente</td>
-                <td>cliente</td>
-                <td>cliente</td>
-                <td class="text-center">
-                    <button class="btn btn-primary text-lg-center mx-2" data-toggle="modal" data-target="#modal-update">
+        </article>
+        <table class="table table-light text-center">
+            <thead>
+                <tr>
+                    <th class="text-center" scope="col">Item</th>
+                    <th class="text-center" scope="col">Descripcion</th>
+                    <th class="text-center" scope="col">Ubicacion</th>
+                    <th class="text-center" scope="col">C. Disponible</th>
+                    <th class="text-center" scope="col">C. Venta</th>
+                    <th class="text-center" scope="col">Costo unitario</th>
+                    <th class="text-center" scope="col">Punto Reorden</th>
+                    <th class="text-center" scope="col" colspan="2" class="text-center">
+                        ACCIÓN
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Inventario</td>
+                    <td>Inventario</td>
+                    <td>Inventario</td>
+                    <td>Inventario</td>
+                    <td>Inventario</td>
+                    <td>Inventario</td>
+                    <td>Inventario</td>
+                    <td class="text-center">
+                        <button class="btn btn-primary text-lg-center mx-2" data-toggle="modal" data-target="#modal-update-inventario">
                                 <i class="fas fa-edit"></i>
                         </button>
-                    <button class="btn btn-danger mx-2" data-toggle="modal" data-target="#modal-delete">
+                        <button class="btn btn-danger mx-2" data-toggle="modal" data-target="#modal-delete-inventario">
                                 <i class="fas fa-trash-alt"></i> 
                         </button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</section>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</div>
+<!-- --------------------- -->
+<!-- MODAL AGREGAR PRODUCTO AL INVENTARIO -->
+<!-- --------------------- -->
+<div class="modal fade" id="modal-add-inventario" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Agregar nuevo Item </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="formulario" class="formulario" method="POST" action="${pageContext.request.contextPath}/clientes?type=create">
+                    <div class="form-group">
+                        <div class="form-row">
+                            <!-- Campo ITEM DEL INVENTARIO -->
+                            <div class="col-md-6 mb-3">
+                                <section class="container form_grupo">
+                                    <label for="dni">Código Item</label>
+                                    <article class="col-12">
+                                        <input id="dni" name="dni" type="text" class="form-control c-form__input" placeholder="DNI" required>
+                                    </article>
+                                </section>
+                            </div>
+                            <!-- Campo PUNTO DE REORDEN DEL INVENTARIO-->
+                            <div class="col-md-6 mb-3">
+                                <section class="container">
+                                    <label for="saldo">Punto de Reaorden</label>
+                                    <article class="col-12">
+                                        <input name="saldo" type="text" class="form-control" placeholder="Numero Cuenta" required>
+                                    </article>
+                                </section>
+                            </div>
+                            <!-- Campo DESCRIPCION DE ITEM EN EL INVENTARIO -->
+                            <div class="col-md-12 mb-3">
+                                <section class="container">
+                                    <label for="nombre">Descripcion</label>
+                                    <article class="col-12">
+                                        <input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" required>
+                                    </article>
+                                </section>
+                            </div>
+                            <!-- Campo UBICACION DEL ITEM -->
+                            <div class="col-md-12 mb-3">
+                                <section class="container">
+                                    <label for="nombre">Ubicación</label>
+                                    <article class="col-12">
+                                        <input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" required>
+                                    </article>
+                                </section>
+                            </div>
+                            <!-- Campo COSTO DISPONIBLE DEL INVENTARIO -->
+                            <div class="col-md-12 mb-3">
+                                <section class="container">
+                                    <label for="ubicacion">Costo Disponible</label>
+                                    <article class="col-12">
+                                        <input id="ubicacion" name="ubicacion" type="text" class="form-control" placeholder="Ubicación" required>
+                                    </article>
+                                </section>
+                            </div>
+                            <!-- Campo COSTO PARA VENTA DEL INVENTARIO -->
+                            <div class="col-md-6 mb-3">
+                                <section class="container">
+                                    <label for="telefono">Costo para Venta</label>
+                                    <article class="col-12">
+                                        <input name="telefono" type="text" class="form-control" placeholder="Telefono /  Celular" required>
+                                    </article>
+                                </section>
+                            </div>
+                            <!-- Campo COSTO UNITARIO DEL INVENTARIO -->
+                            <div class="col-md-6 mb-3">
+                                <section class="container">
+                                    <label for="telefono">Costo Unitario</label>
+                                    <article class="col-12">
+                                        <input name="cuenta" type="text" class="form-control" placeholder="Numero Cuenta" required>
+                                    </article>
+                                </section>
+                            </div>
 
+                            <div class="form-group col-md-12">
+                                <button type="submit" class="btn btn-success btn-block">
+                                    ACEPTAR
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- --------------------- -->
-<!-- MODAL AGREGAR USUARIO -->
+<!-- MODAL ACTUALIZAR PRODUCTO AL INVENTARIO -->
 <!-- --------------------- -->
-<div class="modal fade" id="modal-add" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="modal-update-inventario" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
@@ -123,90 +218,11 @@
         </div>
     </div>
 </div>
-<!-- --------------------- -->
-<!-- MODAL ACTUALIZAR USUARIO -->
-<!-- --------------------- -->
-<div class="modal fade" id="modal-update" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Ingrese los datos para Procesar con el Pedido</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form id="formulario" class="formulario" method="POST" action="${pageContext.request.contextPath}/clientes?type=create">
-                    <div class="form-group">
-                        <div class="form-row">
-                            <!-- Campo DNI usuario -->
-                            <div class="col-md-6 mb-3">
-                                <section class="container form_grupo">
-                                    <label for="dni">DNI</label>
-                                    <article class="col-12">
-                                        <input id="dni" name="dni" type="text" class="form-control c-form__input" placeholder="DNI" required>
-                                    </article>
-                                </section>
-                            </div>
-                            <!-- Campo Nombre usuario -->
-                            <div class="col-md-6 mb-3">
-                                <section class="container">
-                                    <label for="nombre">Nombre</label>
-                                    <article class="col-12">
-                                        <input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" required>
-                                    </article>
-                                </section>
-                            </div>
-                            <!-- Campo Ubicación usuario -->
-                            <div class="col-md-12 mb-3">
-                                <section class="container">
-                                    <label for="ubicacion">Ubicación</label>
-                                    <article class="col-12">
-                                        <input id="ubicacion" name="ubicacion" type="text" class="form-control" placeholder="Ubicación" required>
-                                    </article>
-                                </section>
-                            </div>
-                            <!-- Campo Celular usuario -->
-                            <div class="col-md-6 mb-3">
-                                <section class="container">
-                                    <label for="telefono">Telefono /  Celular</label>
-                                    <article class="col-12">
-                                        <input name="telefono" type="text" class="form-control" placeholder="Telefono /  Celular" required>
-                                    </article>
-                                </section>
-                            </div>
-                            <!-- Campo Numero Cuenta usuario -->
-                            <div class="col-md-6 mb-3">
-                                <section class="container">
-                                    <label for="telefono">Número Cuenta</label>
-                                    <article class="col-12">
-                                        <input name="cuenta" type="text" class="form-control" placeholder="Numero Cuenta" required>
-                                    </article>
-                                </section>
-                            </div>
-                            <!-- Campo Saldo actual usuario -->
-                            <div class="col-md-6 mb-3">
-                                <section class="container">
-                                    <label for="saldo">Saldo Actual</label>
-                                    <article class="col-12">
-                                        <input name="saldo" type="text" class="form-control" placeholder="Numero Cuenta" required>
-                                    </article>
-                                </section>
-                            </div>
-                            <div class="form-group col-md-12">
-                                <button type="submit" class="btn btn-success btn-block">
-                                    ACEPTAR
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
 
-<div class="modal fade" id="modal-delete" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<!-- --------------------- -->
+<!-- MODAL ELIMINAR PRODUCTO  DEL INVENTARIO-->
+<!-- --------------------- -->
+<div class="modal fade" id="modal-delete-inventario" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">

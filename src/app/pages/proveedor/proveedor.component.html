@@ -1,20 +1,22 @@
 <!-- Main content -->
-<section class="container">
-    <h1 class="text-center text-secondary">Registro de Clientes</h1>
+<section class="container-fluid">
+    <h1 class="text-center text-secondary">Registro de Proveedores</h1>
     <article class="d-flex justify-content-end mb-3">
-        <button class="btn btn-primary text-lg-center" data-toggle="modal" data-target="#modal-add">
+        <button class="btn btn-primary text-lg-center" data-toggle="modal" data-target="#modal-add-proveedor">
                     <i class="fas fa-user-plus"></i>
                 </button>
     </article>
     <table class="table table-light text-center">
         <thead>
             <tr>
-                <th class="text-center" scope="col">DNI</th>
                 <th class="text-center" scope="col">Nombre</th>
                 <th class="text-center" scope="col">Dirección</th>
-                <th class="text-center" scope="col">Teléfono-celular</th>
-                <th class="text-center" scope="col">Numero Cuenta</th>
-                <th class="text-center" scope="col">Saldo Actual</th>
+                <th class="text-center" scope="col">R.U.C</th>
+                <th class="text-center" scope="col">N. Cuenta</th>
+                <th class="text-center" scope="col">N. Envios</th>
+                <th class="text-center" scope="col">Env. Incompletos</th>
+                <th class="text-center" scope="col">Observaciones</th>
+                <th class="text-center" scope="col">Pl. Entrega</th>
                 <th class="text-center" scope="col" colspan="2" class="text-center">
                     ACCIÓN
                 </th>
@@ -22,17 +24,19 @@
         </thead>
         <tbody>
             <tr>
-                <td>cliente</td>
-                <td>cliente</td>
-                <td>cliente</td>
-                <td>cliente</td>
-                <td>cliente</td>
-                <td>cliente</td>
+                <td>proveedor</td>
+                <td>proveedor</td>
+                <td>proveedor</td>
+                <td>proveedor</td>
+                <td>proveedor</td>
+                <td>proveedor</td>
+                <td>proveedor</td>
+                <td>proveedor</td>
                 <td class="text-center">
-                    <button class="btn btn-primary text-lg-center mx-2" data-toggle="modal" data-target="#modal-update">
+                    <button class="btn btn-primary text-lg-center mx-2" data-toggle="modal" data-target="#modal-update-proveedor">
                                 <i class="fas fa-edit"></i>
                         </button>
-                    <button class="btn btn-danger mx-2" data-toggle="modal" data-target="#modal-delete">
+                    <button class="btn btn-danger mx-2" data-toggle="modal" data-target="#modal-delete-proveedor">
                                 <i class="fas fa-trash-alt"></i> 
                         </button>
                 </td>
@@ -44,7 +48,7 @@
 <!-- --------------------- -->
 <!-- MODAL AGREGAR USUARIO -->
 <!-- --------------------- -->
-<div class="modal fade" id="modal-add" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="modal-add-proveedor" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
@@ -57,57 +61,81 @@
                 <form id="formulario" class="formulario" method="POST" action="${pageContext.request.contextPath}/clientes?type=create">
                     <div class="form-group">
                         <div class="form-row">
-                            <!-- Campo DNI usuario -->
+                            <!-- Campo NOMBRE PROVEEDOR -->
                             <div class="col-md-6 mb-3">
                                 <section class="container form_grupo">
-                                    <label for="dni">DNI</label>
+                                    <label for="dni">Nombre</label>
                                     <article class="col-12">
                                         <input id="dni" name="dni" type="text" class="form-control c-form__input" placeholder="DNI" required>
                                     </article>
                                 </section>
                             </div>
-                            <!-- Campo Nombre usuario -->
+                            <!-- Campo NUMERO DE CUENTA DEL PROVEEDOR -->
                             <div class="col-md-6 mb-3">
                                 <section class="container">
-                                    <label for="nombre">Nombre</label>
-                                    <article class="col-12">
-                                        <input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" required>
-                                    </article>
-                                </section>
-                            </div>
-                            <!-- Campo Ubicación usuario -->
-                            <div class="col-md-12 mb-3">
-                                <section class="container">
-                                    <label for="ubicacion">Ubicación</label>
-                                    <article class="col-12">
-                                        <input id="ubicacion" name="ubicacion" type="text" class="form-control" placeholder="Ubicación" required>
-                                    </article>
-                                </section>
-                            </div>
-                            <!-- Campo Celular usuario -->
-                            <div class="col-md-6 mb-3">
-                                <section class="container">
-                                    <label for="telefono">Telefono /  Celular</label>
+                                    <label for="telefono">Num. Cuenta</label>
                                     <article class="col-12">
                                         <input name="telefono" type="text" class="form-control" placeholder="Telefono /  Celular" required>
                                     </article>
                                 </section>
                             </div>
-                            <!-- Campo Numero Cuenta usuario -->
+                            <!-- Campo DIRECCION DEL PROVEEDOR -->
+                            <div class="col-md-12 mb-3">
+                                <section class="container">
+                                    <label for="nombre">Dirección</label>
+                                    <article class="col-12">
+                                        <input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" required>
+                                    </article>
+                                </section>
+                            </div>
+                            <!-- Campo TUC DEL PROVEEDOR -->
                             <div class="col-md-6 mb-3">
                                 <section class="container">
-                                    <label for="telefono">Número Cuenta</label>
+                                    <label for="ubicacion">R.U.C</label>
+                                    <article class="col-12">
+                                        <input id="ubicacion" name="ubicacion" type="text" class="form-control" placeholder="Ubicación" required>
+                                    </article>
+                                </section>
+                            </div>
+
+                            <!-- Campo NUMERO DE ENVIOS DEL PROVEEDOR -->
+                            <div class="col-md-6 mb-3">
+                                <section class="container">
+                                    <label for="telefono">Num. Envios</label>
                                     <article class="col-12">
                                         <input name="cuenta" type="text" class="form-control" placeholder="Numero Cuenta" required>
                                     </article>
                                 </section>
                             </div>
-                            <!-- Campo Saldo actual usuario -->
-                            <div class="col-md-6 mb-3">
+                            <!-- Campo OBSERVACIONES DEL PROVEEDOR -->
+                            <div class="col-md-12 mb-3">
                                 <section class="container">
-                                    <label for="saldo">Saldo Actual</label>
+                                    <label for="saldo">Observaciones</label>
                                     <article class="col-12">
                                         <input name="saldo" type="text" class="form-control" placeholder="Numero Cuenta" required>
+                                    </article>
+                                </section>
+                            </div>
+                            <!-- Campo ENVIOS FALLIDOS DEL PROVEEDOR-->
+                            <div class="col-md-6 mb-3">
+                                <section class="container">
+                                    <label for="saldo">Env Fallidos</label>
+                                    <article class="col-12">
+                                        <input name="saldo" type="text" class="form-control" placeholder="Numero Cuenta" required>
+                                    </article>
+                                </section>
+                            </div>
+                            <!-- Campo OBSERVACIONES DEL PROVEEDOR -->
+                            <div class="col-md-6 mb-3">
+                                <section class="container">
+                                    <label for="saldo">Plazo entrega</label>
+                                    <article class="col-12">
+                                        <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                                            <option selected>MN12 121201 FT EMITIDAS TERCEROS MN</option>
+                                            <option value="1">One</option>
+                                            <option value="2">Two</option>
+                                            <option value="3">Three</option>
+                                          </select>
                                     </article>
                                 </section>
                             </div>
@@ -126,7 +154,7 @@
 <!-- --------------------- -->
 <!-- MODAL ACTUALIZAR USUARIO -->
 <!-- --------------------- -->
-<div class="modal fade" id="modal-update" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="modal-update-proveedor" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
@@ -139,60 +167,85 @@
                 <form id="formulario" class="formulario" method="POST" action="${pageContext.request.contextPath}/clientes?type=create">
                     <div class="form-group">
                         <div class="form-row">
-                            <!-- Campo DNI usuario -->
+                            <!-- Campo NOMBRE PROVEEDOR -->
                             <div class="col-md-6 mb-3">
                                 <section class="container form_grupo">
-                                    <label for="dni">DNI</label>
+                                    <label for="dni">Nombre</label>
                                     <article class="col-12">
                                         <input id="dni" name="dni" type="text" class="form-control c-form__input" placeholder="DNI" required>
                                     </article>
                                 </section>
                             </div>
-                            <!-- Campo Nombre usuario -->
+                            <!-- Campo NUMERO DE CUENTA DEL PROVEEDOR -->
                             <div class="col-md-6 mb-3">
                                 <section class="container">
-                                    <label for="nombre">Nombre</label>
-                                    <article class="col-12">
-                                        <input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" required>
-                                    </article>
-                                </section>
-                            </div>
-                            <!-- Campo Ubicación usuario -->
-                            <div class="col-md-12 mb-3">
-                                <section class="container">
-                                    <label for="ubicacion">Ubicación</label>
-                                    <article class="col-12">
-                                        <input id="ubicacion" name="ubicacion" type="text" class="form-control" placeholder="Ubicación" required>
-                                    </article>
-                                </section>
-                            </div>
-                            <!-- Campo Celular usuario -->
-                            <div class="col-md-6 mb-3">
-                                <section class="container">
-                                    <label for="telefono">Telefono /  Celular</label>
+                                    <label for="telefono">Num. Cuenta</label>
                                     <article class="col-12">
                                         <input name="telefono" type="text" class="form-control" placeholder="Telefono /  Celular" required>
                                     </article>
                                 </section>
                             </div>
-                            <!-- Campo Numero Cuenta usuario -->
+                            <!-- Campo DIRECCION DEL PROVEEDOR -->
+                            <div class="col-md-12 mb-3">
+                                <section class="container">
+                                    <label for="nombre">Dirección</label>
+                                    <article class="col-12">
+                                        <input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" required>
+                                    </article>
+                                </section>
+                            </div>
+                            <!-- Campo TUC DEL PROVEEDOR -->
                             <div class="col-md-6 mb-3">
                                 <section class="container">
-                                    <label for="telefono">Número Cuenta</label>
+                                    <label for="ubicacion">R.U.C</label>
+                                    <article class="col-12">
+                                        <input id="ubicacion" name="ubicacion" type="text" class="form-control" placeholder="Ubicación" required>
+                                    </article>
+                                </section>
+                            </div>
+
+                            <!-- Campo NUMERO DE ENVIOS DEL PROVEEDOR -->
+                            <div class="col-md-6 mb-3">
+                                <section class="container">
+                                    <label for="telefono">Num. Envios</label>
                                     <article class="col-12">
                                         <input name="cuenta" type="text" class="form-control" placeholder="Numero Cuenta" required>
                                     </article>
                                 </section>
                             </div>
-                            <!-- Campo Saldo actual usuario -->
-                            <div class="col-md-6 mb-3">
+                            <!-- Campo OBSERVACIONES DEL PROVEEDOR -->
+                            <div class="col-md-12 mb-3">
                                 <section class="container">
-                                    <label for="saldo">Saldo Actual</label>
+                                    <label for="saldo">Observaciones</label>
                                     <article class="col-12">
                                         <input name="saldo" type="text" class="form-control" placeholder="Numero Cuenta" required>
                                     </article>
                                 </section>
                             </div>
+                            <!-- Campo ENVIOS FALLIDOS DEL PROVEEDOR-->
+                            <div class="col-md-6 mb-3">
+                                <section class="container">
+                                    <label for="saldo">Env Fallidos</label>
+                                    <article class="col-12">
+                                        <input name="saldo" type="text" class="form-control" placeholder="Numero Cuenta" required>
+                                    </article>
+                                </section>
+                            </div>
+                            <!-- Campo OBSERVACIONES DEL PROVEEDOR -->
+                            <div class="col-md-6 mb-3">
+                                <section class="container">
+                                    <label for="saldo">Plazo entrega</label>
+                                    <article class="col-12">
+                                        <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                                            <option selected>MN12 121201 FT EMITIDAS TERCEROS MN</option>
+                                            <option value="1">One</option>
+                                            <option value="2">Two</option>
+                                            <option value="3">Three</option>
+                                          </select>
+                                    </article>
+                                </section>
+                            </div>
+
                             <div class="form-group col-md-12">
                                 <button type="submit" class="btn btn-success btn-block">
                                     ACEPTAR
@@ -206,11 +259,11 @@
     </div>
 </div>
 
-<div class="modal fade" id="modal-delete" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="modal-delete-proveedor" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Eliminar Cliente</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">Eliminar Proveedor</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -223,7 +276,7 @@
                         </div>
                         <section class="justify-content-center d-flex w-100">
                             <div class="alert alert-primary" role="alert">
-                                ¿Desea eliminar Cliente?
+                                ¿Desea eliminar Proveedor?
                             </div>
                         </section>
                         <div class="form-group col-md-12" class="text-center">

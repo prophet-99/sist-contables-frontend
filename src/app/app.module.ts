@@ -14,6 +14,10 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { ModalsComponent } from './shared/modals/modals.component';
 import { PagesComponent } from './pages/pages.component';
 import { HeaderComponent } from './shared/header/header.component';
+import { ComprasModule } from './compras/compras.module';
+import { ComprasComponent } from './compras/compras.component';
+import { VentasComponent } from './ventas/ventas.component';
+import { VentasModule } from './ventas/ventas.module';
 
 
 @NgModule({
@@ -25,11 +29,15 @@ import { HeaderComponent } from './shared/header/header.component';
     FooterComponent,
     ModalsComponent,
     HeaderComponent,
-    PagesComponent
+    PagesComponent,
+    ComprasComponent,
+    VentasComponent
   ],
   imports: [
     BrowserModule,
     PagesModule,
+    ComprasModule,
+    VentasModule,
     APP_ROUTES
   ],
   providers: [],

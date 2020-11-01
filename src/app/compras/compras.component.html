@@ -1,0 +1,34 @@
+<div class="d-flex">
+    <h4 class="text-seccess mr-3">Transferencias</h4>
+    <!-- --------------- -->
+    <!-- Codigo Compra -->
+    <!-- --------------- -->
+    <h4 class="text-muted"> /WH/OUT/000005</h4>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-4 d-flex mb-3">
+            <button class="btn btn-primary text-lg-center mr-2" data-toggle="modal" data-target="#modal-ver">Editar</button>
+            <button class="btn btn-primary text-lg-center" data-toggle="modal" data-target="#modal-ver">Crear</button>
+        </div>
+        <div class="col-lg-4 d-flex mb-3">
+            <select class="form-control  btn-success mr-2">
+                                <option>Imprimir</option>
+                            </select>
+            <select class="form-control  btn-success">
+                                <option>Accion</option>
+                            </select>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-lg-8 d-flex">
+            <a [routerLink]="['disponibilidad']" class="nav-link btn-success">Comprobar Disponibilidad</a>
+            <a [routerLink]="['ordenarProducto']" class="nav-link btn-success">Tomar Orden</a>
+            <a [routerLink]="['recibirProducto']" class="nav-link btn-success">Recoger Producto</a>
+        </div>
+    </div>
+    <div class="mx-5">
+        <router-outlet class="col-lg-12"></router-outlet>
+    </div>
+</div>
