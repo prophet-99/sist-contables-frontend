@@ -1,1 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
+.breadcrumb-item+.breadcrumb-item::before {
+    display: inline-block;
+    padding-right: .5rem;
+    color: #858796;
+    content: ">";
+}

@@ -4,9 +4,9 @@
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
         <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa-laugh-wink"></i>
+            <i class="fab fa-bitcoin"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+        <div class="sidebar-brand-text mx-3">Account System</div>
     </a>
 
     <!-- Divider -->
@@ -15,6 +15,29 @@
     <!-- Divider -->
     <hr class="sidebar-divider">
 
+    <!-- REGISTRO GENERAL DE CLIENTES -->
+    <div class="sidebar-heading">
+        Mantenimientos
+    </div>
+
+    <!-- Nav Item - MENU DESPLEGABLE DE CLIENTES -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseClients" 
+            aria-expanded="true">
+            <i class="fas fa-user"></i>
+            <span>Gestión de agentes</span>
+        </a>
+        <div id="collapseClients" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" [routerLink]="['clientes']">Clientes</a>
+                <a class="collapse-item" [routerLink]="['proveedor']">Proveedores</a>
+                <a class="collapse-item" [routerLink]="['empleados']">Empleados</a>
+            </div>
+        </div>
+    </li>
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+    
     <!-- REGISTRO GENERAL DE VENTAS -->
     <div class="sidebar-heading">
         Ventas
@@ -22,11 +45,12 @@
 
     <!-- Nav Item - MENU DESPLEGABLE VENTAS -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" 
+            data-target="#collapseVentas" aria-expanded="true">
             <i class="fas fa-fw fa-cog"></i>
             <span>Registos de Ventas</span>
         </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="collapseVentas" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Formulario de Ventas</h6>
                 <a class="collapse-item" [routerLink]="['ventas']">Ventas</a>
@@ -37,50 +61,6 @@
     <!-- Divider -->
     <hr class="sidebar-divider">
 
-    <!-- REGISTRO GENERAL DE CLIENTES -->
-    <div class="sidebar-heading">
-        Clientes
-    </div>
-
-    <!-- Nav Item - MENU DESPLEGABLE DE CLIENTES -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-            <i class="fas fa-fw fa-cog"></i>
-            <span>Registos Clientes</span>
-        </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Formularios</h6>
-                <a class="collapse-item" [routerLink]="['clientes']">Registro Clientes</a>
-            </div>
-        </div>
-    </li>
-    <!-- Divider -->
-    <hr class="sidebar-divider">
-
-    <!-- REGISTRO GENERAL DE PROVEEDORES -->
-    <div class="sidebar-heading">
-        Proveedores
-    </div>
-
-    <!-- Nav Item - MENU DESPLEGABLE DE CLIENTES -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-            <i class="fas fa-fw fa-cog"></i>
-            <span>Registos Proveedores</span>
-        </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Formularios</h6>
-                <a class="collapse-item" [routerLink]="['proveedor']">Proveedores</a>
-            </div>
-        </div>
-    </li>
-
-    <!-- Divider -->
-    <hr class="sidebar-divider">
-
-
     <!-- PROCESO DE COMPRAS -->
     <div class="sidebar-heading">
         Compras
@@ -88,11 +68,11 @@
 
     <!-- Nav Item - MENU DESPLEGABLE DE COMPRAS -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCompras" aria-expanded="true">
             <i class="fas fa-fw fa-cog"></i>
             <span>Registos de Compras</span>
         </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="collapseCompras" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Formulario de Compras</h6>
                 <a class="collapse-item" [routerLink]="['compras']">Compras</a>
@@ -110,11 +90,11 @@
 
     <!-- Nav Item - MENU DESPLEGABLE DE INVENTARIO -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseInventario" aria-expanded="true">
             <i class="fas fa-fw fa-cog"></i>
             <span>Registos de Inventario</span>
         </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="collapseInventario" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Formularios</h6>
                 <a class="collapse-item" [routerLink]="['inventario']">Editar Inventario</a>
@@ -133,11 +113,11 @@
 
     <!-- Nav Item - MENU DESPLEGABLE DE COMPRAS -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLibros" aria-expanded="true">
             <i class="fas fa-fw fa-cog"></i>
             <span>Registos de Libros </span>
         </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="collapseLibros" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Libros Contables</h6>
                 <a class="collapse-item" [routerLink]="['diario']">Libro Diario</a>
@@ -145,37 +125,5 @@
             </div>
         </div>
     </li>
-
-    <!-- Divider -->
-    <hr class="sidebar-divider">
-
-
-    <!-- PROCESO DE COMPRAS -->
-    <div class="sidebar-heading">
-        Empleados
-    </div>
-
-    <!-- Nav Item - MENU DESPLEGABLE DE COMPRAS -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-            <i class="fas fa-fw fa-cog"></i>
-            <span>Registos de Empleados </span>
-        </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Libros Contables</h6>
-                <a class="collapse-item" [routerLink]="['empleados']">Empleados</a>
-            </div>
-        </div>
-    </li>
-
-    <!-- Divider -->
-    <hr class="sidebar-divider d-none d-md-block">
-
-    <!-- Sidebar Toggler (Sidebar) -->
-    <div class="text-center d-none d-md-inline">
-        <button class="rounded-circle border-0" id="sidebarToggle"></button>
-    </div>
-
 </ul>
 <!-- End of Sidebar -->
