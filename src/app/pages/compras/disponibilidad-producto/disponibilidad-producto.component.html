@@ -1,3 +1,17 @@
+<div class="row mb-3">
+    <div class="col-lg-4 d-flex">
+        <button class="btn btn-primary text-lg-center mr-2 w-100" data-toggle="modal" data-target="#modal-crear">Crear</button>
+        <button class="btn btn-secondary text-lg-center w-100" data-toggle="modal" data-target="#modal-ver">Editar</button>
+    </div>
+    <div class="col-lg-4 d-flex">
+        <select class="form-control mr-2">
+            <option>Imprimir</option>
+        </select>
+        <select class="form-control">
+            <option>Accion</option>
+        </select>
+    </div>
+</div>
 <div class="border row">
     <div class="d-flex">
         <!-- --------------- -->
@@ -16,28 +30,35 @@
             <h6>Fecha prevista</h6>
         </div>
         <div class="col-3">
-            <h5 class="text-primary">12/01/2020 18:48:03</h5>
+            <h5 class="text-primary">12/01/2020</h5>
         </div>
     </div>
     <div class="col-12 d-flex mb-3">
         <div class="col-3 border-right">
-            <h6>Ubicacion de Origen</h6>
+            <h6>Hora Inicio</h6>
         </div>
         <div class="col-4">
-            <h5 class="text-primary">WH/Stock</h5>
+            <h5 class="text-primary">18:50:45</h5>
         </div>
         <div class="col-3">
-            <h6>Documento Origen</h6>
+            <h6>Hora Fin</h6>
         </div>
         <div class="col-2">
-            <h5 class="text-primary">SO022</h5>
+            <h5 class="text-primary">18:50:45</h5>
         </div>
     </div>
-    <div class="col-12 d-flex">
-        <div class="col-8 d-flex">
-            <button class="btn btn-primary">Operaciones</button>
-            <button class="btn btn-primary">Info adicional</button>
-            <button class="btn btn-primary">Nota</button>
+    <div class="col-12 d-flex mb-3">
+        <div class="col-3 border-right">
+            <h6>Asistente de Compras</h6>
+        </div>
+        <div class="col-4">
+            <h5 class="text-primary">Kevin Venegas Cordova</h5>
+        </div>
+        <div class="col-3">
+            <h6>Producto a Verificar</h6>
+        </div>
+        <div class="col-2">
+            <h5 class="text-primary">Laptop SO022</h5>
         </div>
     </div>
 
@@ -48,10 +69,11 @@
         <thead>
             <tr>
                 <th class="text-center" scope="col">Producto</th>
-                <th class="text-center" scope="col">Demanda Inicial</th>
-                <th class="text-center" scope="col">Reservado</th>
-                <th class="text-center" scope="col">Cantidad Disponible para la venta</th>
-                <th class="text-center" scope="col"></th>
+                <th class="text-center" scope="col">Cnt. Disponible</th>
+                <th class="text-center" scope="col">P. Reorden</th>
+                <th class="text-center" scope="col">Cnt. Solicitada</th>
+                <th class="text-center" scope="col">Estado</th>
+                <th class="text-center" scope="col">Ordenar</th>
             </tr>
         </thead>
         <tbody>
@@ -60,82 +82,71 @@
                 <td class="text-center">1,000</td>
                 <td class="text-center">0.0000</td>
                 <td class="text-center">0.000 Unidades</td>
-                <td class="text-center"><i class="fas fa-list"></i></td>
+                <td class="text-center">
+                    <span class="badge badge-success">AVAZTECIDO</span>
+                    <span class="badge badge-danger">PEDIR</span>
+                </td>
+                <div class="ml-5 mt-2">
+                    <input type="checkbox" aria-label="Checkbox for following text input">
+                </div>
             </tr>
             <tr>
                 <th class="text-center">Laptop Lenovo</th>
                 <td class="text-center">1,000</td>
                 <td class="text-center">0.0000</td>
                 <td class="text-center">0.000 Unidades</td>
-                <td class="text-center"><i class="fas fa-list"></i></td>
+                <td class="text-center">
+                    <span class="badge badge-success">AVAZTECIDO</span>
+                    <span class="badge badge-danger">PEDIR</span>
+                </td>
+                <div class="ml-5 mt-2">
+                    <input type="checkbox" aria-label="Checkbox for following text input">
+                </div>
             </tr>
             <tr>
                 <th class="text-center">Laptop Lenovo</th>
-                <td class="text-center">100</td>
+                <td class="text-center">1,000</td>
                 <td class="text-center">0.0000</td>
                 <td class="text-center">0.000 Unidades</td>
-                <td class="text-center"><i class="fas fa-list"></i></td>
+                <td class="text-center">
+                    <span class="badge badge-success">AVAZTECIDO</span>
+                    <span class="badge badge-danger">PEDIR</span>
+                </td>
+                <div class="ml-5 mt-2">
+                    <input type="checkbox" aria-label="Checkbox for following text input">
+                </div>
             </tr>
         </tbody>
     </table>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <div class="col-lg-12 mt-3">
+        <ul class="list-unstyled">
+            <div class="d-flex">
+                <li class="mx-2">Representación impresa de la </li>
+                <li class="font-weight-bold mr-1">GUIA DE VERIFICACIÓN DE DISPONIBILIDAD</li>
+                <li class="ml-1">, para consultar el documento vista</li>
+            </div>
+            <li><a href="" class="mx-2">https://LambayequeTecnologies.com/pe</a></li>
+        </ul>
+    </div>
 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="container-fluid">
-    <!-- Main content -->
-    <section class="container">
-        <h1 class="text-center text-secondary">Comprobantes de Venta</h1>
-        <article class="d-flex justify-content-end mb-3">
-            <button class="btn btn-primary text-lg-center" data-toggle="modal" data-target="#modal-add-verificar">
-                    <i class="fas fa-user-plus"></i>
-                </button>
-        </article>
-        <table class="table table-light text-center">
-            <thead>
-                <tr>
-                    <th class="text-center" scope="col">PROVEEDOR</th>
-                    <th class="text-center" scope="col">PRODUCTO</th>
-                    <th class="text-center" scope="col">FECHA</th>
-                    <th class="text-center" scope="col">TOMAR ORDEN</th>
-                    <th class="text-center" scope="col" colspan="2" class="text-center">
-                        ACCIÓN
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>cliente</td>
-                    <td>cliente</td>
-                    <td>cliente</td>
-                    <td class="text-center">
-                        <button class="btn btn-success mx-2" data-toggle="modal" data-target="#modal-tomar-orden">
-                            <i class="fas fa-truck"></i>
-                        </button>
-                    </td>
-                    <td class="text-center">
-                        <button class="btn btn-danger mx-2" data-toggle="modal" data-target="#modal-delete-verificacion">
-                                <i class="fas fa-trash-alt"></i> 
-                        </button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
+<div class="col-lg-12 my-3">
+    <p class="text-center text-white bg-dark py-1"></p>
 </div>
-<div class="modal fade" id="modal-add-verificar" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 
-    <div class="modal-dialog modal-xl">
+<div class="d-flex justify-content-end">
+    <button type="button" class="btn btn-primary mx-2" data-dismiss="modal">TOMAR ORDEN</button>
+</div>
+<!-- --------------------------------------------------------- -->
+<!-- MODAL PARA CREAR UNA NUEVA VERIFICACION DE DISPONIBILIDAD -->
+<!-- --------------------------------------------------------- -->
+
+<div class="modal fade" id="modal-crear" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Registro de Recomendación</h5>
@@ -238,11 +249,8 @@
                         </div>
                         <div class="col-lg-8 d-flex">
                             <label for="codigo" class="col-form-label">Reorden</label>
-                            <div class="col-10">
-                                <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                    <option value="1">Realizar Pedido</option>
-                                    <option value="2">Cantidad Normal</option>
-                                  </select>
+                            <div class="col-6">
+                                <input type="text" class="form-control" id="inlineFormInputName" placeholder="Jane Doe">
                             </div>
                         </div>
                     </div>
@@ -253,7 +261,6 @@
                     <div class="d-flex justify-content-center">
                         <button type="button" class="btn btn-secondary mx-2" data-dismiss="modal">Cancelar</button>
                         <button type="button" class="btn btn-primary mx-2">Guardar</button>
-                        <button type="button" class="btn btn-primary mx-2">Tomar Orden</button>
                     </div>
                 </form>
             </div>

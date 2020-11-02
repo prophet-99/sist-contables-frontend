@@ -1,9 +1,3 @@
-import { PagesComponent } from './pages/pages.component';
-import { ClienteComponent } from './pages/cliente/cliente.component';
-import { InventarioComponent } from './pages/inventario/inventario.component';
-import { ProveedorComponent } from './pages/proveedor/proveedor.component';
-import { LibroDiarioComponent } from './pages/libro-diario/libro-diario.component';
-import { EmpleadoComponent } from './pages/empleado/empleado.component';
 import { LoginComponent } from './login/login.component';
 import { NopagefoundComponent } from './shared/nopagefound/nopagefound.component';
 import { NgModule } from '@angular/core';

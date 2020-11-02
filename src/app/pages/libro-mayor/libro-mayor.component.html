@@ -3,7 +3,7 @@
         <!-- --------------- -->
         <!-- Codigo Compra -->
         <!-- --------------- -->
-        <h3 class="text-muted ml-5 mb-5 mt-3"> LIBRO DIARIO</h3>
+        <h3 class="text-muted ml-5 mb-5 mt-3"> LIBRO MAYOR</h3>
     </div>
     <div class="col-12 d-flex mb-3">
         <div class="col-3 border-right">
@@ -47,12 +47,15 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th class="text-center" scope="col">Fecha</th>
-                <th class="text-center" scope="col">Código</th>
-                <th class="text-center" scope="col">Detalle de Cuenta</th>
-                <th class="text-center" scope="col">DEBE</th>
-                <th class="text-center" scope="col">HABER</th>
-                <th class="text-center" scope="col">Glosa</th>
+                <th class="text-center" scope="col">Fecha de la Operación</th>
+                <th class="text-center" scope="col">N° Correlativo del Libro Diario</th>
+                <th class="text-center" scope="col">Descripcion o glosa de la Operación</th>
+                <th class="text-center" scope="col">Saldos y Movimientos
+                    <div>
+                        <th class="text-center" scope="col">Deudor</th>
+                        <th class="text-center" scope="col">Acreedor</th>
+                    </div>
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -60,25 +63,34 @@
                 <th class="text-center">01-01-2017</th>
                 <td class="text-center">111001</td>
                 <td class="text-center">Banco BNB CTA N° 0214-0124-222</td>
-                <td class="text-center">50, 000</td>
-                <td class="text-center">0.000</td>
-                <td class="text-center">Por registro de balance inicial</td>
+                <td>
+                    <section>
+                        <td class="text-center">10.000</td>
+                        <td class="text-center">50,000</td>
+                    </section>
+                </td>
             </tr>
             <tr>
                 <th class="text-center">01-01-2017</th>
                 <td class="text-center">111001</td>
-                <td class="text-center">Caja</td>
-                <td class="text-center">50, 000</td>
-                <td class="text-center">0.000</td>
-                <td class="text-center">Por registro de balance inicial</td>
+                <td class="text-center">Banco BNB CTA N° 0214-0124-222</td>
+                <td>
+                    <div>
+                        <td class="text-center">10.000</td>
+                        <td class="text-center">50,000</td>
+                    </div>
+                </td>
             </tr>
             <tr>
                 <th class="text-center">01-01-2017</th>
                 <td class="text-center">111001</td>
-                <td class="text-center">Caja</td>
-                <td class="text-center">50, 000</td>
-                <td class="text-center">0.000</td>
-                <td class="text-center">Por registro de balance inicial</td>
+                <td class="text-center">Banco BNB CTA N° 0214-0124-222</td>
+                <td>
+                    <div>
+                        <td class="text-center">10.000</td>
+                        <td class="text-center">50,000</td>
+                    </div>
+                </td>
             </tr>
         </tbody>
     </table>

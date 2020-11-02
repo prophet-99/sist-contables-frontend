@@ -19,6 +19,11 @@ import { VentasComponent } from './ventas/ventas.component';
 import { RegistroRecomendacionComponent } from './ventas/registro-recomendacion/registro-recomendacion.component';
 import { TomarOrdenComponent } from './ventas/tomar-orden/tomar-orden.component';
 import { EntregarProductoComponent } from './ventas/entregar-producto/entregar-producto.component';
+import { LibroMayorComponent } from './libro-mayor/libro-mayor.component';
+import { EntregaInventarioComponent } from './entrega-inventario/entrega-inventario.component';
+import { NominasComponent } from './nominas/nominas.component';
+import { RegistrarTiempoComponent } from './nominas/registrar-tiempo/registrar-tiempo.component';
+import { SueldosComponent } from './nominas/sueldos/sueldos.component';
 
 const routes: Routes = [
     {
@@ -29,7 +34,15 @@ const routes: Routes = [
             { path: 'inventario', component: InventarioComponent },
             { path: 'proveedor', component: ProveedorComponent },
             { path: 'diario', component: LibroDiarioComponent },
+            {path: 'mayor', component: LibroMayorComponent},
             { path: 'empleados', component: EmpleadoComponent },
+            {path: 'nominas' , component: NominasComponent,
+                children: [
+                    { path: '', redirectTo: 'registrarTiempo', pathMatch: 'full' },
+                    {path: 'registrarTiempo', component: RegistrarTiempoComponent},
+                    {path: 'sueldos', component: SueldosComponent},
+                ]},
+            {path: 'entregaInventario', component: EntregaInventarioComponent},
             { path: 'compras', component: ComprasComponent,
                 children: [
                     { path: '', redirectTo: 'disponibilidad', pathMatch: 'full' },

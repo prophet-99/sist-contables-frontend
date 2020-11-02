@@ -22,8 +22,7 @@
 
     <!-- Nav Item - MENU DESPLEGABLE DE CLIENTES -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseClients" 
-            aria-expanded="true">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseClients" aria-expanded="true">
             <i class="fas fa-user"></i>
             <span>Gestión de agentes</span>
         </a>
@@ -35,9 +34,22 @@
             </div>
         </div>
     </li>
+    <!-- Nav Item - MENU DESPLEGABLE DE INVENTARIO -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseInventario" aria-expanded="true">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Gestión Inventario</span>
+        </a>
+        <div id="collapseInventario" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" [routerLink]="['inventario']">Inventario</a>
+                <a class="collapse-item" [routerLink]="['entregaInventario']">Entrega Inventario</a>
+            </div>
+        </div>
+    </li>
     <!-- Divider -->
     <hr class="sidebar-divider">
-    
+
     <!-- REGISTRO GENERAL DE VENTAS -->
     <div class="sidebar-heading">
         Ventas
@@ -45,8 +57,7 @@
 
     <!-- Nav Item - MENU DESPLEGABLE VENTAS -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" 
-            data-target="#collapseVentas" aria-expanded="true">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseVentas" aria-expanded="true">
             <i class="fas fa-fw fa-cog"></i>
             <span>Registos de Ventas</span>
         </a>
@@ -83,21 +94,21 @@
     <!-- Divider -->
     <hr class="sidebar-divider">
 
-    <!-- REGISTRO GENERAL DE INVENTARIO -->
+    <!-- REGISTRO GENERAL DE VENTAS -->
     <div class="sidebar-heading">
-        Inventario
+        Nominas
     </div>
 
-    <!-- Nav Item - MENU DESPLEGABLE DE INVENTARIO -->
+    <!-- Nav Item - MENU DESPLEGABLE VENTAS -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseInventario" aria-expanded="true">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseNominas" aria-expanded="true">
             <i class="fas fa-fw fa-cog"></i>
-            <span>Registos de Inventario</span>
+            <span>Registos de Nominas</span>
         </a>
-        <div id="collapseInventario" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="collapseNominas" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Formularios</h6>
-                <a class="collapse-item" [routerLink]="['inventario']">Editar Inventario</a>
+                <h6 class="collapse-header">Formulario de Nominas</h6>
+                <a class="collapse-item" [routerLink]="['nominas']">Nominas</a>
             </div>
         </div>
     </li>

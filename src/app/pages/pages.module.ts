@@ -20,6 +20,11 @@ import { RegistroRecomendacionComponent } from './ventas/registro-recomendacion/
 import { TomarOrdenComponent } from './ventas/tomar-orden/tomar-orden.component';
 import { VentasComponent } from './ventas/ventas.component';
 import { PagesRoutingModule } from './pages.routing.module';
+import { LibroMayorComponent } from './libro-mayor/libro-mayor.component';
+import { EntregaInventarioComponent } from './entrega-inventario/entrega-inventario.component';
+import { NominasComponent } from './nominas/nominas.component';
+import { RegistrarTiempoComponent } from './nominas/registrar-tiempo/registrar-tiempo.component';
+import { SueldosComponent } from './nominas/sueldos/sueldos.component';
 
 
 @NgModule({
@@ -39,6 +44,11 @@ import { PagesRoutingModule } from './pages.routing.module';
     EntregarProductoComponent,
     RegistroRecomendacionComponent,
     TomarOrdenComponent,
+    LibroMayorComponent,
+    EntregaInventarioComponent,
+    NominasComponent,
+    RegistrarTiempoComponent,
+    SueldosComponent,
   ],
   imports: [
     PagesRoutingModule
