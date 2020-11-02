@@ -9,20 +9,6 @@
         </div>
     </div>
     <div class="row mb-3">
-        <div class="col-lg-4 d-flex">
-            <button class="btn btn-primary text-lg-center mr-2 w-100" data-toggle="modal" data-target="#modal-ver">Crear</button>
-            <button class="btn btn-secondary text-lg-center w-100" data-toggle="modal" data-target="#modal-ver">Editar</button>
-        </div>
-        <div class="col-lg-4 d-flex">
-            <select class="form-control mr-2">
-                <option>Imprimir</option>
-            </select>
-            <select class="form-control">
-                <option>Accion</option>
-            </select>
-        </div>
-    </div>
-    <div class="row mb-3">
         <div class="col-12">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
@@ -34,6 +20,9 @@
                     </li>
                     <li class="breadcrumb-item">
                         <a [routerLink]="['entregarProducto']">Entregar Producto</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a [routerLink]="['productosDevueltos']">Producto devueltos</a>
                     </li>
                 </ol>
             </nav>

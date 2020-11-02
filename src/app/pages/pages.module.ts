@@ -25,6 +25,7 @@ import { EntregaInventarioComponent } from './entrega-inventario/entrega-inventa
 import { NominasComponent } from './nominas/nominas.component';
 import { RegistrarTiempoComponent } from './nominas/registrar-tiempo/registrar-tiempo.component';
 import { SueldosComponent } from './nominas/sueldos/sueldos.component';
+import { ProductosDevueltosComponent } from './ventas/productos-devueltos/productos-devueltos.component';
 
 
 @NgModule({
@@ -49,6 +50,7 @@ import { SueldosComponent } from './nominas/sueldos/sueldos.component';
     NominasComponent,
     RegistrarTiempoComponent,
     SueldosComponent,
+    ProductosDevueltosComponent,
   ],
   imports: [
     PagesRoutingModule
