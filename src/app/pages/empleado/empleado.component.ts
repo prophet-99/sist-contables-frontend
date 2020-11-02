@@ -1,3 +1,4 @@
+import { EmpleadoService } from '../../services/empleado.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EmpleadoComponent implements OnInit {
 
-  constructor() { }
+  public empleadosSubscription$ = null;
+
+  constructor(private empleadoService: EmpleadoService) { }
 
   ngOnInit(): void {
+    this.empleadosSubscription$  = this.empleadoService.findAll();
   }
 
 }

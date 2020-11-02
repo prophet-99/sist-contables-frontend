@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,10 @@ export class EmpleadoService {
 
   // http://localhost:3000/api/v1/empleado
   public findAll(): any{
-    return this.httpClient.get(`${ this.baseAPI }`);
+    return this.httpClient.get<any>(`${ this.baseAPI }`)
+      .pipe(
+        map(({ empleados }) => empleados)
+      );
   }
 
   // http://localhost:3000/api/v1/empleado?search=''

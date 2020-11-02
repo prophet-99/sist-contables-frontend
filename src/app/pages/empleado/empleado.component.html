@@ -34,7 +34,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
+            <tr *ngFor="let empleado of empleadosSubscription$ | async">
                 <td>cliente</td>
                 <td>cliente</td>
                 <td>cliente</td>
