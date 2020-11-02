@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { ItemsByEstado } from 'src/app/models/items-by-estado.model';
+import { ComprasService } from '../../../services/compras.service';
 
 @Component({
   selector: 'app-disponibilidad-producto',
@@ -7,9 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DisponibilidadProductoComponent implements OnInit {
 
-  constructor() { }
+  public lstItems = [];
+
+  constructor(private compraService: ComprasService) { }
 
   ngOnInit(): void {
+    this.compraService.getAllItemsEstado()
+      .subscribe( ({ items }) => this.lstItems = items );
   }
 
 }

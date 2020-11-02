@@ -25,25 +25,28 @@ import { NominasComponent } from './nominas/nominas.component';
 import { RegistrarTiempoComponent } from './nominas/registrar-tiempo/registrar-tiempo.component';
 import { SueldosComponent } from './nominas/sueldos/sueldos.component';
 import { ProductosDevueltosComponent } from './ventas/productos-devueltos/productos-devueltos.component';
+import { AuthGuard } from '../guards/auth.guard';
 
 const routes: Routes = [
     {
-        path: '',
+        path: 'dashboard',
         component: PagesComponent,
+        canActivate: [ AuthGuard ],
+        canActivateChild: [ AuthGuard ],
         children: [
             { path: 'clientes', component: ClienteComponent },
             { path: 'inventario', component: InventarioComponent },
             { path: 'proveedor', component: ProveedorComponent },
             { path: 'diario', component: LibroDiarioComponent },
-            {path: 'mayor', component: LibroMayorComponent},
+            { path: 'mayor', component: LibroMayorComponent },
             { path: 'empleados', component: EmpleadoComponent },
-            {path: 'nominas' , component: NominasComponent,
+            { path: 'nominas' , component: NominasComponent,
                 children: [
                     { path: '', redirectTo: 'registrarTiempo', pathMatch: 'full' },
                     {path: 'registrarTiempo', component: RegistrarTiempoComponent},
                     {path: 'sueldos', component: SueldosComponent},
                 ]},
-            {path: 'entregaInventario', component: EntregaInventarioComponent},
+            { path: 'entregaInventario', component: EntregaInventarioComponent},
             { path: 'compras', component: ComprasComponent,
                 children: [
                     { path: '', redirectTo: 'disponibilidad', pathMatch: 'full' },
@@ -59,7 +62,7 @@ const routes: Routes = [
                     { path: 'registroRecomendacion', component: RegistroRecomendacionComponent },
                     { path: 'tomarOrden', component: TomarOrdenComponent },
                     { path: 'entregarProducto', component: EntregarProductoComponent },
-                    {path: 'productosDevueltos', component: ProductosDevueltosComponent},
+                    { path: 'productosDevueltos', component: ProductosDevueltosComponent }
                 ]
             }
         ]
