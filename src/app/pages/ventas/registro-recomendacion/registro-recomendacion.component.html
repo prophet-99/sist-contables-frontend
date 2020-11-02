@@ -1,13 +1,14 @@
 <div class="row mb-3">
     <div class="col-lg-4 d-flex">
         <button class="btn btn-primary text-lg-center mr-2 w-100" data-toggle="modal" data-target="#modal-crear-recomendacion">Crear</button>
-        <button class="btn btn-secondary text-lg-center w-100" data-toggle="modal" data-target="#modal-ver">Editar</button>
+        <button class="btn btn-secondary text-lg-center mr-2 w-100" data-toggle="modal" data-target="#modal-ver">Editar</button>
+        <button class="btn btn-success text-lg-center w-100" data-toggle="modal" data-target="#modal-ver">Nuevo Item</button>
     </div>
     <div class="col-lg-4 d-flex">
         <select class="form-control mr-2">
             <option>Imprimir</option>
         </select>
-        <select class="form-control">
+        <select class="form-control mr-2">
             <option>Accion</option>
         </select>
     </div>
@@ -35,30 +36,10 @@
     </div>
     <div class="col-12 d-flex mb-3">
         <div class="col-3 border-right">
-            <h6>Hora Inicio</h6>
-        </div>
-        <div class="col-4">
-            <h5 class="text-primary">18:50:45</h5>
-        </div>
-        <div class="col-3">
-            <h6>Hora Fin</h6>
-        </div>
-        <div class="col-2">
-            <h5 class="text-primary">18:50:45</h5>
-        </div>
-    </div>
-    <div class="col-12 d-flex mb-3">
-        <div class="col-3 border-right">
             <h6>Asistente de Ventas</h6>
         </div>
         <div class="col-4">
             <h5 class="text-primary">Kevin Venegas Cordova</h5>
-        </div>
-        <div class="col-3">
-            <h6>Productos</h6>
-        </div>
-        <div class="col-2">
-            <h5 class="text-primary">Laptops</h5>
         </div>
     </div>
     <div class="col-12 d-flex mb-3">
@@ -67,15 +48,6 @@
         </div>
         <div class="col-8">
             <h5 class="text-primary">Angie Fiorella</h5>
-        </div>
-    </div>
-    <div class="col-12 d-flex mb-3">
-        <div class="col-3 border-right">
-            <h6>Descripción</h6>
-        </div>
-        <div class="col-8">
-            <h6 class="text-primary">La cantidad de productos se entregara con un año de garantia en caso de cualquier fallo preguntar al proveedor.
-            </h6>
         </div>
     </div>
     <div class="col-12 d-flex mb-3">
@@ -99,7 +71,6 @@
                 <th class="text-center" scope="col">Cst Unitario</th>
                 <th class="text-center" scope="col">Cnt. Solicitada</th>
                 <th class="text-center" scope="col">Mnt. Total</th>
-                <th class="text-center" scope="col">Ordenar</th>
             </tr>
         </thead>
         <tbody>
@@ -109,9 +80,6 @@
                 <td class="text-center">5,000.0</td>
                 <td class="text-center">3</td>
                 <td class="text-center">15000</td>
-                <div class="ml-5 mt-2">
-                    <input type="checkbox" aria-label="Checkbox for following text input">
-                </div>
             </tr>
             <tr>
                 <th class="text-center">Laptop Lenovo</th>
@@ -119,9 +87,6 @@
                 <td class="text-center">5,000.0</td>
                 <td class="text-center">3</td>
                 <td class="text-center">15000</td>
-                <div class="ml-5 mt-2">
-                    <input type="checkbox" aria-label="Checkbox for following text input">
-                </div>
             </tr>
             <tr>
                 <th class="text-center">Laptop Lenovo</th>
@@ -129,9 +94,6 @@
                 <td class="text-center">5,000.0</td>
                 <td class="text-center">3</td>
                 <td class="text-center">15000</td>
-                <div class="ml-5 mt-2">
-                    <input type="checkbox" aria-label="Checkbox for following text input">
-                </div>
             </tr>
         </tbody>
     </table>
@@ -210,43 +172,12 @@
                             <button type="button" class="btn btn-success  mr-3"><i class="fas fa-user-plus"></i></button>
                         </div>
                     </div>
-                    <!-- Campo INGRESO PRODUCTO - INGRESO CLIENTE  -->
-                    <div class="form-group row">
-                        <div class="col-lg-12 d-flex">
-                            <label for="codigo" class="col-form-label">Descripción</label>
-                            <div class="col-10">
-                                <input type="text" class="form-control mr-2" id="inlineFormInputName" placeholder="Jane Doe">
-                            </div>
-                        </div>
-                    </div>
-
                     <!-- Divider -->
                     <hr class="sidebar-divider">
 
                     <!-- Verificación del Producto -->
                     <div class="form-group">
                         <p class="text-center text-muted">VERIFICACIÓN DEL PRODUCTO</p>
-                    </div>
-                    <!-- Datos del INVENTARIO -->
-                    <div class="form-group row">
-                        <div class="col-lg-4 d-flex">
-                            <label for="codigo" class="col-form-label">Cantidad</label>
-                            <div class="col-8">
-                                <input type="text" class="form-control" id="inlineFormInputName" placeholder="Jane Doe" readonly>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 d-flex">
-                            <label for="codigo" class="col-form-label">Disp Venta</label>
-                            <div class="col-8">
-                                <input type="text" class="form-control" id="inlineFormInputName" placeholder="Jane Doe" readonly>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 d-flex">
-                            <label for="codigo" class="col-form-label">Costo Unitario</label>
-                            <div class="col-8">
-                                <input type="text" class="form-control" id="inlineFormInputName" placeholder="Jane Doe" readonly>
-                            </div>
-                        </div>
                     </div>
                     <!-- Datos de FECHA Y HORA -->
                     <div class="form-group row">
@@ -271,13 +202,7 @@
                     </div>
                     <!-- Campo CANTIDAD SOLICITADA - DESCRIPCIÓN  -->
                     <div class="form-group row">
-                        <div class="col-lg-4 d-flex">
-                            <label for="codigo" class=" col-form-label">Cant. solicitada</label>
-                            <div class="col-7">
-                                <input type="text" class="form-control" id="inlineFormInputName" placeholder="Jane Doe">
-                            </div>
-                        </div>
-                        <div class="col-lg-8 d-flex">
+                        <div class="col-lg-12 d-flex">
                             <label for="codigo" class="col-form-label">Descripción</label>
                             <div class="col-10">
                                 <input type="text" class="form-control" id="inlineFormInputName" placeholder="Jane Doe">
@@ -287,6 +212,77 @@
 
                     <!-- Divider -->
                     <hr class="sidebar-divider">
+                    <!-- Topbar Search -->
+
+                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Tipo Items" aria-label="Search" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <div class="scroll my-3">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th class="text-center" scope="col">Producto</th>
+                                    <th class="text-center" scope="col">Disp Venta</th>
+                                    <th class="text-center" scope="col">Cst Unitario</th>
+                                    <th class="text-center" scope="col">Cnt. Solicitada</th>
+                                    <th class="text-center" scope="col">Mnt. Total</th>
+                                    <th class="text-center" scope="col">Ordenar</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th class="text-center">Laptop Lenovo</th>
+                                    <td class="text-center">1,000</td>
+                                    <td class="text-center">5,000.0</td>
+                                    <td scope="col" class="text-center">
+                                        <div class="d-flex px-5">
+                                            <input type="text" class="form-control" placeholder="Jane Doe">
+                                        </div>
+                                    </td>
+                                    <td class="text-center">15000</td>
+                                    <div class="ml-5 mt-2">
+                                        <input type="checkbox" aria-label="Checkbox for following text input">
+                                    </div>
+                                </tr>
+                                <tr>
+                                    <th class="text-center">Laptop Lenovo</th>
+                                    <td class="text-center">1,000</td>
+                                    <td class="text-center">5,000.0</td>
+                                    <td scope="col" class="text-center">
+                                        <div class="d-flex px-5">
+                                            <input type="text" class="form-control" placeholder="Jane Doe">
+                                        </div>
+                                    </td>
+                                    <td class="text-center">15000</td>
+                                    <div class="ml-5 mt-2">
+                                        <input type="checkbox" aria-label="Checkbox for following text input">
+                                    </div>
+                                </tr>
+                                <tr>
+                                    <th class="text-center">Laptop Lenovo</th>
+                                    <td class="text-center">1,000</td>
+                                    <td class="text-center">5,000.0</td>
+                                    <td scope="col" class="text-center">
+                                        <div class="d-flex px-5">
+                                            <input type="text" class="form-control" placeholder="Jane Doe">
+                                        </div>
+                                    </td>
+                                    <td class="text-center">15000</td>
+                                    <div class="ml-5 mt-2">
+                                        <input type="checkbox" aria-label="Checkbox for following text input">
+                                    </div>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
 
                     <div class="d-flex justify-content-center">
                         <button type="button" class="btn btn-secondary mx-2" data-dismiss="modal">Cancelar</button>

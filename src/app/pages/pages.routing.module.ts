@@ -25,6 +25,7 @@ import { NominasComponent } from './nominas/nominas.component';
 import { RegistrarTiempoComponent } from './nominas/registrar-tiempo/registrar-tiempo.component';
 import { SueldosComponent } from './nominas/sueldos/sueldos.component';
 import { ProductosDevueltosComponent } from './ventas/productos-devueltos/productos-devueltos.component';
+import { CrearNominaComponent } from './nominas/crear-nomina/crear-nomina.component';
 
 const routes: Routes = [
     {
@@ -39,7 +40,8 @@ const routes: Routes = [
             { path: 'empleados', component: EmpleadoComponent },
             {path: 'nominas' , component: NominasComponent,
                 children: [
-                    { path: '', redirectTo: 'registrarTiempo', pathMatch: 'full' },
+                    { path: '', redirectTo: 'crearNomina', pathMatch: 'full' },
+                    {path: 'crearNomina', component: CrearNominaComponent},
                     {path: 'registrarTiempo', component: RegistrarTiempoComponent},
                     {path: 'sueldos', component: SueldosComponent},
                 ]},
