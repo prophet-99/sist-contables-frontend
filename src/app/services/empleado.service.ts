@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { map } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
+import { UsuarioRequest } from '../models/requests/usuario.model';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,7 @@ import { map } from 'rxjs/operators';
 export class EmpleadoService {
 
   private baseAPI = `${ environment.API }/empleado`;
+  private baseAPI2 = `${ environment.API }/usuario`;
 
   constructor(private httpClient: HttpClient) { }
 
@@ -22,7 +24,7 @@ export class EmpleadoService {
   }
 
   // http://localhost:3000/api/v1/empleado?search=''
-  public findByNameOrSurname(paramSearch: string): any{
+  public findByNameOrSurname(paramSearch: string): Observable<any>{
     return this.httpClient.get(`${ this.baseAPI }?search=${ paramSearch }`);
   }
 
@@ -41,9 +43,29 @@ export class EmpleadoService {
     // return this.httpClient.post(`${ this.baseAPI }`);
   }
 
+  public saveUsuario(usuarioRequest: UsuarioRequest): Observable<any>{
+    return this.httpClient.post<any>(`${ this.baseAPI2 }`, usuarioRequest)
+    .pipe(
+      catchError<any, any>(
+        ({ error }) => {
+          if (error.errors){
+            const entries: any = Object.entries(error.errors);
+            let errors = '';
+            entries.forEach(([key, value]) => {
+              errors += `${value.msg}-`;
+            });
+            return throwError({ msg: errors });
+          }else{
+            return throwError({ msg: error.msg.sqlMessage });
+          }
+       })
+    );
+  }
+
   // http://localhost:3000/api/v1/empleado/:idEmpleado
   public deleteById(): any{
     return this.httpClient.get(`${ this.baseAPI }`);
   }
 
 }
+
