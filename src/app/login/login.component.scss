@@ -1,0 +1,14 @@
+.sh-container{
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sh-card{
+    width: 80%;
+    height: 70vh;
+    & .row{
+        height: 100%;
+    }
+}

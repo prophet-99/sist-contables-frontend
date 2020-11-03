@@ -12,4 +12,8 @@ export class OrdenarProductoComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  public printSection(): void{
+    window.print();
+  }
+
 }

@@ -1,10 +1,22 @@
 <!-- Main content -->
 <section class="container-fluid">
-    <h1 class="text-center text-secondary">Registro de Clientes</h1>
-    <article class="d-flex justify-content-end mb-3">
-        <button class="btn btn-primary text-lg-center" data-toggle="modal" data-target="#modal-add-empleado">
-                    <i class="fas fa-user-plus"></i>
-                </button>
+    <h1 class="text-center text-secondary">Registro de Empleados</h1>
+    <article class="d-flex justify-content-between mb-3">
+        <form class="form-inline navbar-search">
+            <div class="input-group">
+                <input type="text" class="form-control bg-light border-0 small border-search" 
+                    placeholder="Buscar">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="button">
+                        <i class="fas fa-search fa-sm"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+        <button class="btn btn-primary text-lg-center" data-toggle="modal" 
+            data-target="#modal-add-empleado">
+            <i class="fas fa-user-plus"></i>
+        </button>
     </article>
     <table class="table table-light text-center">
         <thead>
@@ -22,24 +34,27 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>cliente</td>
-                <td>cliente</td>
-                <td>cliente</td>
-                <td>cliente</td>
+            <tr *ngFor="let empleado of empleadosSubscription$ | async">
+                <td>{{ empleado.dni }}</td>
+                <td>{{ empleado.nombres }}</td>
+                <td>{{ empleado.apellidos }}</td>
+                <td>{{ empleado.tarifa_pago | currency }}</td>
                 <td>cliente</td>
                 <td class="text-center">
-                    <button class="btn btn-primary text-lg-center mx-2" data-toggle="modal" data-target="#modal-ver">
+                    <button class="btn btn-primary text-lg-center mx-2" data-toggle="modal" 
+                        data-target="#modal-ver" (click)="chargeCurrentEmpleado(empleado)">
                         <i class="fas fa-eye"></i>
-                        </button>
+                    </button>
                 </td>
                 <td class="text-center">
-                    <button class="btn btn-primary text-lg-center mx-2" data-toggle="modal" data-target="#modal-login">
-                                <i class="fas fa-edit"></i>
-                        </button>
+                    <button class="btn btn-primary text-lg-center mx-2" data-toggle="modal" [class.btn-success]="empleado.username" 
+                        data-target="#modal-login" (click)="chargeCurrentEmpleadoByAuth(empleado)">
+                        <i class="fas fa-user"></i>
+                    </button>
                 </td>
                 <td class="text-center">
-                    <button class="btn btn-primary text-lg-center mx-2" data-toggle="modal" data-target="#modal-update-empleado">
+                    <button class="btn btn-primary text-lg-center mx-2" data-toggle="modal" 
+                        data-target="#modal-update-empleado">
                                 <i class="fas fa-edit"></i>
                         </button>
                     <button class="btn btn-danger mx-2" data-toggle="modal" data-target="#modal-delete-empleado">
@@ -67,49 +82,49 @@
                     <li class="list-group-item">
                         <div class="d-flex">
                             <p class="font-weight-bold mr-3">DNI</p>
-                            <p>75020397</p>
+                            <p>{{ currentEmpleado?.dni }}</p>
                         </div>
                     </li>
                     <li class="list-group-item">
                         <div class="d-flex">
                             <p class="font-weight-bold mr-3">NOMBRE</p>
-                            <p>Kevin</p>
+                            <p>{{ currentEmpleado?.nombres }}</p>
                         </div>
                     </li>
                     <li class="list-group-item">
                         <div class="d-flex">
                             <p class="font-weight-bold mr-3">APELLIDO</p>
-                            <p>Venegas Cordova</p>
+                            <p>{{ currentEmpleado?.apellidos }}</p>
                         </div>
                     </li>
                     <li class="list-group-item">
                         <div class="d-flex">
                             <p class="font-weight-bold mr-3">PAGO</p>
-                            <p>75020397</p>
+                            <p>{{ currentEmpleado?.tarifa_pago | currency }}</p>
                         </div>
                     </li>
                     <li class="list-group-item">
                         <div class="d-flex">
                             <p class="font-weight-bold mr-3">Fecha Nacimiento</p>
-                            <p>05/10/2020</p>
+                            <p>{{ currentEmpleado?.fecha_nacimiento | date }}</p>
                         </div>
                     </li>
                     <li class="list-group-item">
                         <div class="d-flex">
                             <p class="font-weight-bold mr-3">Fecha Contratación</p>
-                            <p>04/11/2021</p>
+                            <p>{{ currentEmpleado?.fecha_contratcion | date }}</p>
                         </div>
                     </li>
                     <li class="list-group-item">
                         <div class="d-flex">
                             <p class="font-weight-bold mr-3">Email</p>
-                            <p>kvcm3h167@gmail.com</p>
+                            <p>{{ currentEmpleado?.email }}</p>
                         </div>
                     </li>
                     <li class="list-group-item">
                         <div class="d-flex">
                             <p class="font-weight-bold mr-3">Cargo</p>
-                            <p>Asistente de Compras</p>
+                            <p>{{ currentEmpleado?.cargo }}</p>
                         </div>
                     </li>
                 </ul>
@@ -132,13 +147,15 @@
             </button>
             </div>
             <div class="modal-body">
-                <form method="POST" action="">
+                <form [formGroup]="formAuth">
                     <div class="form-row">
                         <div class="col-md-6 mb-3">
                             <section class="container">
                                 <label for="saldo">Usuario</label>
                                 <article>
-                                    <input name="saldo" type="text" class="form-control" placeholder="Numero Cuenta" required>
+                                    <input name="saldo" type="text" 
+                                    class="form-control" formControlName="username" 
+                                    placeholder="username">
                                 </article>
                             </section>
                         </div>
@@ -146,13 +163,16 @@
                             <section class="container">
                                 <label for="saldo">Contraseña</label>
                                 <article>
-                                    <input name="saldo" type="text" class="form-control" placeholder="Numero Cuenta" required>
+                                    <input name="saldo" type="password" 
+                                    class="form-control" formControlName="password" 
+                                    placeholder="password">
                                 </article>
                             </section>
                         </div>
                         <div class="form-group col-md-12" class="text-center">
-                            <button class="btn btn-primary text-lg-center mx-2">
-                                Aceptar
+                            <button class="btn btn-primary text-lg-center mx-2"
+                                (click)="saveUser()">
+                                Guardar
                         </button>
                         </div>
                     </div>

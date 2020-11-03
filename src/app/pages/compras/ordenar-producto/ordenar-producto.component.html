@@ -1,23 +1,15 @@
 <div class="row mb-3">
-    <div class="col-lg-4 d-flex">
-        <button class="btn btn-primary text-lg-center mr-2 w-100" data-toggle="modal" data-target="#modal-crear-orden">Crear</button>
-        <button class="btn btn-secondary text-lg-center w-100" data-toggle="modal" data-target="#modal-ver">Editar</button>
-    </div>
-    <div class="col-lg-4 d-flex">
-        <select class="form-control mr-2">
-            <option>Imprimir</option>
-        </select>
-        <select class="form-control">
-            <option>Accion</option>
-        </select>
+    <div class="col-12 d-flex justify-content-end">
+        <button class="btn btn-primary text-lg-center mr-2" data-toggle="modal" 
+            data-target="#modal-crear-orden">Detallar</button>
+        <button class="btn btn-outline-primary mr-2" (click)="printSection()">
+            Imprimir
+        </button>
     </div>
 </div>
-<div class="border row">
-    <div class="d-flex">
-        <!-- --------------- -->
-        <!-- Codigo Compra -->
-        <!-- --------------- -->
-        <h3 class="text-muted ml-5 mb-5 mt-3"> /WH/OUT/000005</h3>
+<div class="border row sh-section-print">
+    <div class="col-12 d-flex my-3">
+        <h3 class="text-muted"> /WH/OUT/000005</h3>
     </div>
     <div class="col-12 d-flex mb-3">
         <div class="col-3 border-right">

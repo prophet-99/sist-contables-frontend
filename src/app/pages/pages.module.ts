@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ClienteComponent } from './cliente/cliente.component';
@@ -27,6 +28,7 @@ import { RegistrarTiempoComponent } from './nominas/registrar-tiempo/registrar-t
 import { SueldosComponent } from './nominas/sueldos/sueldos.component';
 import { ProductosDevueltosComponent } from './ventas/productos-devueltos/productos-devueltos.component';
 import { CrearNominaComponent } from './nominas/crear-nomina/crear-nomina.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -55,7 +57,10 @@ import { CrearNominaComponent } from './nominas/crear-nomina/crear-nomina.compon
     CrearNominaComponent,
   ],
   imports: [
-    PagesRoutingModule
+    CommonModule,
+    PagesRoutingModule,
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class PagesModule { }

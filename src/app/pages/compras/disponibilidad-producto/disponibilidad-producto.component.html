@@ -1,125 +1,51 @@
-<div class="row mb-3">
-    <div class="col-lg-4 d-flex">
-        <button class="btn btn-primary text-lg-center mr-2 w-100" data-toggle="modal" data-target="#modal-crear">Crear</button>
-        <button class="btn btn-secondary text-lg-center w-100" data-toggle="modal" data-target="#modal-ver">Editar</button>
-    </div>
-    <div class="col-lg-4 d-flex">
-        <select class="form-control mr-2">
-            <option>Imprimir</option>
-        </select>
-        <select class="form-control">
-            <option>Accion</option>
-        </select>
-    </div>
+<div class="d-flex justify-content-end mb-3">
+    <button type="button" class="btn btn-primary">Ordenar productos</button>
 </div>
 <div class="border row">
-    <div class="d-flex">
-        <!-- --------------- -->
-        <!-- Codigo Compra -->
-        <!-- --------------- -->
-        <h3 class="text-muted ml-5 mb-5 mt-3"> /WH/OUT/000005</h3>
-    </div>
-    <div class="col-12 d-flex mb-3">
+    <div class="col-12 d-flex my-3">
         <div class="col-3 border-right">
             <h6>Empresa</h6>
         </div>
-        <div class="col-4">
-            <h6 class="text-primary">LAMBAYEQUE TECNOLOGIES</h6>
-        </div>
-        <div class="col-2 ">
-            <h6>Fecha prevista</h6>
-        </div>
-        <div class="col-3">
-            <h5 class="text-primary">12/01/2020</h5>
-        </div>
-    </div>
-    <div class="col-12 d-flex mb-3">
-        <div class="col-3 border-right">
-            <h6>Hora Inicio</h6>
-        </div>
-        <div class="col-4">
-            <h5 class="text-primary">18:50:45</h5>
-        </div>
-        <div class="col-3">
-            <h6>Hora Fin</h6>
-        </div>
-        <div class="col-2">
-            <h5 class="text-primary">18:50:45</h5>
+        <div class="col-9">
+            <h6 class="text-primary">LAMBAYEQUE TECHNOLOGIES</h6>
         </div>
     </div>
     <div class="col-12 d-flex mb-3">
         <div class="col-3 border-right">
             <h6>Asistente de Compras</h6>
         </div>
-        <div class="col-4">
-            <h5 class="text-primary">Kevin Venegas Cordova</h5>
-        </div>
-        <div class="col-3">
-            <h6>Producto a Verificar</h6>
-        </div>
-        <div class="col-2">
-            <h5 class="text-primary">Laptop SO022</h5>
+        <div class="col-9">
+            <h6 class="text-primary">Kevin Venegas Cordova</h6>
         </div>
     </div>
-    <div class="col-12 d-flex mb-3">
-        <div class="col-3 border-right">
-            <h6>Condicones</h6>
-        </div>
-        <div class="col-8">
-            <h6 class="text-primary">La cantidad de productos se entregara con un año de garantia en caso de cualquier fallo preguntar al proveedor.
-            </h6>
-        </div>
-    </div>
-
+    
     <!-- Divider -->
     <hr class="sidebar-divider">
 
     <table class="table table-striped">
         <thead>
             <tr>
+                <th class="text-center" scope="col">Codigo</th>
                 <th class="text-center" scope="col">Producto</th>
-                <th class="text-center" scope="col">Cnt. Disponible</th>
-                <th class="text-center" scope="col">P. Reorden</th>
-                <th class="text-center" scope="col">Cnt. Solicitada</th>
+                <th class="text-center" scope="col">Punto reorden</th>
+                <th class="text-center" scope="col">Cantidad disponible</th>
+                <th class="text-center" scope="col">Ubicacion</th>
                 <th class="text-center" scope="col">Estado</th>
                 <th class="text-center" scope="col">Ordenar</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <th class="text-center">Laptop Lenovo</th>
-                <td class="text-center">1,000</td>
-                <td class="text-center">0.0000</td>
-                <td class="text-center">0.000 Unidades</td>
+            <tr *ngFor="let item of lstItems">
+                <th class="text-center">{{ item.numero_item }}</th>
+                <td class="text-center">{{ item.descripcion }}</td>
+                <td class="text-center">{{ item.punto_reorden }}</td>
+                <td class="text-center">{{ item.cantidad_disponible }}</td>
+                <td class="text-center">{{ item.ubicacion }}</td>
                 <td class="text-center">
-                    <span class="badge badge-success">AVAZTECIDO</span>
-                    <span class="badge badge-danger">PEDIR</span>
-                </td>
-                <div class="ml-5 mt-2">
-                    <input type="checkbox" aria-label="Checkbox for following text input">
-                </div>
-            </tr>
-            <tr>
-                <th class="text-center">Laptop Lenovo</th>
-                <td class="text-center">1,000</td>
-                <td class="text-center">0.0000</td>
-                <td class="text-center">0.000 Unidades</td>
-                <td class="text-center">
-                    <span class="badge badge-success">AVAZTECIDO</span>
-                    <span class="badge badge-danger">PEDIR</span>
-                </td>
-                <div class="ml-5 mt-2">
-                    <input type="checkbox" aria-label="Checkbox for following text input">
-                </div>
-            </tr>
-            <tr>
-                <th class="text-center">Laptop Lenovo</th>
-                <td class="text-center">1,000</td>
-                <td class="text-center">0.0000</td>
-                <td class="text-center">0.000 Unidades</td>
-                <td class="text-center">
-                    <span class="badge badge-success">AVAZTECIDO</span>
-                    <span class="badge badge-danger">PEDIR</span>
+                    <span class="badge badge-success" [class.badge-danger]="item.estado_item.includes('Ab')"
+                        [class.badge-success]="item.estado_item.includes('Es')">
+                        {{ item.estado_item }}
+                    </span>
                 </td>
                 <div class="ml-5 mt-2">
                     <input type="checkbox" aria-label="Checkbox for following text input">
@@ -130,25 +56,10 @@
 
     <!-- Divider -->
     <hr class="sidebar-divider">
-
-    <div class="col-lg-12 mt-3">
-        <ul class="list-unstyled">
-            <div class="d-flex">
-                <li class="mx-2">Representación impresa de la </li>
-                <li class="font-weight-bold mr-1">GUIA DE VERIFICACIÓN DE DISPONIBILIDAD</li>
-                <li class="ml-1">, para consultar el documento vista</li>
-            </div>
-            <li><a href="" class="mx-2">https://LambayequeTecnologies.com/pe</a></li>
-        </ul>
-    </div>
 </div>
 
 <div class="col-lg-12 my-3">
     <p class="text-center text-white bg-dark py-1"></p>
-</div>
-
-<div class="d-flex justify-content-end">
-    <button type="button" class="btn btn-primary mx-2" data-dismiss="modal">TOMAR ORDEN</button>
 </div>
 <!-- --------------------------------------------------------- -->
 <!-- MODAL PARA CREAR UNA NUEVA VERIFICACION DE DISPONIBILIDAD -->
