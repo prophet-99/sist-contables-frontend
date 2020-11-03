@@ -58,52 +58,39 @@
 
     <table class="table">
         <thead>
-            <tr>
-                <th scope="col" class="text-center">02</th>
-                <th scope="col" class="text-center">03</th>
-                <th scope="col" class="text-center">04</th>
-                <th scope="col" class="text-center">05</th>
-                <th scope="col" class="text-center">06</th>
-                <th scope="col" class="text-center">07</th>
-                <th scope="col" class="text-center">08</th>
-            </tr>
             <tr class="thead-dark">
-                <th scope="col" class="text-center">Lunes</th>
-                <th scope="col" class="text-center">Martes</th>
-                <th scope="col" class="text-center">Miercoles</th>
-                <th scope="col" class="text-center">Jueves</th>
-                <th scope="col" class="text-center">Viernes</th>
-                <th scope="col" class="text-center">Sabado</th>
-                <th scope="col" class="text-center">Domingo</th>
+                <th scope="col" class="text-center">Nombre</th>
+                <th scope="col" class="text-center">Apellido</th>
+                <th scope="col" class="text-center">Fecha</th>
+                <th scope="col" class="text-center">H. Inicio</th>
+                <th scope="col" class="text-center">H. Fin</th>
+                <th scope="col" class="text-center">Total Horas</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <th class="text-center">8 a.m</th>
-                <td class="text-center">8 a.m</td>
-                <td class="text-center">8 a.m</td>
-                <td class="text-center">8 a.m</td>
-                <td class="text-center">8 a.m</td>
-                <td class="text-center">8 a.m</td>
-                <td class="text-center"></td>
+                <th class="text-center">Kevin</th>
+                <td class="text-center">Venegas</td>
+                <td class="text-center">20/12/2020</td>
+                <td class="text-center">34</td>
+                <td class="text-center">20</td>
+                <td class="text-center">50</td>
             </tr>
             <tr>
-                <th class="text-center">8 a.m</th>
-                <td class="text-center">8 a.m</td>
-                <td class="text-center">8 a.m</td>
-                <td class="text-center">8 a.m</td>
-                <td class="text-center">8 a.m</td>
-                <td class="text-center">8 a.m</td>
-                <td class="text-center"></td>
+                <th class="text-center">Kevin</th>
+                <td class="text-center">Venegas</td>
+                <td class="text-center">20/12/2020</td>
+                <td class="text-center">34</td>
+                <td class="text-center">20</td>
+                <td class="text-center">50</td>
             </tr>
             <tr>
-                <th class="text-center">8 a.m</th>
-                <td class="text-center">8 a.m</td>
-                <td class="text-center">8 a.m</td>
-                <td class="text-center">8 a.m</td>
-                <td class="text-center">8 a.m</td>
-                <td class="text-center">8 a.m</td>
-                <td class="text-center"></td>
+                <th class="text-center">Kevin</th>
+                <td class="text-center">Venegas</td>
+                <td class="text-center">20/12/2020</td>
+                <td class="text-center">34</td>
+                <td class="text-center">20</td>
+                <td class="text-center">50</td>
             </tr>
         </tbody>
     </table>
@@ -135,16 +122,25 @@
                 <form id="formulario" class="formulario">
                     <!-- Campo INGRESO PRODUCTO - INGRESO CLIENTE  -->
                     <div class="form-group row">
-                        <div class="col-lg-6 d-flex justify-content-md-center">
+                        <div class="col-lg-4 d-flex justify-content-md-center">
                             <label for="codigo" class=" col-form-label">Codigo</label>
                             <div class="col-6">
                                 <input type="text" class="form-control mr-2" id="inlineFormInputName" placeholder="Jane Doe" readonly>
                             </div>
                         </div>
-                        <div class="col-lg-6 d-flex">
+                        <div class="col-lg-4 d-flex">
                             <label for="codigo" class="col-form-label">Empleado</label>
                             <div class="col-6">
-
+                                <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                  </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 d-flex">
+                            <label for="codigo" class="col-form-label">Nomina</label>
+                            <div class="col-6">
                                 <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
                                     <option value="1">One</option>
                                     <option value="2">Two</option>
@@ -160,37 +156,19 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col" class="text-center">Lunes</th>
-                                <th scope="col" class="text-center">Martes</th>
-                                <th scope="col" class="text-center">Miercoles</th>
-                                <th scope="col" class="text-center">Jueves</th>
-                                <th scope="col" class="text-center">Viernes</th>
-                                <th scope="col" class="text-center">Sabado</th>
-                                <th scope="col" class="text-center">Domingo</th>
+                                <th scope="col" class="text-center">Nombre</th>
+                                <th scope="col" class="text-center">Apellido</th>
+                                <th scope="col" class="text-center">Día</th>
+                                <th scope="col" class="text-center">H. Inicio</th>
+                                <th scope="col" class="text-center">H. Fin</th>
+                                <th scope="col" class="text-center">Total Horas</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <th scope="col" class="text-center" class="text-center">
-                                    <div class="d-flex px-3">
-                                        <input type="text" class="form-control" placeholder="Jane Doe">
-                                    </div>
-                                </th>
-                                <td scope="col" class="text-center" class="text-center">
-                                    <div class="d-flex px-3">
-                                        <input type="text" class="form-control" placeholder="Jane Doe">
-                                    </div>
-                                </td>
-                                <td scope="col" class="text-center" class="text-center">
-                                    <div class="d-flex px-3">
-                                        <input type="text" class="form-control" placeholder="Jane Doe">
-                                    </div>
-                                </td>
-                                <td scope="col" class="text-center" class="text-center">
-                                    <div class="d-flex px-3">
-                                        <input type="text" class="form-control" placeholder="Jane Doe">
-                                    </div>
-                                </td>
+                                <th scope="col" class="text-center">Kevin</th>
+                                <td scope="col" class="text-center">Venegas</td>
+                                <td scope="col" class="text-center">20/12/2020</td>
                                 <td scope="col" class="text-center">
                                     <div class="d-flex px-3">
                                         <input type="text" class="form-control" placeholder="Jane Doe">
@@ -203,31 +181,14 @@
                                 </td>
                                 <td scope="col" class="text-center">
                                     <div class="d-flex px-3">
-                                        <input type="text" class="form-control" placeholder="Jane Doe">
+                                        <input type="text" class="form-control" placeholder="Jane Doe" readonly>
                                     </div>
                                 </td>
                             </tr>
                             <tr>
-                                <th scope="col" class="text-center" class="text-center">
-                                    <div class="d-flex px-3">
-                                        <input type="text" class="form-control" placeholder="Jane Doe">
-                                    </div>
-                                </th>
-                                <td scope="col" class="text-center" class="text-center">
-                                    <div class="d-flex px-3">
-                                        <input type="text" class="form-control" placeholder="Jane Doe">
-                                    </div>
-                                </td>
-                                <td scope="col" class="text-center" class="text-center">
-                                    <div class="d-flex px-3">
-                                        <input type="text" class="form-control" placeholder="Jane Doe">
-                                    </div>
-                                </td>
-                                <td scope="col" class="text-center" class="text-center">
-                                    <div class="d-flex px-3">
-                                        <input type="text" class="form-control" placeholder="Jane Doe">
-                                    </div>
-                                </td>
+                                <th scope="col" class="text-center">Kevin</th>
+                                <td scope="col" class="text-center">Venegas</td>
+                                <td scope="col" class="text-center">20/12/2020</td>
                                 <td scope="col" class="text-center">
                                     <div class="d-flex px-3">
                                         <input type="text" class="form-control" placeholder="Jane Doe">
@@ -240,31 +201,14 @@
                                 </td>
                                 <td scope="col" class="text-center">
                                     <div class="d-flex px-3">
-                                        <input type="text" class="form-control" placeholder="Jane Doe">
+                                        <input type="text" class="form-control" placeholder="Jane Doe" readonly>
                                     </div>
                                 </td>
                             </tr>
                             <tr>
-                                <th scope="col" class="text-center" class="text-center">
-                                    <div class="d-flex px-3">
-                                        <input type="text" class="form-control" placeholder="Jane Doe">
-                                    </div>
-                                </th>
-                                <td scope="col" class="text-center" class="text-center">
-                                    <div class="d-flex px-3">
-                                        <input type="text" class="form-control" placeholder="Jane Doe">
-                                    </div>
-                                </td>
-                                <td scope="col" class="text-center" class="text-center">
-                                    <div class="d-flex px-3">
-                                        <input type="text" class="form-control" placeholder="Jane Doe">
-                                    </div>
-                                </td>
-                                <td scope="col" class="text-center" class="text-center">
-                                    <div class="d-flex px-3">
-                                        <input type="text" class="form-control" placeholder="Jane Doe">
-                                    </div>
-                                </td>
+                                <th scope="col" class="text-center">Kevin</th>
+                                <td scope="col" class="text-center">Venegas</td>
+                                <td scope="col" class="text-center">20/12/2020</td>
                                 <td scope="col" class="text-center">
                                     <div class="d-flex px-3">
                                         <input type="text" class="form-control" placeholder="Jane Doe">
@@ -277,10 +221,11 @@
                                 </td>
                                 <td scope="col" class="text-center">
                                     <div class="d-flex px-3">
-                                        <input type="text" class="form-control" placeholder="Jane Doe">
+                                        <input type="text" class="form-control" placeholder="Jane Doe" readonly>
                                     </div>
                                 </td>
                             </tr>
+
                         </tbody>
                     </table>
 

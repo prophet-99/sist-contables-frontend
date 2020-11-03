@@ -27,6 +27,7 @@ import { NominasComponent } from './nominas/nominas.component';
 import { RegistrarTiempoComponent } from './nominas/registrar-tiempo/registrar-tiempo.component';
 import { SueldosComponent } from './nominas/sueldos/sueldos.component';
 import { ProductosDevueltosComponent } from './ventas/productos-devueltos/productos-devueltos.component';
+import { CrearNominaComponent } from './nominas/crear-nomina/crear-nomina.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
@@ -53,6 +54,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     RegistrarTiempoComponent,
     SueldosComponent,
     ProductosDevueltosComponent,
+    CrearNominaComponent,
   ],
   imports: [
     CommonModule,
