@@ -3,7 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { catchError, map } from 'rxjs/operators';
-import { UsuarioRequest } from '../models/requests/usuario.model';
+import { UsuarioRequest } from '../models/requests/usuario.request.model';
+import { Empleado, EmpleadoResponse } from '../models/empleado.model';
+import { EmpleadoRequest } from '../models/requests/empleado.request.model';
 
 @Injectable({
   providedIn: 'root'
@@ -15,36 +17,55 @@ export class EmpleadoService {
 
   constructor(private httpClient: HttpClient) { }
 
-  // http://localhost:3000/api/v1/empleado
-  public findAll(): any{
-    return this.httpClient.get<any>(`${ this.baseAPI }`)
+  public findAll(): Observable<Empleado[]>{
+    return this.httpClient.get<EmpleadoResponse>(`${ this.baseAPI }`)
       .pipe(
         map(({ empleados }) => empleados)
       );
   }
 
-  // http://localhost:3000/api/v1/empleado?search=''
-  public findByNameOrSurname(paramSearch: string): Observable<any>{
-    return this.httpClient.get(`${ this.baseAPI }?search=${ paramSearch }`);
+  public findByNameOrSurname(paramSearch: string): Observable<Empleado[]>{
+    return this.httpClient.get<EmpleadoResponse>(`${ this.baseAPI }?search=${ paramSearch }`)
+      .pipe(
+        map(({ empleados }) => empleados)
+      );
   }
 
-  // http://localhost:3000/api/v1/empleado/inactives
-  public findAllInactives(): any{
-    return this.httpClient.get(`${ this.baseAPI }`);
+  public findAllInactives(): Observable<Empleado[]>{
+    return this.httpClient.get<EmpleadoResponse>(`${ this.baseAPI }/inactives`)
+      .pipe(
+        map(({ empleados }) => empleados)
+      );
   }
 
-  // http://localhost:3000/api/v1/empleado/inactives?search=''
-  public findByNameOrSurnameInactives(): any{
-    return this.httpClient.get(`${ this.baseAPI }`);
+  public findByNameOrSurnameInactives(paramSearch: string): Observable<Empleado[]>{
+    return this.httpClient.get<EmpleadoResponse>(`${ this.baseAPI }/inactives?search=${ paramSearch }`)
+      .pipe(
+        map(({ empleados }) => empleados)
+      );
   }
 
-  // http://localhost:3000/api/v1/empleado
-  public save(): any{
-    // return this.httpClient.post(`${ this.baseAPI }`);
+  public save(empleadoRequest: EmpleadoRequest): Observable<{ ok: boolean, msg: string }>{
+    return this.httpClient.post<{ ok: boolean, msg: string }>(`${ this.baseAPI }`, empleadoRequest)
+      .pipe(
+        catchError<any, any>(
+          ({ error }) => {
+            if (error.errors){
+              const entries: any = Object.entries(error.errors);
+              let errors = '';
+              entries.forEach(([key, value]) => {
+                errors += `${value.msg}-`;
+              });
+              return throwError({ msg: errors });
+            }else{
+              return throwError({ msg: error.msg.sqlMessage });
+            }
+          })
+      );
   }
 
-  public saveUsuario(usuarioRequest: UsuarioRequest): Observable<any>{
-    return this.httpClient.post<any>(`${ this.baseAPI2 }`, usuarioRequest)
+  public saveUsuario(usuarioRequest: UsuarioRequest): Observable<{ ok: boolean, msg: string }>{
+    return this.httpClient.post<{ ok: boolean, msg: string }>(`${ this.baseAPI2 }`, usuarioRequest)
     .pipe(
       catchError<any, any>(
         ({ error }) => {
@@ -62,9 +83,8 @@ export class EmpleadoService {
     );
   }
 
-  // http://localhost:3000/api/v1/empleado/:idEmpleado
-  public deleteById(): any{
-    return this.httpClient.get(`${ this.baseAPI }`);
+  public deleteById(idEmpleado: number): Observable<{ ok: boolean, msg: string }>{
+    return this.httpClient.delete<{ ok: boolean, msg: string }>(`${ this.baseAPI }/${ idEmpleado }`);
   }
 
 }

@@ -5,7 +5,7 @@
         <form class="form-inline navbar-search">
             <div class="input-group">
                 <input type="text" class="form-control bg-light border-0 small border-search" 
-                    placeholder="Buscar">
+                    placeholder="Buscar" (keyup)="searchEmpleado($event)">
                 <div class="input-group-append">
                     <button class="btn btn-primary" type="button">
                         <i class="fas fa-search fa-sm"></i>
@@ -14,10 +14,11 @@
             </div>
         </form>
         <button class="btn btn-primary text-lg-center" data-toggle="modal" 
-            data-target="#modal-add-empleado">
+            data-target="#modal-add-empleado" (click)="chargeCurrentEmpleadoForAdd()">
             <i class="fas fa-user-plus"></i>
         </button>
     </article>
+    <article class="table-responsive">
     <table class="table table-light text-center">
         <thead>
             <tr>
@@ -39,7 +40,7 @@
                 <td>{{ empleado.nombres }}</td>
                 <td>{{ empleado.apellidos }}</td>
                 <td>{{ empleado.tarifa_pago | currency }}</td>
-                <td>cliente</td>
+                <td>{{ empleado.rol }}</td>
                 <td class="text-center">
                     <button class="btn btn-primary text-lg-center mx-2" data-toggle="modal" 
                         data-target="#modal-ver" (click)="chargeCurrentEmpleado(empleado)">
@@ -47,23 +48,26 @@
                     </button>
                 </td>
                 <td class="text-center">
-                    <button class="btn btn-primary text-lg-center mx-2" data-toggle="modal" [class.btn-success]="empleado.username" 
-                        data-target="#modal-login" (click)="chargeCurrentEmpleadoByAuth(empleado)">
+                    <button class="btn btn-primary text-lg-center mx-2" data-toggle="modal" 
+                        [class.btn-success]="empleado.username" data-target="#modal-login" 
+                        (click)="chargeCurrentEmpleadoForAuth(empleado)">
                         <i class="fas fa-user"></i>
                     </button>
                 </td>
                 <td class="text-center">
                     <button class="btn btn-primary text-lg-center mx-2" data-toggle="modal" 
-                        data-target="#modal-update-empleado">
+                        data-target="#modal-add-empleado" (click)="chargeCurrentEmpleadoForEdit(empleado)">
                                 <i class="fas fa-edit"></i>
                         </button>
-                    <button class="btn btn-danger mx-2" data-toggle="modal" data-target="#modal-delete-empleado">
+                    <button class="btn btn-danger mx-2" data-toggle="modal" 
+                        data-target="#modal-delete-empleado" (click)="chargeCurrentEmpleadoForEdit(empleado)">
                                 <i class="fas fa-trash-alt"></i> 
                         </button>
                 </td>
             </tr>
         </tbody>
     </table>
+    </article>
 </section>
 <!-- ----------------------------------- -->
 <!-- Ver Todos los datos del Empleado -->
@@ -112,7 +116,7 @@
                     <li class="list-group-item">
                         <div class="d-flex">
                             <p class="font-weight-bold mr-3">Fecha Contratación</p>
-                            <p>{{ currentEmpleado?.fecha_contratcion | date }}</p>
+                            <p>{{ currentEmpleado?.fecha_contratacion | date }}</p>
                         </div>
                     </li>
                     <li class="list-group-item">
@@ -124,7 +128,7 @@
                     <li class="list-group-item">
                         <div class="d-flex">
                             <p class="font-weight-bold mr-3">Cargo</p>
-                            <p>{{ currentEmpleado?.cargo }}</p>
+                            <p>{{ currentEmpleado?.rol }}</p>
                         </div>
                     </li>
                 </ul>
@@ -153,7 +157,7 @@
                             <section class="container">
                                 <label for="saldo">Usuario</label>
                                 <article>
-                                    <input name="saldo" type="text" 
+                                    <input type="text" 
                                     class="form-control" formControlName="username" 
                                     placeholder="username">
                                 </article>
@@ -163,17 +167,19 @@
                             <section class="container">
                                 <label for="saldo">Contraseña</label>
                                 <article>
-                                    <input name="saldo" type="password" 
+                                    <input type="password" 
                                     class="form-control" formControlName="password" 
                                     placeholder="password">
                                 </article>
                             </section>
                         </div>
-                        <div class="form-group col-md-12" class="text-center">
-                            <button class="btn btn-primary text-lg-center mx-2"
-                                (click)="saveUser()">
-                                Guardar
-                        </button>
+                        <div class="form-group col-md-12 d-flex justify-content-end">
+                            <section class="container">
+                                <button class="btn btn-primary text-center w250"
+                                    (click)="saveUser()">
+                                    Guardar
+                                </button>
+                            </section>
                         </div>
                     </div>
                 </form>
@@ -196,13 +202,14 @@
             </button>
             </div>
             <div class="modal-body">
-                <form method="POST" action="">
+                <form [formGroup]="formEmployee">
                     <div class="form-row">
                         <div class="col-md-6 mb-3">
                             <section class="container">
                                 <label for="saldo">DNI</label>
                                 <article>
-                                    <input name="saldo" type="text" class="form-control" placeholder="Numero Cuenta" required>
+                                    <input type="text" class="form-control" 
+                                        placeholder="Ingrese DNI" formControlName="dni">
                                 </article>
                             </section>
                         </div>
@@ -210,7 +217,8 @@
                             <section class="container">
                                 <label for="saldo">Nombre</label>
                                 <article>
-                                    <input name="saldo" type="text" class="form-control" placeholder="Numero Cuenta" required>
+                                    <input type="text" class="form-control" 
+                                        placeholder="Ingrese nombres" formControlName="nombres">
                                 </article>
                             </section>
                         </div>
@@ -218,7 +226,8 @@
                             <section class="container">
                                 <label for="saldo">Apellido</label>
                                 <article>
-                                    <input name="saldo" type="text" class="form-control" placeholder="Numero Cuenta" required>
+                                    <input type="text" class="form-control" 
+                                        placeholder="Ingrese apellidos" formControlName="apellidos">
                                 </article>
                             </section>
                         </div>
@@ -226,7 +235,8 @@
                             <section class="container">
                                 <label for="saldo">Email</label>
                                 <article>
-                                    <input name="saldo" type="text" class="form-control" placeholder="Numero Cuenta" required>
+                                    <input type="email" class="form-control" 
+                                        placeholder="Ingrese email" formControlName="email">
                                 </article>
                             </section>
                         </div>
@@ -234,7 +244,8 @@
                             <section class="container">
                                 <label for="saldo">Fecha Nacimiento</label>
                                 <article>
-                                    <input name="saldo" type="text" class="form-control" placeholder="Numero Cuenta" required>
+                                    <input type="date" class="form-control" 
+                                        formControlName="fechaNacimiento">
                                 </article>
                             </section>
                         </div>
@@ -242,106 +253,17 @@
                             <section class="container">
                                 <label for="saldo">Fecha Contratacion</label>
                                 <article>
-                                    <input name="saldo" type="text" class="form-control" placeholder="Numero Cuenta" required>
+                                    <input type="date" class="form-control" 
+                                        formControlName="fechaContratacion">
                                 </article>
                             </section>
                         </div>
                         <div class="col-md-6 mb-3">
                             <section class="container">
-                                <label for="saldo">Pago</label>
+                                <label for="saldo">Tarifa de pago</label>
                                 <article>
-                                    <input name="saldo" type="text" class="form-control" placeholder="Numero Cuenta" required>
-                                </article>
-                            </section>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <section class="container">
-                                <label for="saldo">Cargo</label>
-                                <article>
-                                    <input name="saldo" type="text" class="form-control" placeholder="Numero Cuenta" required>
-                                </article>
-                            </section>
-                        </div>
-                        <div class="form-group col-md-12" class="text-center">
-                            <button class="btn btn-primary text-lg-center mx-2">
-                                Aceptar
-                        </button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- ----------------------------------- -->
-<!-- MODAL PARA EDITAR UN EMPLEADO EXISTENTE -->
-<!-- ----------------------------------- -->
-
-<div class="modal fade" id="modal-update-empleado" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModal">Crear un nuevo</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            </div>
-            <div class="modal-body">
-                <form method="POST" action="">
-                    <div class="form-row">
-                        <div class="col-md-6 mb-3">
-                            <section class="container">
-                                <label for="saldo">DNI</label>
-                                <article>
-                                    <input name="saldo" type="text" class="form-control" placeholder="Numero Cuenta" required>
-                                </article>
-                            </section>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <section class="container">
-                                <label for="saldo">Nombre</label>
-                                <article>
-                                    <input name="saldo" type="text" class="form-control" placeholder="Numero Cuenta" required>
-                                </article>
-                            </section>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <section class="container">
-                                <label for="saldo">Apellido</label>
-                                <article>
-                                    <input name="saldo" type="text" class="form-control" placeholder="Numero Cuenta" required>
-                                </article>
-                            </section>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <section class="container">
-                                <label for="saldo">Email</label>
-                                <article>
-                                    <input name="saldo" type="text" class="form-control" placeholder="Numero Cuenta" required>
-                                </article>
-                            </section>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <section class="container">
-                                <label for="saldo">Fecha Nacimiento</label>
-                                <article>
-                                    <input name="saldo" type="text" class="form-control" placeholder="Numero Cuenta" required>
-                                </article>
-                            </section>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <section class="container">
-                                <label for="saldo">Fecha Contratacion</label>
-                                <article>
-                                    <input name="saldo" type="text" class="form-control" placeholder="Numero Cuenta" required>
-                                </article>
-                            </section>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <section class="container">
-                                <label for="saldo">Pago</label>
-                                <article>
-                                    <input name="saldo" type="text" class="form-control" placeholder="Numero Cuenta" required>
+                                    <input type="number" class="form-control" 
+                                        formControlName="tarifaPago">
                                 </article>
                             </section>
                         </div>
@@ -349,14 +271,19 @@
                             <section class="container">
                                 <label for="saldo">Cargo</label>
                                 <article>
-                                    <input name="saldo" type="text" class="form-control" placeholder="Numero Cuenta" required>
+                                    <select class="form-control" formControlName="idCargo">
+                                        <option value="1">Seleccione cargo</option>
+                                    </select>
                                 </article>
                             </section>
                         </div>
-                        <div class="form-group col-md-12" class="text-center">
-                            <button class="btn btn-primary text-lg-center mx-2">
-                                Aceptar
-                        </button>
+                        <div class="form-group col-md-12 d-flex justify-content-end">
+                            <section class="container">
+                                <button class="btn btn-primary text-center w-25"
+                                    (click)="addEmpleado()">
+                                    Aceptar
+                                </button>
+                            </section>
                         </div>
                     </div>
                 </form>
@@ -377,19 +304,20 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form method="POST" action="">
+                <form>
                     <div class="form-row">
                         <div class="form-group col-md-12">
-                            <input type="hidden" class="form-control" id="id-orden" required name="">
+                            <input type="hidden" class="form-control" id="id-orden" name="">
                         </div>
                         <section class="justify-content-center d-flex w-100">
                             <div class="alert alert-primary" role="alert">
                                 ¿Desea eliminar un Empleado?
                             </div>
                         </section>
-                        <div class="form-group col-md-12" class="text-center">
-                            <button type="submit" class="btn btn-success btn-block">
-                                ELIMINAR
+                        <div class="form-group col-md-12">
+                            <button type="submit" class="btn btn-success btn-block"
+                                (click)="deleteCurrentEmpleado()">
+                                Eliminar
                             </button>
                         </div>
                     </div>
