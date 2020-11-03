@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { Empleado } from 'src/app/models/empleado.model';
 import { EmpleadoRequest } from '../../models/requests/empleado.request.model';
 import * as moment from 'moment';
+import { Cargo } from 'src/app/models/cargo.model';
 declare const $: any;
 
 @Component({
@@ -17,6 +18,7 @@ declare const $: any;
 export class EmpleadoComponent implements OnInit {
 
   public empleadosSubscription$: Observable<Empleado[]> = null;
+  public cargosSubscription$: Observable<Cargo[]> = null;
   public currentEmpleado: Empleado = null;
   public formAuth: FormGroup = null;
   public formEmployee: FormGroup = null;
@@ -28,6 +30,7 @@ export class EmpleadoComponent implements OnInit {
 
   ngOnInit(): void {
     this.empleadosSubscription$  = this.empleadoService.findAll();
+    this.cargosSubscription$ = this.empleadoService.getAllCargos();
     this.formAuth = this.formBuilder.group({
       username: [ '', Validators.required ],
       password: [ '', Validators.required ]
@@ -40,7 +43,7 @@ export class EmpleadoComponent implements OnInit {
       apellidos: [ '', Validators.required ],
       tarifaPago: [ null, Validators.required ],
       email: [ '', Validators.required ],
-      idCargo: [ null, Validators.required ]
+      idCargo: [ '', Validators.required ]
     });
   }
 
@@ -58,7 +61,7 @@ export class EmpleadoComponent implements OnInit {
       apellidos: [ '', Validators.required ],
       tarifaPago: [ null, Validators.required ],
       email: [ '', Validators.required ],
-      idCargo: [ null, Validators.required ]
+      idCargo: [ '', Validators.required ]
     });
   }
 
@@ -72,7 +75,7 @@ export class EmpleadoComponent implements OnInit {
       apellidos: [ empleado.apellidos, Validators.required ],
       tarifaPago: [ empleado.tarifa_pago, Validators.required ],
       email: [ empleado.email, Validators.required ],
-      idCargo: [ empleado.rol, Validators.required ]
+      idCargo: [ empleado.id_rol, Validators.required ]
     });
   }
 

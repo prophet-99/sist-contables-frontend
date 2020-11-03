@@ -1,10 +1,21 @@
 <div class="row mb-3">
-    <div class="col-12 d-flex justify-content-end">
-        <button class="btn btn-primary text-lg-center mr-2" data-toggle="modal" 
-            data-target="#modal-crear-orden">Detallar</button>
-        <button class="btn btn-outline-primary mr-2" (click)="printSection()">
-            Imprimir
-        </button>
+    <div class="col-12 d-flex justify-content-between">
+        <section>
+            <button class="btn btn-secondary text-lg-center mr-2" data-toggle="modal" 
+                data-target="#modal-crear-orden">Detallar</button>
+            <button class="btn btn-outline-secondary mr-2" (click)="printSection()">
+                Imprimir
+            </button>
+        </section>
+        <section>
+            <button class="btn btn-outline-primary mr-2"
+                routerLink="/dashboard/compras/disponibilidad">
+                Atrás
+            </button>
+            <button class="btn btn-primary text-lg-center" data-toggle="modal"
+                [disabled]="ordenForm?.invalid"
+                (click)="saveOrden()">Ordenar</button>
+        </section>
     </div>
 </div>
 <div class="border row sh-section-print">

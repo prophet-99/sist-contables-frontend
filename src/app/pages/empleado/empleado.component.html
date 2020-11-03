@@ -272,7 +272,10 @@
                                 <label for="saldo">Cargo</label>
                                 <article>
                                     <select class="form-control" formControlName="idCargo">
-                                        <option value="1">Seleccione cargo</option>
+                                        <option value="">Seleccione cargo</option>
+                                        <option *ngFor="let cargo of cargosSubscription$ |async" value="{{ cargo.id }}">
+                                            {{ cargo.descripcion }}
+                                        </option>
                                     </select>
                                 </article>
                             </section>

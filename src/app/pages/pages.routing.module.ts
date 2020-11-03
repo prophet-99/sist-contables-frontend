@@ -53,11 +53,11 @@ const routes: Routes = [
                 children: [
                     { path: '', redirectTo: 'disponibilidad', pathMatch: 'full' },
                     { path: 'disponibilidad', component: DisponibilidadProductoComponent },
-                    { path: 'recibirProducto', component: RecibirProductoComponent },
                     { path: 'ordenarProducto', component: OrdenarProductoComponent },
-                    { path: 'comprobanteCompra', component: ComprobanteCompraComponent },
                 ]
             },
+            { path: 'comprasRecibirProductos', component: RecibirProductoComponent },
+            { path: 'comprasComprobanteCompra', component: ComprobanteCompraComponent },
             { path: 'ventas', component: VentasComponent,
                 children: [
                     { path: '', redirectTo: 'registroRecomendacion', pathMatch: 'full' },

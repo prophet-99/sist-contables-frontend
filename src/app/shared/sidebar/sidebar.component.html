@@ -85,7 +85,9 @@
         </a>
         <div id="collapseCompras" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" [routerLink]="['compras']">Compras</a>
+                <a class="collapse-item" [routerLink]="['compras']">Registrar Compras</a>
+                <a class="collapse-item" [routerLink]="['comprasComprobanteCompra']">Ordenes de Compra</a>
+                <a class="collapse-item" [routerLink]="['comprasRecibirProductos']">Recepcion de pedidos</a>
             </div>
         </div>
     </li>
@@ -114,7 +116,39 @@
 
     <!-- Divider -->
     <hr class="sidebar-divider">
+    <!-- PROCESO DE COMPRAS -->
 
+    <div class="sidebar-heading">
+        Transacciones monetarias
+    </div>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePorPagar" aria-expanded="true">
+            <i class="fas fa-sync"></i>
+            <span>Cuentas por pagar</span>
+        </a>
+        <div id="collapsePorPagar" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" [routerLink]="['compras']">Pago a proveedores</a>
+                <a class="collapse-item" [routerLink]="['compras']">Pago a empleados</a>
+            </div>
+        </div>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePorCobrar" aria-expanded="true">
+            <i class="fas fa-sync"></i>
+            <span>Cuentas por cobrar</span>
+        </a>
+        <div id="collapsePorCobrar" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" [routerLink]="['compras']">Pagos de clientes</a>
+            </div>
+        </div>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
 
     <!-- PROCESO DE COMPRAS -->
     <div class="sidebar-heading">

@@ -1,9 +1,9 @@
-export interface ItemsByEstado {
+export interface ItemsByEstadoResponse {
     ok: boolean;
-    items: Item[];
+    items: ItemByEstado[];
 }
 
-export interface Item {
+export interface ItemByEstado {
     numero_item: string;
     descripcion: string;
     ubicacion: string;
