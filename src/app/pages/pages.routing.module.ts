@@ -27,6 +27,8 @@ import { SueldosComponent } from './nominas/sueldos/sueldos.component';
 import { ProductosDevueltosComponent } from './ventas/productos-devueltos/productos-devueltos.component';
 import { CrearNominaComponent } from './nominas/crear-nomina/crear-nomina.component';
 import { AuthGuard } from '../guards/auth.guard';
+import { CuentasCobrarComponent } from './cuentas-cobrar/cuentas-cobrar.component';
+import { CuentasPorPagarComponent } from './cuentas-por-pagar/cuentas-por-pagar.component';
 
 const routes: Routes = [
     {
@@ -40,6 +42,8 @@ const routes: Routes = [
             { path: 'proveedor', component: ProveedorComponent },
             { path: 'diario', component: LibroDiarioComponent },
             { path: 'mayor', component: LibroMayorComponent },
+            {path: 'cuentasPorCobra', component: CuentasCobrarComponent},
+            {path: 'cuentasPorPagar', component: CuentasPorPagarComponent},
             { path: 'empleados', component: EmpleadoComponent },
             { path: 'nominas' , component: NominasComponent,
                 children: [
