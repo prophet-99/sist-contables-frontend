@@ -1,26 +1,66 @@
-<div class="border row">
+<div class="container-fluid">
+    <article class="row mb-3">
+        <div class="col-12">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a class="u-pointer-events-none" href="#">Dashboard</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a class="u-pointer-events-none text-dark font-weight-bold">
+                            Ordenes de compra
+                        </a>
+                    </li>
+                </ol>
+            </nav>
+        </div>
+    </article>
+    <article class="d-flex justify-content-between mb-3">
+        <form class="form-inline navbar-search">
+            <div class="input-group">
+                <input type="text" class="form-control bg-light border-0 small border-search" 
+                    placeholder="Buscar" (keyup)="handleSearch($event)">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="button">
+                        <i class="fas fa-search fa-sm"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </article>
+</div>
+<div class="border row mx-4">
     <table class="table table-striped">
         <thead>
             <tr>
-                <th class="text-center" scope="col">Número orden de compra</th>
-                <th class="text-center" scope="col">Descripción</th>
+                <th class="text-center" scope="col"># Orden de compra</th>
+                <th class="text-center" scope="col">Proveedor</th>
                 <th class="text-center" scope="col">Fecha de pedido</th>
                 <th class="text-center" scope="col">Fecha de entrega esperada</th>
                 <th class="text-center" scope="col">Precio total esperado</th>
-                <th class="text-center" scope="col">Empleado</th>
-                <th class="text-center" scope="col">Comprobante asociado</th>
+                <th class="text-center" scope="col">Estado</th>
+                <th class="text-center" scope="col">Detalle</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <th class="text-center"></th>
-                <td class="text-center"></td>
-                <td class="text-center"></td>
-                <td class="text-center"></td>
-                <td class="text-center"></td>
-                <td class="text-center"></td>
+            <tr *ngFor="let oc of ordenCompraSubscription$ | async">
+                <th class="text-center">{{ oc.numero_orden_compra }}</th>
+                <th class="text-center">{{ oc.proveedor }}</th>                
+                <td class="text-center">{{ oc.fecha_pedido | date }}</td>
+                <td class="text-center">{{ oc.fecha_entrega_esperada | date }}</td>
+                <td class="text-center">{{ oc.precio_total_esperado | currency }}</td>
                 <td class="text-center">
-                    <button class="btn btn-primary" data-toggle="modal" data-target="#modal-factura">
+                    <button class="btn btn-outline-primary" *ngIf="!oc.pago"  
+                         (click)="handleGoDesembolsarEfectivo()">
+                        Cancelar
+                    </button>
+                    <span class="badge badge-success" *ngIf="oc.pago">
+                        Cancelado
+                    </span>
+                </td>
+                <td class="text-center">
+                    <button class="btn btn-primary" data-toggle="modal" 
+                        data-target="#modal-factura" (click)="handleGetOrdenesCompra(oc)">
                         <i class="fas fa-eye"></i>
                     </button>
                 </td>
@@ -33,26 +73,32 @@
 </div>
 
 <!-- --------------------------------------------------------- -->
-<!-- MODAL PARA VER LAS FACTURAS -->
+<!-- MODAL PARA VER LAS ORDENES DE COMPRA -->
 <!-- --------------------------------------------------------- -->
 
 <div class="modal fade" id="modal-factura" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Registro de Recomendación</h5>
+                <h5 class="modal-title">Orden de compra</h5>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
                     <div class="row mb-3">
                         <div class="col-12">
                             <div class="border row">
-                                <div class="row col-lg-12 justify-content-end mt-3">
+                                <div class="row col-12 justify-content-between  align-items-center mt-3">
+                                    <div class="ml-3">
+                                        FACTURA PROVEEDOR ASOCIADA: 
+                                        <span class="font-weight-bold ml-3">
+                                            {{ (currentOrdenCompra?.proveedor_factura) ? currentOrdenCompra.proveedor_factura : 'SIN FACTURA' }}
+                                        </span>
+                                    </div>
                                     <div class="d-flex border-bottom border border-info">
                                         <div class="col-lg-12">
                                             <ul class="list-unstyled">
-                                                <li class="ml-3 mt-3">FACTURA ELECTRÓNICA</li>
-                                                <li class="ml-3">RUC. 20556106909</li>
+                                                <li class="ml-3 mt-3">ORDEN DE COMPRA</li>
+                                                <li class="ml-3 font-weight-bold">NUM. {{ currentOrdenCompra?.numero_orden_compra }}</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -60,9 +106,8 @@
                                 <div class="row col-lg-12 mt-3 border-bottom">
                                     <div class="d-flex">
                                         <ul class="list-unstyled">
-                                            <li class="font-weight-bold ml-3">LAMBAYEQUE TECNOLOGIS S.A.C</li>
-                                            <li class="ml-3">CAL JOAQUIN CAPELLO 547 203 ZONA</li>
-                                            <li class="ml-3">MIRAFLORES-LIMA-LIMA</li>
+                                            <li class="font-weight-bold ml-3">LAMBAYEQUE TECHNOLOGIES S.A.C</li>
+                                            <li class="ml-3">CHICLAYO-LAMBAYEQUE-PERÚ</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -70,93 +115,49 @@
                                 <div class="row col-lg-12 mt-3 border-bottom">
                                     <div class="d-flex">
                                         <ul class="list-unstyled">
-                                            <li class="font-weight-bold ml-3">Fecha de Emisión</li>
-                                            <li class="ml-3">02/12/2015</li>
-                                            <li class="font-weight-bold ml-3">Razón Social</li>
-                                            <li class="ml-3">Venta de Software y Hardware</li>
-                                            <li class="font-weight-bold ml-3">RUC</li>
-                                            <li class="ml-3">20556106909</li>
-                                            <li class="font-weight-bold ml-3">Tipo de Moneda</li>
-                                            <li class="ml-3">NUEVOS SOLES</li>
-                                            <li class="font-weight-bold ml-3">Lugar Entrega</li>
-                                            <li class="ml-3">CAL CALLE JOAQUIN CAPELLO 547 DPTO. 203 LIMA-LIMA-MIRAFLORES</li>
+                                            <li class="font-weight-bold ml-3">Fecha de pedido</li>
+                                            <li class="ml-3">{{ currentOrdenCompra?.fecha_pedido | date }}</li>
+                                            <li class="font-weight-bold ml-3">Fecha de entrega esperada</li>
+                                            <li class="ml-3">{{ currentOrdenCompra?.fecha_entrega_esperada | date }}</li>
+                                            <li class="font-weight-bold ml-3">Proveedor</li>
+                                            <li class="ml-3">{{ currentOrdenCompra?.proveedor }}</li>
+                                            <li class="font-weight-bold ml-3">RUC proveedor</li>
+                                            <li class="ml-3">{{ currentOrdenCompra?.ruc }}</li>
+                                            <li class="font-weight-bold ml-3">Empleado que registro</li>
+                                            <li class="ml-3">{{ currentOrdenCompra?.empleado }}</li>
+                                            <li class="font-weight-bold ml-3">Descripción</li>
+                                            <li class="ml-3">{{ currentOrdenCompra?.descripcion }}</li>
                                         </ul>
                                     </div>
-                                </div>
-                            
+                                </div>                            
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                            <th scope="col" class="text-center">Cantidad</th>
-                                            <th scope="col" class="text-center">Unidad Medida</th>
                                             <th scope="col" class="text-center">Código</th>
-                                            <th scope="col" class="text-center">Descripción</th>
-                                            <th scope="col" class="text-center">Valor Unitario</th>
-                                            <th scope="col" class="text-center">Descuento</th>
-                                            <th scope="col" class="text-center">IGV</th>
-                                            <th scope="col" class="text-center">Importe Item</th>
+                                            <th scope="col" class="text-center">Producto</th>
+                                            <th scope="col" class="text-center">Precio unitario</th>
+                                            <th scope="col" class="text-center">Cantidad orden</th>
+                                            <th scope="col" class="text-center">Importe total</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <th class="text-center">1</th>
-                                            <td class="text-center">UNIDAD</td>
-                                            <td class="text-center">LAPTOP</td>
-                                            <td class="text-center">TALLER DE INFORME DE VENTAS</td>
-                                            <td class="text-center">2.500</td>
-                                            <td class="text-center">230</td>
-                                            <td class="text-center">32.5</td>
-                                            <td class="text-center">212.40</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="text-center" class="text-center">1</th>
-                                            <td class="text-center" class="text-center">UNIDAD</td>
-                                            <td class="text-center" class="text-center">LAPTOP</td>
-                                            <td class="text-center" class="text-center">TALLER DE INFORME DE VENTAS</td>
-                                            <td class="text-center" class="text-center">2.500</td>
-                                            <td class="text-center" class="text-center">230</td>
-                                            <td class="text-center" class="text-center">32.5</td>
-                                            <td class="text-center" class="text-center">212.40</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="text-center">1</th>
-                                            <td class="text-center">UNIDAD</td>
-                                            <td class="text-center">LAPTOP</td>
-                                            <td class="text-center">TALLER DE INFORME DE VENTAS</td>
-                                            <td class="text-center">2.500</td>
-                                            <td class="text-center">230</td>
-                                            <td class="text-center">32.5</td>
-                                            <td class="text-center">212.40</td>
-                                        </tr>
+                                        <tr *ngFor="let odDetail of ordenCompraDetalle">
+                                            <th class="text-center">{{ odDetail.id_numero_item }}</th>
+                                            <td class="text-center">{{ odDetail.producto }}</td>
+                                            <td class="text-center">{{ odDetail.precio_unitario_compra | currency }}</td>
+                                            <td class="text-center">{{ odDetail.cantidad_orden }}</td>
+                                            <td class="text-center">{{ odDetail.importe | currency }}</td>
+                                        </tr>                                      
                                     </tbody>
                                 </table>
-                                <div class="row mt-3 justify-content-end">
-                                    <div class="col-lg-12">
+                                <div class="row mt-3 w-100">
+                                    <div class="col-lg-12 d-flex justify-content-end">
                                         <ul class="list-unstyled d-flex ml-3">
-                                            <li class="font-weight-bold mr-3">Total Valor Venta Gravada</li>
-                                            <li>$/. 2500</li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <ul class="list-unstyled d-flex ml-3">
-                                            <li class="font-weight-bold mr-3">Descuento</li>
-                                            <li>$/. 2500</li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <ul class="list-unstyled d-flex ml-3">
-                                            <li class="font-weight-bold mr-3">Total IGV(18%)</li>
-                                            <li>$/. 2500</li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <ul class="list-unstyled d-flex ml-3">
-                                            <li class="font-weight-bold mr-3">Importe Total</li>
-                                            <li>$/. 2500</li>
+                                            <li class="font-weight-bold mr-3">Total esperado</li>
+                                            <li>{{ ordenCompraDetalle[0]?.precio_total_esperado | currency }}</li>
                                         </ul>
                                     </div>
                                 </div>
-                            
                             </div>
                         </div>
                     </div>

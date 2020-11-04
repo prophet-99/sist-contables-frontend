@@ -109,7 +109,13 @@ export class OrdenarProductoComponent implements OnInit {
   }
 
   public saveOrden(): void{
-    if (this.ordenForm.invalid) return;
+    if (this.ordenForm.invalid) {
+      const html = `<ul>${ this.getErrors(this.ordenForm) }</ul>`;
+      Swal.fire({
+        icon: 'error', html
+      });
+      return;
+    }
     const { numeroOrden, descripcion, fechaPedido, fechaEsperada,
     precioTotalEsperado, idProveedor, idEmpleado } = this.ordenForm.value;
     const currentHour = moment().format('HH:mm:ss');

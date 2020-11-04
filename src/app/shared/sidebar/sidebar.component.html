@@ -22,11 +22,14 @@
 
         <ng-container *ngFor="let item of cm.items">
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseClients" aria-expanded="true">
+                <a class="nav-link collapsed" href="#" 
+                    data-toggle="collapse" [attr.data-target]="'#' + item.id" 
+                    aria-expanded="true">
                     <i [class]="item.icon"></i>
                     <span>{{ item.title }}</span>
                 </a>
-                <div id="collapseClients" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="{{ item.id }}" class="collapse" 
+                    aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" [routerLink]="r.route" *ngFor="let r of item.routes">{{ r.name }}</a>
                     </div>
