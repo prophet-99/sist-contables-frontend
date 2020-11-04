@@ -29,6 +29,8 @@ import { SueldosComponent } from './nominas/sueldos/sueldos.component';
 import { ProductosDevueltosComponent } from './ventas/productos-devueltos/productos-devueltos.component';
 import { CrearNominaComponent } from './nominas/crear-nomina/crear-nomina.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CuentasCobrarComponent } from './cuentas-cobrar/cuentas-cobrar.component';
+import { CuentasPorPagarComponent } from './cuentas-por-pagar/cuentas-por-pagar.component';
 
 
 @NgModule({
@@ -55,6 +57,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     SueldosComponent,
     ProductosDevueltosComponent,
     CrearNominaComponent,
+    CuentasCobrarComponent,
+    CuentasPorPagarComponent,
   ],
   imports: [
     CommonModule,

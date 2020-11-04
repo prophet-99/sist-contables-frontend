@@ -58,6 +58,7 @@
                 <th class="text-center" scope="col">Cant. Solicitada</th>
                 <th class="text-center" scope="col">Cant. Orden</th>
                 <th class="text-center" scope="col">Cst. Unitario</th>
+                <th class="text-center" scope="col">Descuento</th>
                 <th class="text-center" scope="col">Cst Productos</th>
             </tr>
         </thead>
@@ -69,12 +70,14 @@
                 <td class="text-center">0.000 Unidades</td>
                 <td class="text-center">1500</td>
                 <td class="text-center">1500</td>
+                <td class="text-center">1500</td>
             </tr>
             <tr>
                 <th class="text-center">Laptop Lenovo</th>
                 <td class="text-center">1,000</td>
                 <td class="text-center">0.0000</td>
                 <td class="text-center">0.000 Unidades</td>
+                <td class="text-center">1500</td>
                 <td class="text-center">1500</td>
                 <td class="text-center">15800</td>
             </tr>
@@ -83,6 +86,7 @@
                 <td class="text-center">100</td>
                 <td class="text-center">0.0000</td>
                 <td class="text-center">0.000 Unidades</td>
+                <td class="text-center">1500</td>
                 <td class="text-center">1500</td>
                 <td class="text-center">85422</td>
             </tr>
@@ -120,7 +124,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Registro de Recomendación</h5>
+                <h5 class="modal-title">Tomar Orden de la Recomendación</h5>
             </div>
             <div class="modal-body">
                 <form id="formulario" class="formulario" method="POST" action="">
@@ -149,13 +153,13 @@
                     <div class="form-group row">
                         <div class="col-lg-6 d-flex justify-content-md-center">
                             <label for="codigo" class=" col-form-label">Fecha Pedido</label>
-                            <div class="col-6">
+                            <div class="col-7">
                                 <input type="date" class="form-control mr-2" id="inlineFormInputName" placeholder="Jane Doe">
                             </div>
                         </div>
                         <div class="col-lg-6 d-flex">
                             <label for="codigo" class="col-form-label">Fecha Entrega</label>
-                            <div class="col-6">
+                            <div class="col-7">
                                 <input type="date" class="form-control mr-2" id="inlineFormInputName" placeholder="Jane Doe">
                             </div>
                         </div>
@@ -181,22 +185,28 @@
                                 <th scope="col" class="text-center">Cant. Solicitada</th>
                                 <th scope="col" class="text-center">Cost. Unitario</th>
                                 <th scope="col" class="text-center">Cant. de Orden</th>
+                                <th scope="col" class="text-center">Descuento</th>
                                 <th scope="col" class="text-center">Cost. Total</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <th scope="col" class="text-center" class="text-center">Laptop</th>
-                                <td scope="col" class="text-center" class="text-center">15</td>
-                                <td scope="col" class="text-center" class="text-center">20</td>
-                                <td scope="col" class="text-center" class="text-center">30</td>
+                                <th scope="col" class="text-center">Laptop</th>
+                                <td scope="col" class="text-center">15</td>
+                                <td scope="col" class="text-center">20</td>
+                                <td scope="col" class="text-center">30</td>
                                 <td scope="col" class="text-center">
-                                    <div class="d-flex px-4">
+                                    <div class="d-flex px-2">
                                         <input type="text" class="form-control" placeholder="Jane Doe">
                                     </div>
                                 </td>
                                 <td scope="col" class="text-center">
-                                    <div class="d-flex px-4">
+                                    <div class="d-flex px-2">
+                                        <input type="text" class="form-control" placeholder="Jane Doe">
+                                    </div>
+                                </td>
+                                <td scope="col" class="text-center">
+                                    <div class="d-flex px-2">
                                         <input type="text" class="form-control" placeholder="Jane Doe" readonly>
                                     </div>
                                 </td>
@@ -207,12 +217,17 @@
                                 <td scope="col" class="text-center">20</td>
                                 <td scope="col" class="text-center">30</td>
                                 <td scope="col" class="text-center">
-                                    <div class="d-flex px-4">
+                                    <div class="d-flex px-2">
                                         <input type="text" class="form-control" placeholder="Jane Doe">
                                     </div>
                                 </td>
                                 <td scope="col" class="text-center">
-                                    <div class="d-flex px-4">
+                                    <div class="d-flex px-2">
+                                        <input type="text" class="form-control" placeholder="Jane Doe">
+                                    </div>
+                                </td>
+                                <td scope="col" class="text-center">
+                                    <div class="d-flex px-2">
                                         <input type="text" class="form-control" placeholder="Jane Doe" readonly>
                                     </div>
                                 </td>
@@ -223,12 +238,17 @@
                                 <td scope="col" class="text-center">20</td>
                                 <td scope="col" class="text-center">30</td>
                                 <td scope="col" class="text-center">
-                                    <div class="d-flex px-4">
+                                    <div class="d-flex px-2">
                                         <input type="text" class="form-control" placeholder="Jane Doe">
                                     </div>
                                 </td>
                                 <td scope="col" class="text-center">
-                                    <div class="d-flex px-4">
+                                    <div class="d-flex px-2">
+                                        <input type="text" class="form-control" placeholder="Jane Doe">
+                                    </div>
+                                </td>
+                                <td scope="col" class="text-center">
+                                    <div class="d-flex px-2">
                                         <input type="text" class="form-control" placeholder="Jane Doe" readonly>
                                     </div>
                                 </td>

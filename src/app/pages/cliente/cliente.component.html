@@ -1,12 +1,11 @@
 <!-- Main content -->
 <section class="container">
     <h1 class="text-center text-secondary">Registro de Clientes</h1>
-    
+
     <article class="d-flex justify-content-between mb-3">
         <form class="form-inline navbar-search">
             <div class="input-group">
-                <input type="text" class="form-control bg-light border-0 small border-search" 
-                    placeholder="Buscar">
+                <input type="text" class="form-control bg-light border-0 small border-search" (keyup)="searchCliente($event)" placeholder="Buscar">
                 <div class="input-group-append">
                     <button class="btn btn-primary" type="button">
                         <i class="fas fa-search fa-sm"></i>
@@ -14,8 +13,7 @@
                 </div>
             </div>
         </form>
-        <button class="btn btn-primary text-lg-center" data-toggle="modal" 
-            data-target="#modal-add">
+        <button class="btn btn-primary text-lg-center" data-toggle="modal" data-target="#modal-add-cliente" (click)="chargeCurrentClienteForAdd()">
             <i class="fas fa-user-plus"></i>
         </button>
     </article>
@@ -27,25 +25,27 @@
                 <th class="text-center" scope="col">Dirección</th>
                 <th class="text-center" scope="col">Teléfono-celular</th>
                 <th class="text-center" scope="col">Numero Cuenta</th>
-                <th class="text-center" scope="col">Saldo Actual</th>
+                <th class="text-center" scope="col">Credit Disponible</th>
+                <th class="text-center" scope="col">Credit Asignado</th>
                 <th class="text-center" scope="col" colspan="2" class="text-center">
                     ACCIÓN
                 </th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>cliente</td>
-                <td>cliente</td>
-                <td>cliente</td>
-                <td>cliente</td>
-                <td>cliente</td>
-                <td>cliente</td>
+            <tr *ngFor="let cliente of clienteSubscription$ |async">
+                <td>{{ cliente.dni }}</td>
+                <td>{{ cliente.nombre }}</td>
+                <td>{{ cliente.direccion }}</td>
+                <td>{{ cliente.celular }}</td>
+                <td>{{ cliente.numero_cuenta }}</td>
+                <td>{{ cliente.credito_disponible | currency }}</td>
+                <td>{{ cliente.credito_asignado | currency}}</td>
                 <td class="text-center">
-                    <button class="btn btn-primary text-lg-center mx-2" data-toggle="modal" data-target="#modal-update">
+                    <button class="btn btn-primary text-lg-center mx-2" data-toggle="modal" data-target="#modal-add-cliente" (click)="chargeCurrentClienteForEdit(cliente)">
                                 <i class="fas fa-edit"></i>
                         </button>
-                    <button class="btn btn-danger mx-2" data-toggle="modal" data-target="#modal-delete">
+                    <button class="btn btn-danger mx-2" data-toggle="modal" data-target="#modal-delete-cliente" (click)="chargeCurrentClienteForEdit(cliente)">
                                 <i class="fas fa-trash-alt"></i> 
                         </button>
                 </td>
@@ -57,17 +57,17 @@
 <!-- --------------------- -->
 <!-- MODAL AGREGAR USUARIO -->
 <!-- --------------------- -->
-<div class="modal fade" id="modal-add" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="modal-add-cliente" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Ingrese los datos para Procesar con el Pedido</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">Crear un nuevo Cliente</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form id="formulario" class="formulario" method="POST" action="${pageContext.request.contextPath}/clientes?type=create">
+                <form [formGroup]="formEmployee">
                     <div class="form-group">
                         <div class="form-row">
                             <!-- Campo DNI usuario -->
@@ -75,7 +75,7 @@
                                 <section class="container form_grupo">
                                     <label for="dni">DNI</label>
                                     <article class="col-12">
-                                        <input id="dni" name="dni" type="text" class="form-control c-form__input" placeholder="DNI" required>
+                                        <input type="text" class="form-control" placeholder="DNI" formControlName="dni">
                                     </article>
                                 </section>
                             </div>
@@ -84,7 +84,16 @@
                                 <section class="container">
                                     <label for="nombre">Nombre</label>
                                     <article class="col-12">
-                                        <input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" required>
+                                        <input type="text" class="form-control" placeholder="Nombre" formControlName="nombre">
+                                    </article>
+                                </section>
+                            </div>
+                            <!-- Campo Celular usuario -->
+                            <div class="col-md-6 mb-3">
+                                <section class="container">
+                                    <label for="telefono">Celular</label>
+                                    <article class="col-12">
+                                        <input type="text" class="form-control" placeholder="Celular" formControlName="celular">
                                     </article>
                                 </section>
                             </div>
@@ -93,121 +102,40 @@
                                 <section class="container">
                                     <label for="ubicacion">Ubicación</label>
                                     <article class="col-12">
-                                        <input id="ubicacion" name="ubicacion" type="text" class="form-control" placeholder="Ubicación" required>
+                                        <input type="text" class="form-control" placeholder="Ubicacion" formControlName="direccion">
                                     </article>
                                 </section>
                             </div>
-                            <!-- Campo Celular usuario -->
-                            <div class="col-md-6 mb-3">
-                                <section class="container">
-                                    <label for="telefono">Telefono /  Celular</label>
-                                    <article class="col-12">
-                                        <input name="telefono" type="text" class="form-control" placeholder="Telefono /  Celular" required>
-                                    </article>
-                                </section>
-                            </div>
+
                             <!-- Campo Numero Cuenta usuario -->
-                            <div class="col-md-6 mb-3">
-                                <section class="container">
-                                    <label for="telefono">Número Cuenta</label>
-                                    <article class="col-12">
-                                        <input name="cuenta" type="text" class="form-control" placeholder="Numero Cuenta" required>
-                                    </article>
-                                </section>
-                            </div>
-                            <!-- Campo Saldo actual usuario -->
-                            <div class="col-md-6 mb-3">
-                                <section class="container">
-                                    <label for="saldo">Saldo Actual</label>
-                                    <article class="col-12">
-                                        <input name="saldo" type="text" class="form-control" placeholder="Numero Cuenta" required>
-                                    </article>
-                                </section>
-                            </div>
-                            <div class="form-group col-md-12">
-                                <button type="submit" class="btn btn-success btn-block">
-                                    ACEPTAR
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- --------------------- -->
-<!-- MODAL ACTUALIZAR USUARIO -->
-<!-- --------------------- -->
-<div class="modal fade" id="modal-update" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Ingrese los datos para Procesar con el Pedido</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form id="formulario" class="formulario" method="POST" action="${pageContext.request.contextPath}/clientes?type=create">
-                    <div class="form-group">
-                        <div class="form-row">
-                            <!-- Campo DNI usuario -->
-                            <div class="col-md-6 mb-3">
-                                <section class="container form_grupo">
-                                    <label for="dni">DNI</label>
-                                    <article class="col-12">
-                                        <input id="dni" name="dni" type="text" class="form-control c-form__input" placeholder="DNI" required>
-                                    </article>
-                                </section>
-                            </div>
-                            <!-- Campo Nombre usuario -->
-                            <div class="col-md-6 mb-3">
-                                <section class="container">
-                                    <label for="nombre">Nombre</label>
-                                    <article class="col-12">
-                                        <input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" required>
-                                    </article>
-                                </section>
-                            </div>
-                            <!-- Campo Ubicación usuario -->
                             <div class="col-md-12 mb-3">
                                 <section class="container">
-                                    <label for="ubicacion">Ubicación</label>
-                                    <article class="col-12">
-                                        <input id="ubicacion" name="ubicacion" type="text" class="form-control" placeholder="Ubicación" required>
-                                    </article>
-                                </section>
-                            </div>
-                            <!-- Campo Celular usuario -->
-                            <div class="col-md-6 mb-3">
-                                <section class="container">
-                                    <label for="telefono">Telefono /  Celular</label>
-                                    <article class="col-12">
-                                        <input name="telefono" type="text" class="form-control" placeholder="Telefono /  Celular" required>
-                                    </article>
-                                </section>
-                            </div>
-                            <!-- Campo Numero Cuenta usuario -->
-                            <div class="col-md-6 mb-3">
-                                <section class="container">
                                     <label for="telefono">Número Cuenta</label>
                                     <article class="col-12">
-                                        <input name="cuenta" type="text" class="form-control" placeholder="Numero Cuenta" required>
+                                        <input type="text" class="form-control" placeholder="Numero Cuenta" formControlName="numeroCuenta">
                                     </article>
                                 </section>
                             </div>
                             <!-- Campo Saldo actual usuario -->
-                            <div class="col-md-6 mb-3">
+                            <div class="col-md-12 mb-3">
+                                <section class="container">
+                                    <label for="saldo">Credito Disponible</label>
+                                    <article class="col-12">
+                                        <input type="text" class="form-control" placeholder="Credito Disponible" formControlName="creditoDisponible">
+                                    </article>
+                                </section>
+                            </div>
+                            <!-- Campo Saldo actual usuario -->
+                            <div class="col-md-12 mb-3">
                                 <section class="container">
                                     <label for="saldo">Saldo Actual</label>
                                     <article class="col-12">
-                                        <input name="saldo" type="text" class="form-control" placeholder="Numero Cuenta" required>
+                                        <input type="text" class="form-control" placeholder="Saldo Actual" formControlName="creditoAsignado">
                                     </article>
                                 </section>
                             </div>
                             <div class="form-group col-md-12">
-                                <button type="submit" class="btn btn-success btn-block">
+                                <button class="btn btn-success btn-block" (click)="addCliente()">
                                     ACEPTAR
                                 </button>
                             </div>
@@ -221,7 +149,7 @@
 <!-- ----------------------------------- -->
 <!-- MODAL PARA ELIMINAR UN CLIENTE -->
 <!-- ----------------------------------- -->
-<div class="modal fade" id="modal-delete" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="modal-delete-cliente" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
@@ -231,10 +159,10 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form method="POST" action="">
+                <form>
                     <div class="form-row">
                         <div class="form-group col-md-12">
-                            <input type="hidden" class="form-control" id="id-orden" required name="">
+                            <input type="hidden" class="form-control" id="id-orden" name="">
                         </div>
                         <section class="justify-content-center d-flex w-100">
                             <div class="alert alert-primary" role="alert">
@@ -242,7 +170,7 @@
                             </div>
                         </section>
                         <div class="form-group col-md-12" class="text-center">
-                            <button type="submit" class="btn btn-success btn-block">
+                            <button type="submit" class="btn btn-success btn-block" (click)="deleteCurrentCliente()">
                                 ELIMINAR
                             </button>
                         </div>
@@ -251,3 +179,71 @@
             </div>
         </div>
     </div>
+</div>
+<!-- ----------------------------------- -->
+<!-- Ver Todos los datos del Empleado -->
+<!-- ----------------------------------- -->
+<div class="modal fade" id="modal-ver" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Datos Completos de la Persona</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <div class="d-flex">
+                            <p class="font-weight-bold mr-3">DNI</p>
+                            <!-- <p>{{ currentEmpleado?.dni }}</p> -->
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="d-flex">
+                            <p class="font-weight-bold mr-3">NOMBRE</p>
+                            <!--  <p>{{ currentEmpleado?.nombres }}</p> -->
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="d-flex">
+                            <p class="font-weight-bold mr-3">APELLIDO</p>
+                            <!-- <p>{{ currentEmpleado?.apellidos }}</p> -->
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="d-flex">
+                            <p class="font-weight-bold mr-3">PAGO</p>
+                            <!-- <p>{{ currentEmpleado?.tarifa_pago | currency }}</p> -->
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="d-flex">
+                            <p class="font-weight-bold mr-3">Fecha Nacimiento</p>
+                            <!--  <p>{{ currentEmpleado?.fecha_nacimiento | date }}</p> -->
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="d-flex">
+                            <p class="font-weight-bold mr-3">Fecha Contratación</p>
+                            <!--    <p>{{ currentEmpleado?.fecha_contratacion | date }}</p> -->
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="d-flex">
+                            <p class="font-weight-bold mr-3">Email</p>
+                            <!--  <p>{{ currentEmpleado?.email }}</p> -->
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="d-flex">
+                            <p class="font-weight-bold mr-3">Cargo</p>
+                            A
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

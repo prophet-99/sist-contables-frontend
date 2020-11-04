@@ -9,5 +9,5 @@ export interface ItemByEstado {
     ubicacion: string;
     punto_reorden: number;
     cantidad_disponible: number;
-    estado_item: string;
+    estado_item ?: string;
 }

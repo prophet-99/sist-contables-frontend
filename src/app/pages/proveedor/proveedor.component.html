@@ -1,10 +1,20 @@
 <!-- Main content -->
 <section class="container-fluid">
     <h1 class="text-center text-secondary">Registro de Proveedores</h1>
-    <article class="d-flex justify-content-end mb-3">
-        <button class="btn btn-primary text-lg-center" data-toggle="modal" data-target="#modal-add-proveedor">
-                    <i class="fas fa-user-plus"></i>
-                </button>
+    <article class="d-flex justify-content-between mb-3">
+        <form class="form-inline navbar-search">
+            <div class="input-group">
+                <input type="text" class="form-control bg-light border-0 small border-search" placeholder="Buscar" (keyup)="searchProveedor($event)">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="button">
+                        <i class="fas fa-search fa-sm"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+        <button class="btn btn-primary text-lg-center" data-toggle="modal" data-target="#modal-add-proveedor" (click)="chargeCurrentProveedorForAdd()">
+            <i class="fas fa-user-plus"></i>
+        </button>
     </article>
     <table class="table table-light text-center">
         <thead>
@@ -13,7 +23,7 @@
                 <th class="text-center" scope="col">Dirección</th>
                 <th class="text-center" scope="col">R.U.C</th>
                 <th class="text-center" scope="col">N. Cuenta</th>
-                <th class="text-center" scope="col">N. Envios</th>
+                <th class="text-center" scope="col">Envios Fallados</th>
                 <th class="text-center" scope="col">Env. Incompletos</th>
                 <th class="text-center" scope="col">Observaciones</th>
                 <th class="text-center" scope="col">Pl. Entrega</th>
@@ -23,20 +33,20 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>proveedor</td>
-                <td>proveedor</td>
-                <td>proveedor</td>
-                <td>proveedor</td>
-                <td>proveedor</td>
-                <td>proveedor</td>
-                <td>proveedor</td>
-                <td>proveedor</td>
+            <tr *ngFor="let proveedor of proveedorSubscription$ | async">
+                <td>{{proveedor.nombre}}</td>
+                <td>{{proveedor.direccion}}</td>
+                <td>{{proveedor.ruc}}</td>
+                <td>{{proveedor.numero_cuenta}}</td>
+                <td>{{proveedor.numero_envios_fallados}}</td>
+                <td>{{proveedor.numero_envios_incompletos}}</td>
+                <td>{{proveedor.observaciones_comerciales}}</td>
+                <td>{{proveedor.plazo_entrega}}</td>
                 <td class="text-center">
-                    <button class="btn btn-primary text-lg-center mx-2" data-toggle="modal" data-target="#modal-update-proveedor">
+                    <button class="btn btn-primary text-lg-center mx-2" data-toggle="modal" data-target="#modal-add-proveedor" (click)="chargeCurrentProveedorForEdit(proveedor)">
                                 <i class="fas fa-edit"></i>
                         </button>
-                    <button class="btn btn-danger mx-2" data-toggle="modal" data-target="#modal-delete-proveedor">
+                    <button class="btn btn-danger mx-2" data-toggle="modal" (click)="chargeCurrentProveedorForEdit(proveedor)" data-target="#modal-delete-proveedor">
                                 <i class="fas fa-trash-alt"></i> 
                         </button>
                 </td>
@@ -58,7 +68,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="formulario" class="formulario" method="POST" action="${pageContext.request.contextPath}/clientes?type=create">
+                <form [formGroup]="formEmployee">
                     <div class="form-group">
                         <div class="form-row">
                             <!-- Campo NOMBRE PROVEEDOR -->
@@ -66,34 +76,42 @@
                                 <section class="container form_grupo">
                                     <label for="dni">Nombre</label>
                                     <article class="col-12">
-                                        <input id="dni" name="dni" type="text" class="form-control c-form__input" placeholder="DNI" required>
+                                        <input type="text" class="form-control" placeholder="Nombre" formControlName="nombre">
+                                    </article>
+                                </section>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <section class="container">
+                                    <label for="ubicacion">R.U.C</label>
+                                    <article class="col-12">
+                                        <input type="text" class="form-control" placeholder="Ubicación" formControlName="ruc">
                                     </article>
                                 </section>
                             </div>
                             <!-- Campo NUMERO DE CUENTA DEL PROVEEDOR -->
                             <div class="col-md-6 mb-3">
                                 <section class="container">
-                                    <label for="telefono">Num. Cuenta</label>
+                                    <label for="telefono">Dirección</label>
                                     <article class="col-12">
-                                        <input name="telefono" type="text" class="form-control" placeholder="Telefono /  Celular" required>
+                                        <input type="text" class="form-control" placeholder="Direccion" formControlName="direccion">
                                     </article>
                                 </section>
                             </div>
                             <!-- Campo DIRECCION DEL PROVEEDOR -->
                             <div class="col-md-12 mb-3">
                                 <section class="container">
-                                    <label for="nombre">Dirección</label>
+                                    <label for="nombre">Número de Cuenta</label>
                                     <article class="col-12">
-                                        <input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" required>
+                                        <input type="text" class="form-control" placeholder="Numero de Cuenta" formControlName="numeroCuenta">
                                     </article>
                                 </section>
                             </div>
                             <!-- Campo TUC DEL PROVEEDOR -->
                             <div class="col-md-6 mb-3">
                                 <section class="container">
-                                    <label for="ubicacion">R.U.C</label>
+                                    <label for="ubicacion">Envios Fallidos</label>
                                     <article class="col-12">
-                                        <input id="ubicacion" name="ubicacion" type="text" class="form-control" placeholder="Ubicación" required>
+                                        <input type="text" class="form-control" placeholder="Envios Fallidos" formControlName="numeroEnviosFallados">
                                     </article>
                                 </section>
                             </div>
@@ -101,9 +119,9 @@
                             <!-- Campo NUMERO DE ENVIOS DEL PROVEEDOR -->
                             <div class="col-md-6 mb-3">
                                 <section class="container">
-                                    <label for="telefono">Num. Envios</label>
+                                    <label for="telefono">Envios Incompletos</label>
                                     <article class="col-12">
-                                        <input name="cuenta" type="text" class="form-control" placeholder="Numero Cuenta" required>
+                                        <input name="cuenta" type="text" class="form-control" placeholder="Numero Cuenta" formControlName="numeroEnviosIncompletos">
                                     </article>
                                 </section>
                             </div>
@@ -112,16 +130,7 @@
                                 <section class="container">
                                     <label for="saldo">Observaciones</label>
                                     <article class="col-12">
-                                        <input name="saldo" type="text" class="form-control" placeholder="Numero Cuenta" required>
-                                    </article>
-                                </section>
-                            </div>
-                            <!-- Campo ENVIOS FALLIDOS DEL PROVEEDOR-->
-                            <div class="col-md-6 mb-3">
-                                <section class="container">
-                                    <label for="saldo">Env Fallidos</label>
-                                    <article class="col-12">
-                                        <input name="saldo" type="text" class="form-control" placeholder="Numero Cuenta" required>
+                                        <input type="text" class="form-control" placeholder="Numero Cuenta" formControlName="observacionesComerciales">
                                     </article>
                                 </section>
                             </div>
@@ -130,17 +139,15 @@
                                 <section class="container">
                                     <label for="saldo">Plazo entrega</label>
                                     <article class="col-12">
-                                        <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                            <option selected>MN12 121201 FT EMITIDAS TERCEROS MN</option>
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
+                                        <select class="custom-select my-1 mr-sm-2" formControlName="idPlazoEntrega">
+                                            <option value="">Seleccione Plazo</option>
+                                            <option *ngFor="let plazos of plazoSubscription$ | async" value="{{ plazos.id }}">{{plazos.descripcion}}</option>
                                           </select>
                                     </article>
                                 </section>
                             </div>
                             <div class="form-group col-md-12">
-                                <button type="submit" class="btn btn-success btn-block">
+                                <button type="submit" class="btn btn-success btn-block" (click)="addProveedor()">
                                     ACEPTAR
                                 </button>
                             </div>
@@ -152,113 +159,8 @@
     </div>
 </div>
 <!-- --------------------- -->
-<!-- MODAL ACTUALIZAR USUARIO -->
+<!-- MODAL ELIMINAR USUARIO -->
 <!-- --------------------- -->
-<div class="modal fade" id="modal-update-proveedor" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Ingrese los datos para Procesar con el Pedido</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form id="formulario" class="formulario" method="POST" action="${pageContext.request.contextPath}/clientes?type=create">
-                    <div class="form-group">
-                        <div class="form-row">
-                            <!-- Campo NOMBRE PROVEEDOR -->
-                            <div class="col-md-6 mb-3">
-                                <section class="container form_grupo">
-                                    <label for="dni">Nombre</label>
-                                    <article class="col-12">
-                                        <input id="dni" name="dni" type="text" class="form-control c-form__input" placeholder="DNI" required>
-                                    </article>
-                                </section>
-                            </div>
-                            <!-- Campo NUMERO DE CUENTA DEL PROVEEDOR -->
-                            <div class="col-md-6 mb-3">
-                                <section class="container">
-                                    <label for="telefono">Num. Cuenta</label>
-                                    <article class="col-12">
-                                        <input name="telefono" type="text" class="form-control" placeholder="Telefono /  Celular" required>
-                                    </article>
-                                </section>
-                            </div>
-                            <!-- Campo DIRECCION DEL PROVEEDOR -->
-                            <div class="col-md-12 mb-3">
-                                <section class="container">
-                                    <label for="nombre">Dirección</label>
-                                    <article class="col-12">
-                                        <input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" required>
-                                    </article>
-                                </section>
-                            </div>
-                            <!-- Campo TUC DEL PROVEEDOR -->
-                            <div class="col-md-6 mb-3">
-                                <section class="container">
-                                    <label for="ubicacion">R.U.C</label>
-                                    <article class="col-12">
-                                        <input id="ubicacion" name="ubicacion" type="text" class="form-control" placeholder="Ubicación" required>
-                                    </article>
-                                </section>
-                            </div>
-
-                            <!-- Campo NUMERO DE ENVIOS DEL PROVEEDOR -->
-                            <div class="col-md-6 mb-3">
-                                <section class="container">
-                                    <label for="telefono">Num. Envios</label>
-                                    <article class="col-12">
-                                        <input name="cuenta" type="text" class="form-control" placeholder="Numero Cuenta" required>
-                                    </article>
-                                </section>
-                            </div>
-                            <!-- Campo OBSERVACIONES DEL PROVEEDOR -->
-                            <div class="col-md-12 mb-3">
-                                <section class="container">
-                                    <label for="saldo">Observaciones</label>
-                                    <article class="col-12">
-                                        <input name="saldo" type="text" class="form-control" placeholder="Numero Cuenta" required>
-                                    </article>
-                                </section>
-                            </div>
-                            <!-- Campo ENVIOS FALLIDOS DEL PROVEEDOR-->
-                            <div class="col-md-6 mb-3">
-                                <section class="container">
-                                    <label for="saldo">Env Fallidos</label>
-                                    <article class="col-12">
-                                        <input name="saldo" type="text" class="form-control" placeholder="Numero Cuenta" required>
-                                    </article>
-                                </section>
-                            </div>
-                            <!-- Campo OBSERVACIONES DEL PROVEEDOR -->
-                            <div class="col-md-6 mb-3">
-                                <section class="container">
-                                    <label for="saldo">Plazo entrega</label>
-                                    <article class="col-12">
-                                        <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                            <option selected>MN12 121201 FT EMITIDAS TERCEROS MN</option>
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
-                                          </select>
-                                    </article>
-                                </section>
-                            </div>
-
-                            <div class="form-group col-md-12">
-                                <button type="submit" class="btn btn-success btn-block">
-                                    ACEPTAR
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
 <div class="modal fade" id="modal-delete-proveedor" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -269,7 +171,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form method="POST" action="">
+                <form>
                     <div class="form-row">
                         <div class="form-group col-md-12">
                             <input type="hidden" class="form-control" id="id-orden" required name="">
@@ -279,7 +181,7 @@
                                 ¿Desea eliminar Proveedor?
                             </div>
                         </section>
-                        <div class="form-group col-md-12" class="text-center">
+                        <div class="form-group col-md-12" class="text-center" (click)="deleteCurrentProveedor()">
                             <button type="submit" class="btn btn-success btn-block">
                                 ELIMINAR
                             </button>
@@ -289,3 +191,4 @@
             </div>
         </div>
     </div>
+</div>
