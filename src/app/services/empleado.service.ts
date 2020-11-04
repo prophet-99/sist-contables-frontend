@@ -53,6 +53,7 @@ export class EmpleadoService {
       );
   }
 
+
   public save(empleadoRequest: EmpleadoRequest): Observable<{ ok: boolean, msg: string }>{
     return this.httpClient.post<{ ok: boolean, msg: string }>(`${ this.baseAPI }`, empleadoRequest)
       .pipe(

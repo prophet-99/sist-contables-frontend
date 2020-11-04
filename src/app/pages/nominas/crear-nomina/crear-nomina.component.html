@@ -54,11 +54,11 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <th class="text-center">Laptop Lenovo</th>
-                <td class="text-center">1,000</td>
-                <td class="text-center">0.0000</td>
-                <td class="text-center">0.000 Unidades</td>
+            <tr *ngFor="let empleado of empleados | async">
+                <th class="text-center">{{empleado.nombre}}</th>
+                <td class="text-center">{{empleado.apellido}}</td>
+                <td class="text-center">{{empleado.cargo}}</td>
+                <td class="text-center"></td>
                 <td class="text-center">1,000</td>
                 <td class="text-center">
                     <div class="d-flex justify-content-center">
@@ -68,23 +68,10 @@
                 </td>
             </tr>
             <tr>
-                <th class="text-center">Laptop Lenovo</th>
-                <td class="text-center">1,000</td>
-                <td class="text-center">0.0000</td>
-                <td class="text-center">0.000 Unidades</td>
-                <td class="text-center">1,000</td>
-                <td class="text-center">
-                    <div class="d-flex justify-content-center">
-                        <button class="btn btn-primary text-lg-center mr-1" data-toggle="modal" data-target="#modal-crear">Crear</button>
-                        <button class="btn btn-secondary text-lg-center" data-toggle="modal" data-target="#modal-editar">Editar</button>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <th class="text-center">Laptop Lenovo</th>
-                <td class="text-center">1,000</td>
-                <td class="text-center">0.0000</td>
-                <td class="text-center">0.000 Unidades</td>
+                <th class="text-center">nombre</th>
+                <td class="text-center">apellido</td>
+                <td class="text-center">cargo</td>
+                <td class="text-center"></td>
                 <td class="text-center">1,000</td>
                 <td class="text-center">
                     <div class="d-flex justify-content-center">

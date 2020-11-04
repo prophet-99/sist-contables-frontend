@@ -1,4 +1,5 @@
 export interface SueldoRequest {
+    id: number;
     cantidad: number;
     fechaPago: Date;
     idEmpleado: number;
