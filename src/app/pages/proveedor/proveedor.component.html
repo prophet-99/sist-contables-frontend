@@ -16,43 +16,41 @@
             <i class="fas fa-user-plus"></i>
         </button>
     </article>
-    <table class="table table-light text-center">
-        <thead>
-            <tr>
-                <th class="text-center" scope="col">Nombre</th>
-                <th class="text-center" scope="col">Dirección</th>
-                <th class="text-center" scope="col">R.U.C</th>
-                <th class="text-center" scope="col">N. Cuenta</th>
-                <th class="text-center" scope="col">Envios Fallados</th>
-                <th class="text-center" scope="col">Env. Incompletos</th>
-                <th class="text-center" scope="col">Observaciones</th>
-                <th class="text-center" scope="col">Pl. Entrega</th>
-                <th class="text-center" scope="col" colspan="2" class="text-center">
-                    ACCIÓN
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let proveedor of proveedorSubscription$ | async">
-                <td>{{proveedor.nombre}}</td>
-                <td>{{proveedor.direccion}}</td>
-                <td>{{proveedor.ruc}}</td>
-                <td>{{proveedor.numero_cuenta}}</td>
-                <td>{{proveedor.numero_envios_fallados}}</td>
-                <td>{{proveedor.numero_envios_incompletos}}</td>
-                <td>{{proveedor.observaciones_comerciales}}</td>
-                <td>{{proveedor.plazo_entrega}}</td>
-                <td class="text-center">
-                    <button class="btn btn-primary text-lg-center mx-2" data-toggle="modal" data-target="#modal-add-proveedor" (click)="chargeCurrentProveedorForEdit(proveedor)">
-                                <i class="fas fa-edit"></i>
-                        </button>
-                    <button class="btn btn-danger mx-2" data-toggle="modal" (click)="chargeCurrentProveedorForEdit(proveedor)" data-target="#modal-delete-proveedor">
-                                <i class="fas fa-trash-alt"></i> 
-                        </button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="table-responsive">
+        <table class="table table-light text-center">
+            <thead>
+                <tr>
+                    <th class="text-center" scope="col">Nombre</th>
+                    <th class="text-center" scope="col">Dirección</th>
+                    <th class="text-center" scope="col">R.U.C</th>
+                    <th class="text-center" scope="col">N. Cuenta</th>
+                    <th class="text-center" scope="col">Observaciones</th>
+                    <th class="text-center" scope="col">Plazo entrega</th>
+                    <th class="text-center" scope="col" colspan="2" class="text-center">
+                        ACCIÓN
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let proveedor of proveedorSubscription$ | async">
+                    <td>{{proveedor.nombre}}</td>
+                    <td>{{proveedor.direccion}}</td>
+                    <td>{{proveedor.ruc}}</td>
+                    <td>{{proveedor.numero_cuenta}}</td>
+                    <td>{{(proveedor.observaciones_comerciales)?proveedor.observaciones_comerciales:'Sin observaciones'}}</td>
+                    <td>{{proveedor.plazo_entrega}}</td>
+                    <td class="text-center d-flex">
+                        <button class="btn btn-primary text-lg-center mx-2" data-toggle="modal" data-target="#modal-add-proveedor" (click)="chargeCurrentProveedorForEdit(proveedor)">
+                                    <i class="fas fa-edit"></i>
+                            </button>
+                        <button class="btn btn-danger mx-2" data-toggle="modal" (click)="chargeCurrentProveedorForEdit(proveedor)" data-target="#modal-delete-proveedor">
+                                    <i class="fas fa-trash-alt"></i> 
+                            </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </section>
 
 <!-- --------------------- -->

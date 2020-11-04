@@ -17,41 +17,43 @@
             <i class="fas fa-user-plus"></i>
         </button>
     </article>
-    <table class="table table-light text-center">
-        <thead>
-            <tr>
-                <th class="text-center" scope="col">DNI</th>
-                <th class="text-center" scope="col">Nombre</th>
-                <th class="text-center" scope="col">Dirección</th>
-                <th class="text-center" scope="col">Teléfono-celular</th>
-                <th class="text-center" scope="col">Numero Cuenta</th>
-                <th class="text-center" scope="col">Credit Disponible</th>
-                <th class="text-center" scope="col">Credit Asignado</th>
-                <th class="text-center" scope="col" colspan="2" class="text-center">
-                    ACCIÓN
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let cliente of clienteSubscription$ |async">
-                <td>{{ cliente.dni }}</td>
-                <td>{{ cliente.nombre }}</td>
-                <td>{{ cliente.direccion }}</td>
-                <td>{{ cliente.celular }}</td>
-                <td>{{ cliente.numero_cuenta }}</td>
-                <td>{{ cliente.credito_disponible | currency }}</td>
-                <td>{{ cliente.credito_asignado | currency}}</td>
-                <td class="text-center">
-                    <button class="btn btn-primary text-lg-center mx-2" data-toggle="modal" data-target="#modal-add-cliente" (click)="chargeCurrentClienteForEdit(cliente)">
-                                <i class="fas fa-edit"></i>
-                        </button>
-                    <button class="btn btn-danger mx-2" data-toggle="modal" data-target="#modal-delete-cliente" (click)="chargeCurrentClienteForEdit(cliente)">
-                                <i class="fas fa-trash-alt"></i> 
-                        </button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    <article class="table-responsive">
+        <table class="table table-light text-center">
+            <thead>
+                <tr>
+                    <th class="text-center" scope="col">DNI</th>
+                    <th class="text-center" scope="col">Nombre</th>
+                    <th class="text-center" scope="col">Dirección</th>
+                    <th class="text-center" scope="col">Teléfono-celular</th>
+                    <th class="text-center" scope="col">Numero Cuenta</th>
+                    <th class="text-center" scope="col">Credit Disponible</th>
+                    <th class="text-center" scope="col">Credit Asignado</th>
+                    <th class="text-center" scope="col" colspan="2" class="text-center">
+                        ACCIÓN
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let cliente of clienteSubscription$ |async">
+                    <td>{{ cliente.dni }}</td>
+                    <td>{{ cliente.nombre }}</td>
+                    <td>{{ cliente.direccion }}</td>
+                    <td>{{ cliente.celular }}</td>
+                    <td>{{ cliente.numero_cuenta }}</td>
+                    <td>{{ cliente.credito_disponible | currency }}</td>
+                    <td>{{ cliente.credito_asignado | currency}}</td>
+                    <td class="text-center d-flex">
+                        <button class="btn btn-primary text-lg-center mx-2" data-toggle="modal" data-target="#modal-add-cliente" (click)="chargeCurrentClienteForEdit(cliente)">
+                                    <i class="fas fa-edit"></i>
+                            </button>
+                        <button class="btn btn-danger mx-2" data-toggle="modal" data-target="#modal-delete-cliente" (click)="chargeCurrentClienteForEdit(cliente)">
+                                    <i class="fas fa-trash-alt"></i> 
+                            </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </article>
 </section>
 
 <!-- --------------------- -->
