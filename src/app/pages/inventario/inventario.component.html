@@ -1,48 +1,52 @@
 <!-- Main content -->
 <div class="mx-4">
     <h1 class="text-center text-secondary">Registro del Inventario</h1>
-    <div class="col-lg-3 d-flex">
-        <select class="form-control mr-2">
-            <option>Invetario</option>
-            <option>Activos Fijos</option>
-            <option>Software</option>
-            <option>Hardware</option>
-        </select>
-    </div>
-    <article class="d-flex justify-content-end mb-3">
-        <button class="btn btn-primary text-lg-center" data-toggle="modal" data-target="#modal-add-inventario">
+    <article class="d-flex justify-content-between mb-3">
+        <form class="form-inline navbar-search">
+            <div class="input-group">
+                <input type="text" class="form-control bg-light border-0 small border-search" placeholder="Buscar" (keyup)="searchInventario($event)">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="button">
+                        <i class="fas fa-search fa-sm"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+        <button class="btn btn-primary text-lg-center" data-toggle="modal" data-target="#modal-add-proveedor" (click)="chargeCurrentInventarioForAdd()">
             <i class="fas fa-user-plus"></i>
         </button>
     </article>
     <table class="table table-light text-center">
         <thead>
             <tr>
+                <th class="text-center" scope="col">Codigo</th>
                 <th class="text-center" scope="col">Item</th>
-                <th class="text-center" scope="col">Descripcion</th>
                 <th class="text-center" scope="col">Ubicacion</th>
                 <th class="text-center" scope="col">C. Disponible</th>
-                <th class="text-center" scope="col">C. Venta</th>
-                <th class="text-center" scope="col">Costo unitario</th>
                 <th class="text-center" scope="col">Punto Reorden</th>
+                <th class="text-center" scope="col">Costo unitario</th>
+                <th class="text-center" scope="col">Taza de Uso</th>
+                <th class="text-center" scope="col">Categoria</th>
                 <th class="text-center" scope="col" colspan="2" class="text-center">
                     ACCIÓN
                 </th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Inventario</td>
-                <td>Inventario</td>
-                <td>Inventario</td>
-                <td>Inventario</td>
-                <td>Inventario</td>
-                <td>Inventario</td>
-                <td>Inventario</td>
+            <tr *ngFor="let item of inventarioSubscription$ | async">
+                <td>{{item.numero_item}}</td>
+                <td>{{item.item}}</td>
+                <td>{{item.ubicacion}}</td>
+                <td>{{item.cantidad_disponible}}</td>
+                <td>{{item.punto_reorden}}</td>
+                <td>{{item.costo_unitario}}</td>
+                <td>{{item.tasa_uso}}</td>
+                <td>{{item.categoria}}</td>
                 <td class="text-center">
-                    <button class="btn btn-primary text-lg-center mx-2" data-toggle="modal" data-target="#modal-update-inventario">
+                    <button class="btn btn-primary text-lg-center mx-2" data-toggle="modal" data-target="#modal-add-inventario" (click)="chargeCurrentInventarioForEdit(item)">
                                 <i class="fas fa-edit"></i>
                         </button>
-                    <button class="btn btn-danger mx-2" data-toggle="modal" data-target="#modal-delete-inventario">
+                    <button class="btn btn-danger mx-2" data-toggle="modal" data-target="#modal-delete-inventario" (click)="chargeCurrentInventarioForEdit(item)">
                                 <i class="fas fa-trash-alt"></i> 
                         </button>
                 </td>
@@ -64,7 +68,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="formulario" class="formulario" method="POST" action="${pageContext.request.contextPath}/clientes?type=create">
+                <form [formGroup]="formEmployee">
                     <div class="form-group">
                         <div class="form-row">
                             <!-- Campo ITEM DEL INVENTARIO -->
@@ -72,149 +76,79 @@
                                 <section class="container form_grupo">
                                     <label for="dni">Código Item</label>
                                     <article class="col-12">
-                                        <input id="dni" name="dni" type="text" class="form-control c-form__input" placeholder="DNI" required>
+                                        <input type="text" class="form-control" placeholder="Codigo Item" formControlName="numeroItem">
                                     </article>
                                 </section>
                             </div>
                             <!-- Campo PUNTO DE REORDEN DEL INVENTARIO-->
                             <div class="col-md-6 mb-3">
                                 <section class="container">
-                                    <label for="saldo">Punto de Reaorden</label>
+                                    <label for="saldo">Descripcion</label>
                                     <article class="col-12">
-                                        <input name="saldo" type="text" class="form-control" placeholder="Numero Cuenta" required>
+                                        <input name="saldo" type="text" class="form-control" placeholder="Descripcion" formControlName="descripcion">
                                     </article>
                                 </section>
                             </div>
                             <!-- Campo DESCRIPCION DE ITEM EN EL INVENTARIO -->
                             <div class="col-md-12 mb-3">
                                 <section class="container">
-                                    <label for="nombre">Descripcion</label>
+                                    <label for="nombre">Ubicacion</label>
                                     <article class="col-12">
-                                        <input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" required>
+                                        <input type="text" class="form-control" placeholder="Ubicacion" formControlName="ubicacion">
                                     </article>
                                 </section>
                             </div>
                             <!-- Campo UBICACION DEL ITEM -->
                             <div class="col-md-12 mb-3">
                                 <section class="container">
-                                    <label for="nombre">Ubicación</label>
+                                    <label for="nombre">Cantidad Disponible</label>
                                     <article class="col-12">
-                                        <input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" required>
+                                        <input type="text" class="form-control" placeholder="Nombre" formControlName="cantidadDiponible">
                                     </article>
                                 </section>
                             </div>
                             <!-- Campo COSTO DISPONIBLE DEL INVENTARIO -->
                             <div class="col-md-12 mb-3">
                                 <section class="container">
-                                    <label for="ubicacion">Costo Disponible</label>
+                                    <label for="ubicacion">Punto de Reorden</label>
                                     <article class="col-12">
-                                        <input id="ubicacion" name="ubicacion" type="text" class="form-control" placeholder="Ubicación" required>
+                                        <input type="text" class="form-control" placeholder="Ubicación" formControlName="puntoReorden">
                                     </article>
                                 </section>
                             </div>
                             <!-- Campo COSTO PARA VENTA DEL INVENTARIO -->
                             <div class="col-md-6 mb-3">
                                 <section class="container">
-                                    <label for="telefono">Costo para Venta</label>
+                                    <label for="telefono">Costo Unitario</label>
                                     <article class="col-12">
-                                        <input name="telefono" type="text" class="form-control" placeholder="Telefono /  Celular" required>
+                                        <input name="telefono" type="text" class="form-control" placeholder="Costo Unitario" formControlName="costoUnitario">
                                     </article>
                                 </section>
                             </div>
                             <!-- Campo COSTO UNITARIO DEL INVENTARIO -->
                             <div class="col-md-6 mb-3">
                                 <section class="container">
-                                    <label for="telefono">Costo Unitario</label>
+                                    <label for="telefono">Tasa de Uso</label>
                                     <article class="col-12">
-                                        <input name="cuenta" type="text" class="form-control" placeholder="Numero Cuenta" required>
+                                        <input name="cuenta" type="text" class="form-control" placeholder="Tasa de Uso" formControlName="tasaUso">
+                                    </article>
+                                </section>
+                            </div>
+                            <!-- Campo OBSERVACIONES DEL PROVEEDOR -->
+                            <div class="col-md-6 mb-3">
+                                <section class="container">
+                                    <label for="saldo">Categoria</label>
+                                    <article class="col-12">
+                                        <select class="custom-select my-1 mr-sm-2" formControlName="idCategoria">
+                                            <option value="">Seleccione Categoria</option>
+                                            <option *ngFor="let categoria of categoriaSubscription$ | async" value="{{ categoria.id }}">{{categoria.descripcion}}</option>
+                                          </select>
                                     </article>
                                 </section>
                             </div>
 
                             <div class="form-group col-md-12">
-                                <button type="submit" class="btn btn-success btn-block">
-                                    ACEPTAR
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- --------------------- -->
-<!-- MODAL ACTUALIZAR PRODUCTO AL INVENTARIO -->
-<!-- --------------------- -->
-<div class="modal fade" id="modal-update-inventario" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Ingrese los datos para Procesar con el Pedido</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form id="formulario" class="formulario" method="POST" action="${pageContext.request.contextPath}/clientes?type=create">
-                    <div class="form-group">
-                        <div class="form-row">
-                            <!-- Campo DNI usuario -->
-                            <div class="col-md-6 mb-3">
-                                <section class="container form_grupo">
-                                    <label for="dni">DNI</label>
-                                    <article class="col-12">
-                                        <input id="dni" name="dni" type="text" class="form-control c-form__input" placeholder="DNI" required>
-                                    </article>
-                                </section>
-                            </div>
-                            <!-- Campo Nombre usuario -->
-                            <div class="col-md-6 mb-3">
-                                <section class="container">
-                                    <label for="nombre">Nombre</label>
-                                    <article class="col-12">
-                                        <input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" required>
-                                    </article>
-                                </section>
-                            </div>
-                            <!-- Campo Ubicación usuario -->
-                            <div class="col-md-12 mb-3">
-                                <section class="container">
-                                    <label for="ubicacion">Ubicación</label>
-                                    <article class="col-12">
-                                        <input id="ubicacion" name="ubicacion" type="text" class="form-control" placeholder="Ubicación" required>
-                                    </article>
-                                </section>
-                            </div>
-                            <!-- Campo Celular usuario -->
-                            <div class="col-md-6 mb-3">
-                                <section class="container">
-                                    <label for="telefono">Telefono /  Celular</label>
-                                    <article class="col-12">
-                                        <input name="telefono" type="text" class="form-control" placeholder="Telefono /  Celular" required>
-                                    </article>
-                                </section>
-                            </div>
-                            <!-- Campo Numero Cuenta usuario -->
-                            <div class="col-md-6 mb-3">
-                                <section class="container">
-                                    <label for="telefono">Número Cuenta</label>
-                                    <article class="col-12">
-                                        <input name="cuenta" type="text" class="form-control" placeholder="Numero Cuenta" required>
-                                    </article>
-                                </section>
-                            </div>
-                            <!-- Campo Saldo actual usuario -->
-                            <div class="col-md-6 mb-3">
-                                <section class="container">
-                                    <label for="saldo">Saldo Actual</label>
-                                    <article class="col-12">
-                                        <input name="saldo" type="text" class="form-control" placeholder="Numero Cuenta" required>
-                                    </article>
-                                </section>
-                            </div>
-                            <div class="form-group col-md-12">
-                                <button type="submit" class="btn btn-success btn-block">
+                                <button type="submit" class="btn btn-success btn-block" (click)="addInventario()">
                                     ACEPTAR
                                 </button>
                             </div>
@@ -246,11 +180,11 @@
                         </div>
                         <section class="justify-content-center d-flex w-100">
                             <div class="alert alert-primary" role="alert">
-                                ¿Desea eliminar Cliente?
+                                ¿Desea eliminar Item?
                             </div>
                         </section>
                         <div class="form-group col-md-12" class="text-center">
-                            <button type="submit" class="btn btn-success btn-block">
+                            <button type="submit" class="btn btn-success btn-block" (click)="deleteCurrentInventario()">
                                 ELIMINAR
                             </button>
                         </div>
@@ -259,3 +193,4 @@
             </div>
         </div>
     </div>
+</div>

@@ -15,127 +15,25 @@
     <!-- Divider -->
     <hr class="sidebar-divider">
 
-    <!-- REGISTRO GENERAL DE CLIENTES -->
-    <div class="sidebar-heading">
-        Mantenimientos
-    </div>
-
-    <!-- Nav Item - MENU DESPLEGABLE DE CLIENTES -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseClients" aria-expanded="true">
-            <i class="fas fa-user"></i>
-            <span>Gestión de agentes</span>
-        </a>
-        <div id="collapseClients" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" [routerLink]="['clientes']">Clientes</a>
-                <a class="collapse-item" [routerLink]="['proveedor']">Proveedores</a>
-                <a class="collapse-item" [routerLink]="['empleados']">Empleados</a>
-            </div>
+    <ng-container *ngFor="let cm of currentMenu">
+        <div class="sidebar-heading">
+            {{ cm.title }}
         </div>
-    </li>
-    <!-- Nav Item - MENU DESPLEGABLE DE INVENTARIO -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseInventario" aria-expanded="true">
-            <i class="fas fa-fw fa-cog"></i>
-            <span>Gestión Inventario</span>
-        </a>
-        <div id="collapseInventario" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" [routerLink]="['inventario']">Inventario</a>
-                <a class="collapse-item" [routerLink]="['entregaInventario']">Entrega Inventario</a>
-            </div>
-        </div>
-    </li>
-    <!-- Divider -->
-    <hr class="sidebar-divider">
 
-    <!-- REGISTRO GENERAL DE VENTAS -->
-    <div class="sidebar-heading">
-        Ventas
-    </div>
+        <ng-container *ngFor="let item of cm.items">
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseClients" aria-expanded="true">
+                    <i [class]="item.icon"></i>
+                    <span>{{ item.title }}</span>
+                </a>
+                <div id="collapseClients" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" [routerLink]="r.route" *ngFor="let r of item.routes">{{ r.name }}</a>
+                    </div>
+                </div>
+            </li>
+        </ng-container>
+    </ng-container>
 
-    <!-- Nav Item - MENU DESPLEGABLE VENTAS -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseVentas" aria-expanded="true">
-            <i class="fas fa-fw fa-cog"></i>
-            <span>Registos de Ventas</span>
-        </a>
-        <div id="collapseVentas" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Formulario de Ventas</h6>
-                <a class="collapse-item" [routerLink]="['ventas']">Ventas</a>
-            </div>
-        </div>
-    </li>
-
-    <!-- Divider -->
-    <hr class="sidebar-divider">
-
-    <!-- PROCESO DE COMPRAS -->
-    <div class="sidebar-heading">
-        Compras
-    </div>
-
-    <!-- Nav Item - MENU DESPLEGABLE DE COMPRAS -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCompras" aria-expanded="true">
-            <i class="fas fa-sync"></i>
-            <span>Ciclo de compras</span>
-        </a>
-        <div id="collapseCompras" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" [routerLink]="['compras']">Compras</a>
-            </div>
-        </div>
-    </li>
-
-    <!-- Divider -->
-    <hr class="sidebar-divider">
-
-    <!-- REGISTRO GENERAL DE VENTAS -->
-    <div class="sidebar-heading">
-        Nominas
-    </div>
-
-    <!-- Nav Item - MENU DESPLEGABLE VENTAS -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseNominas" aria-expanded="true">
-            <i class="fas fa-fw fa-cog"></i>
-            <span>Registos de Nominas</span>
-        </a>
-        <div id="collapseNominas" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Formulario de Nominas</h6>
-                <a class="collapse-item" [routerLink]="['nominas']">Nominas</a>
-            </div>
-        </div>
-    </li>
-
-    <!-- Divider -->
-    <hr class="sidebar-divider">
-
-
-    <!-- PROCESO DE COMPRAS -->
-    <div class="sidebar-heading">
-        Libros
-    </div>
-
-    <!-- Nav Item - MENU DESPLEGABLE DE COMPRAS -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLibros" aria-expanded="true">
-            <i class="fas fa-fw fa-cog"></i>
-            <span>Registos de Libros </span>
-        </a>
-        <div id="collapseLibros" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Libros Contables</h6>
-                <a class="collapse-item" [routerLink]="['diario']">Libro Diario</a>
-                <a class="collapse-item" [routerLink]="['mayor']">Libro Mayor</a>
-                <a class="collapse-item" [routerLink]="['cuentasPorCobra']">Cuentas por Cobrar</a>
-                <a class="collapse-item" [routerLink]="['cuentasPorPagar']">Cuentas por Pagar</a>
-            </div>
-        </div>
-    </li>
 </ul>
 <!-- End of Sidebar -->

@@ -4,8 +4,7 @@
     <article class="d-flex justify-content-between mb-3">
         <form class="form-inline navbar-search">
             <div class="input-group">
-                <input type="text" class="form-control bg-light border-0 small border-search" 
-                    placeholder="Buscar" (keyup)="searchEmpleado($event)">
+                <input type="text" class="form-control bg-light border-0 small border-search" placeholder="Buscar" (keyup)="searchEmpleado($event)">
                 <div class="input-group-append">
                     <button class="btn btn-primary" type="button">
                         <i class="fas fa-search fa-sm"></i>
@@ -13,60 +12,54 @@
                 </div>
             </div>
         </form>
-        <button class="btn btn-primary text-lg-center" data-toggle="modal" 
-            data-target="#modal-add-empleado" (click)="chargeCurrentEmpleadoForAdd()">
+        <button class="btn btn-primary text-lg-center" data-toggle="modal" data-target="#modal-add-empleado" (click)="chargeCurrentEmpleadoForAdd()">
             <i class="fas fa-user-plus"></i>
         </button>
     </article>
     <article class="table-responsive">
-    <table class="table table-light text-center">
-        <thead>
-            <tr>
-                <th class="text-center" scope="col">DNI</th>
-                <th class="text-center" scope="col">Nombre</th>
-                <th class="text-center" scope="col">Apellido</th>
-                <th class="text-center" scope="col">Pago</th>
-                <th class="text-center" scope="col">Cargo</th>
-                <th class="text-center" scope="col">Ver</th>
-                <th class="text-center" scope="col">Credenciales</th>
-                <th class="text-center" scope="col" colspan="2" class="text-center">
-                    ACCIÓN
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let empleado of empleadosSubscription$ | async">
-                <td>{{ empleado.dni }}</td>
-                <td>{{ empleado.nombres }}</td>
-                <td>{{ empleado.apellidos }}</td>
-                <td>{{ empleado.tarifa_pago | currency }}</td>
-                <td>{{ empleado.rol }}</td>
-                <td class="text-center">
-                    <button class="btn btn-primary text-lg-center mx-2" data-toggle="modal" 
-                        data-target="#modal-ver" (click)="chargeCurrentEmpleado(empleado)">
+        <table class="table table-light text-center">
+            <thead>
+                <tr>
+                    <th class="text-center" scope="col">DNI</th>
+                    <th class="text-center" scope="col">Nombre</th>
+                    <th class="text-center" scope="col">Apellido</th>
+                    <th class="text-center" scope="col">Pago</th>
+                    <th class="text-center" scope="col">Cargo</th>
+                    <th class="text-center" scope="col">Ver</th>
+                    <th class="text-center" scope="col">Credenciales</th>
+                    <th class="text-center" scope="col" colspan="2" class="text-center">
+                        ACCIÓN
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let empleado of empleadosSubscription$ | async">
+                    <td>{{ empleado.dni }}</td>
+                    <td>{{ empleado.nombres }}</td>
+                    <td>{{ empleado.apellidos }}</td>
+                    <td>{{ empleado.tarifa_pago | currency }}</td>
+                    <td>{{ empleado.rol }}</td>
+                    <td class="text-center">
+                        <button class="btn btn-primary text-lg-center mx-2" data-toggle="modal" data-target="#modal-ver" (click)="chargeCurrentEmpleado(empleado)">
                         <i class="fas fa-eye"></i>
                     </button>
-                </td>
-                <td class="text-center">
-                    <button class="btn btn-primary text-lg-center mx-2" data-toggle="modal" 
-                        [class.btn-success]="empleado.username" data-target="#modal-login" 
-                        (click)="chargeCurrentEmpleadoForAuth(empleado)">
+                    </td>
+                    <td class="text-center">
+                        <button class="btn btn-primary text-lg-center mx-2" data-toggle="modal" [class.btn-success]="empleado.username" data-target="#modal-login" (click)="chargeCurrentEmpleadoForAuth(empleado)">
                         <i class="fas fa-user"></i>
                     </button>
-                </td>
-                <td class="text-center">
-                    <button class="btn btn-primary text-lg-center mx-2" data-toggle="modal" 
-                        data-target="#modal-add-empleado" (click)="chargeCurrentEmpleadoForEdit(empleado)">
+                    </td>
+                    <td class="text-center">
+                        <button class="btn btn-primary text-lg-center mx-2" data-toggle="modal" data-target="#modal-add-empleado" (click)="chargeCurrentEmpleadoForEdit(empleado)">
                                 <i class="fas fa-edit"></i>
                         </button>
-                    <button class="btn btn-danger mx-2" data-toggle="modal" 
-                        data-target="#modal-delete-empleado" (click)="chargeCurrentEmpleadoForEdit(empleado)">
+                        <button class="btn btn-danger mx-2" data-toggle="modal" data-target="#modal-delete-empleado" (click)="chargeCurrentEmpleadoForEdit(empleado)">
                                 <i class="fas fa-trash-alt"></i> 
                         </button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </article>
 </section>
 <!-- ----------------------------------- -->
@@ -157,9 +150,7 @@
                             <section class="container">
                                 <label for="saldo">Usuario</label>
                                 <article>
-                                    <input type="text" 
-                                    class="form-control" formControlName="username" 
-                                    placeholder="username">
+                                    <input type="text" class="form-control" formControlName="username" placeholder="username">
                                 </article>
                             </section>
                         </div>
@@ -167,16 +158,13 @@
                             <section class="container">
                                 <label for="saldo">Contraseña</label>
                                 <article>
-                                    <input type="password" 
-                                    class="form-control" formControlName="password" 
-                                    placeholder="password">
+                                    <input type="password" class="form-control" formControlName="password" placeholder="password">
                                 </article>
                             </section>
                         </div>
                         <div class="form-group col-md-12 d-flex justify-content-end">
                             <section class="container">
-                                <button class="btn btn-primary text-center w250"
-                                    (click)="saveUser()">
+                                <button class="btn btn-primary text-center w250" (click)="saveUser()">
                                     Guardar
                                 </button>
                             </section>
@@ -208,8 +196,7 @@
                             <section class="container">
                                 <label for="saldo">DNI</label>
                                 <article>
-                                    <input type="text" class="form-control" 
-                                        placeholder="Ingrese DNI" formControlName="dni">
+                                    <input type="text" class="form-control" placeholder="Ingrese DNI" formControlName="dni">
                                 </article>
                             </section>
                         </div>
@@ -217,8 +204,7 @@
                             <section class="container">
                                 <label for="saldo">Nombre</label>
                                 <article>
-                                    <input type="text" class="form-control" 
-                                        placeholder="Ingrese nombres" formControlName="nombres">
+                                    <input type="text" class="form-control" placeholder="Ingrese nombres" formControlName="nombres">
                                 </article>
                             </section>
                         </div>
@@ -226,8 +212,7 @@
                             <section class="container">
                                 <label for="saldo">Apellido</label>
                                 <article>
-                                    <input type="text" class="form-control" 
-                                        placeholder="Ingrese apellidos" formControlName="apellidos">
+                                    <input type="text" class="form-control" placeholder="Ingrese apellidos" formControlName="apellidos">
                                 </article>
                             </section>
                         </div>
@@ -235,8 +220,7 @@
                             <section class="container">
                                 <label for="saldo">Email</label>
                                 <article>
-                                    <input type="email" class="form-control" 
-                                        placeholder="Ingrese email" formControlName="email">
+                                    <input type="email" class="form-control" placeholder="Ingrese email" formControlName="email">
                                 </article>
                             </section>
                         </div>
@@ -244,8 +228,7 @@
                             <section class="container">
                                 <label for="saldo">Fecha Nacimiento</label>
                                 <article>
-                                    <input type="date" class="form-control" 
-                                        formControlName="fechaNacimiento">
+                                    <input type="date" class="form-control" formControlName="fechaNacimiento">
                                 </article>
                             </section>
                         </div>
@@ -253,8 +236,7 @@
                             <section class="container">
                                 <label for="saldo">Fecha Contratacion</label>
                                 <article>
-                                    <input type="date" class="form-control" 
-                                        formControlName="fechaContratacion">
+                                    <input type="date" class="form-control" formControlName="fechaContratacion">
                                 </article>
                             </section>
                         </div>
@@ -262,8 +244,7 @@
                             <section class="container">
                                 <label for="saldo">Tarifa de pago</label>
                                 <article>
-                                    <input type="number" class="form-control" 
-                                        formControlName="tarifaPago">
+                                    <input type="number" class="form-control" formControlName="tarifaPago">
                                 </article>
                             </section>
                         </div>
@@ -272,15 +253,17 @@
                                 <label for="saldo">Cargo</label>
                                 <article>
                                     <select class="form-control" formControlName="idCargo">
-                                        <option value="1">Seleccione cargo</option>
+                                        <option value="">Seleccione cargo</option>
+                                        <option *ngFor="let cargo of cargosSubscription$ |async" value="{{ cargo.id }}">
+                                            {{ cargo.descripcion }}
+                                        </option>
                                     </select>
                                 </article>
                             </section>
                         </div>
                         <div class="form-group col-md-12 d-flex justify-content-end">
                             <section class="container">
-                                <button class="btn btn-primary text-center w-25"
-                                    (click)="addEmpleado()">
+                                <button class="btn btn-primary text-center w-25" (click)="addEmpleado()">
                                     Aceptar
                                 </button>
                             </section>
@@ -315,8 +298,7 @@
                             </div>
                         </section>
                         <div class="form-group col-md-12">
-                            <button type="submit" class="btn btn-success btn-block"
-                                (click)="deleteCurrentEmpleado()">
+                            <button type="submit" class="btn btn-success btn-block" (click)="deleteCurrentEmpleado()">
                                 Eliminar
                             </button>
                         </div>

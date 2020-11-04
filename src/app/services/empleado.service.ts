@@ -6,6 +6,7 @@ import { catchError, map } from 'rxjs/operators';
 import { UsuarioRequest } from '../models/requests/usuario.request.model';
 import { Empleado, EmpleadoResponse } from '../models/empleado.model';
 import { EmpleadoRequest } from '../models/requests/empleado.request.model';
+import { Cargo, CargoResponse } from '../models/cargo.model';
 
 @Injectable({
   providedIn: 'root'
@@ -42,6 +43,13 @@ export class EmpleadoService {
     return this.httpClient.get<EmpleadoResponse>(`${ this.baseAPI }/inactives?search=${ paramSearch }`)
       .pipe(
         map(({ empleados }) => empleados)
+      );
+  }
+
+  public getAllCargos(): Observable<Cargo[]>{
+    return this.httpClient.get<CargoResponse>(`${ this.baseAPI }/cargos`)
+      .pipe(
+        map(({ cargos }) => cargos)
       );
   }
 
