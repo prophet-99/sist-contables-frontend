@@ -10,24 +10,12 @@
     </div>
 </div>
 <div class="border row">
-    <div class="d-flex">
-        <!-- --------------- -->
-        <!-- Codigo Compra -->
-        <!-- --------------- -->
-        <h3 class="text-muted ml-5 mb-5 mt-3"> /WH/OUT/000005</h3>
-    </div>
     <div class="col-12 d-flex mb-3">
         <div class="col-3 border-right">
             <h6>Empresa</h6>
         </div>
         <div class="col-4">
-            <h6 class="text-primary">LAMBAYEQUE TECNOLOGIES</h6>
-        </div>
-        <div class="col-2 ">
-            <h6>Fecha prevista</h6>
-        </div>
-        <div class="col-3">
-            <h5 class="text-primary">12/01/2020</h5>
+            <h6 class="text-primary">LAMBAYEQUE TECHNOLOGIES</h6>
         </div>
     </div>
     <div class="col-12 d-flex mb-3">
@@ -65,8 +53,8 @@
                 <td class="text-center">{{empleado.tarifa_pago}}</td>
                 <td class="text-center">{{empleado.descuento}}</td>
                 <td class="text-center">{{empleado.numeroCuenta}}</td>
-                <td class="text-center">{{tiempoForm.get('horaInicio').value}}</td>
-                <td class="text-center">{{tiempoForm.get('horaFin').value}}</td>
+                <td class="text-center">{{empleado.horaInicio}}</td>
+                <td class="text-center">{{empleado.horaFin}}</td>
                 <td class="text-center">
                     <div class="d-flex justify-content-center">
                         <button class="btn btn-primary text-lg-center mx-1" data-toggle="modal" data-target="#modal-crear" (click)="CargarUsuarioActual(empleado)">Crear</button>
@@ -74,7 +62,7 @@
                 </td>
                 <td class="text-center">
                     <div class="d-flex justify-content-center">
-                        <button class="btn btn-primary text-lg-center mx-1" data-toggle="modal" data-target="#modal-crear-tiempo" (click)="CargarTiempo(empleado)">Crear</button>
+                        <button class="btn btn-outline-primary text-lg-center mx-1" data-toggle="modal" data-target="#modal-crear-tiempo" (click)="CargarTiempo(empleado)">Crear</button>
                     </div>
                 </td>
             </tr>
