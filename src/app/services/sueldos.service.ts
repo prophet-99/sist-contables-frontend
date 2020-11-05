@@ -24,7 +24,7 @@ export class SueldosService {
       );
   } */
 
-  public findAllNumeroCuenta(): Observable<Nomina[]>{
+  public getdAllNumeroCuenta(): Observable<Nomina[]>{
     return this.httpClient.get<NumeroCuenta>(`${ this.baseAPI }/efectivocuentas`)
       .pipe(
         map(({ nominas }) => nominas)
