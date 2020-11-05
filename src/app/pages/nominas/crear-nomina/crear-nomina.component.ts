@@ -47,7 +47,8 @@ export class CrearNominaComponent implements OnInit {
     this.numerocuentaSubscription$ = this.sueldoService.getdAllNumeroCuenta();
     this.empleadoService.findAll()
       .pipe(
-        map( (empleados) =>  empleados.map( (emp) => ({ ...emp, descuento: 0, numeroCuenta: '', nominaSueldo: ''  }) ) )
+        map( (empleados) =>  empleados.map( 
+          (emp) => ({ ...emp, descuento: 0, numeroCuenta: '', nominaSueldo: '',  horaInicio: '', horaFin: '' }) ) )
           ).subscribe( (empleados) => {
             this.empleados = empleados;
             console.log(this.empleados);
@@ -163,8 +164,9 @@ export class CrearNominaComponent implements OnInit {
     const tarjetasTiempo = [{
       fechaRegistro, horaInicio, horaFin, idEmpleado, idNominaSueldo: this.empleadoActual.idNominaSueldo
     }];
-    this.empleadoActual.horaInicio = horaInicio;
-    this.empleadoActual.horaFin = horaFin;
+    const empl = this.empleados.find( (emp) => emp.id_empleado == idEmpleado );
+    empl.horaInicio = horaInicio;
+    empl.horaFin = horaFin;
     this.sueldoService.postObtenerTiempo({tarjetasTiempo}).subscribe(
       ({ msg }) => {
         $('#modal-crear').modal('hide');
