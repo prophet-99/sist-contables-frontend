@@ -60,7 +60,7 @@
                 <td class="text-center">{{empleado.apellidos}}</td>
                 <td class="text-center">{{empleado.tarifa_pago | currency}}</td>
                 <td class="text-center">{{empleado.descuento}}</td>
-                <td class="text-center">{{(empleado.tarifa_pago)-(empleado.tarifa_pago*(empleado.descuento)) | currency}}</td>
+                <td class="text-center">{{(empleado.tarifa_pago)-(empleado.tarifa_pago*(0.12)) | currency}}</td>
             </tr>
 
         </tbody>
