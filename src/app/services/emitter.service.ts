@@ -9,4 +9,5 @@ export class EmitterService {
   constructor() { }
 
   public handleOrdenarProductos$: EventEmitter<ItemByEstado[]> = new EventEmitter();
+  public handleOrdenarVentas$: EventEmitter<any> = new EventEmitter();
 }

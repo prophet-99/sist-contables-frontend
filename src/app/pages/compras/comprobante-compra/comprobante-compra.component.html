@@ -50,8 +50,8 @@
                 <td class="text-center">{{ oc.fecha_entrega_esperada | date }}</td>
                 <td class="text-center">{{ oc.precio_total_esperado | currency }}</td>
                 <td class="text-center">
-                    <button class="btn btn-outline-primary" *ngIf="!oc.pago"  
-                         (click)="handleGoDesembolsarEfectivo()">
+                    <button class="btn btn-outline-primary" *ngIf="!oc.pago" 
+                        data-toggle="modal" data-target="#modal-pagar" (click)="currentOrdenCompra = oc">
                         Cancelar
                     </button>
                     <span class="badge badge-success" *ngIf="oc.pago">
@@ -165,6 +165,45 @@
 
                     <div class="d-flex justify-content-center">
                         <button type="button" class="btn btn-primary px-4" data-dismiss="modal">Aceptar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- --------------------------------------------------------- -->
+<!-- MODAL ASIENTO -->
+<!-- --------------------------------------------------------- -->
+
+<div class="modal fade" id="modal-pagar" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Realizar pago</h5>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <section class="mb-4">
+                        <div class="d-flex align-items-center mb-4">
+                            <label class="mr-3 mb-0">Cuenta</label>
+                            <select class="form-control" (change)="handleChargeMonto($event)" #refCuenta>
+                                <option value="">Seleccionar cuenta</option>
+                                <option *ngFor="let ct of numCuentas" [value]="ct.numero_cuenta">
+                                    {{ ct.numero_cuenta }}
+                                </option>
+                            </select>
+                        </div>
+                        <h4 class="mb-3 font-weight-bold text-dark">
+                            <span class="font-weight-normal">Saldo disponible:</span> {{ currentMonto | currency }}
+                        </h4>
+                        <h4 class="mb-0 font-weight-bold text-dark">
+                            <span class="font-weight-normal">Total a pagar:</span> {{ currentOrdenCompra?.precio_total_esperado | currency }}
+                        </h4>
+                    </section>
+                    <div class="d-flex justify-content-center">
+                        <button type="button" class="btn btn-outline-primary px-4" 
+                            data-dismiss="modal" (click)="handleGoDesembolsarEfectivo(refCuenta.value)">Aceptar</button>
                     </div>
                 </div>
             </div>

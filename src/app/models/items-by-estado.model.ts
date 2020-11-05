@@ -10,4 +10,5 @@ export interface ItemByEstado {
     punto_reorden: number;
     cantidad_disponible: number;
     estado_item ?: string;
+    costo_unitario?: number;
 }

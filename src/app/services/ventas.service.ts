@@ -16,9 +16,9 @@ import { DesembolsoComprasRequest } from '../models/requests/desembolso-compras.
 @Injectable({
   providedIn: 'root'
 })
-export class ComprasService {
+export class VentasService {
 
-  private baseAPI = `${ environment.API }/compra`;
+  private baseAPI = `${ environment.API }/venta`;
 
   constructor(private httpClient: HttpClient) { }
 
@@ -46,72 +46,56 @@ export class ComprasService {
       );
   }
 
-  public postRegistrarCompra(registrarReq: RegistrarCompraRequest): Observable<{ ok: boolean, msg: string }>{
-    return this.httpClient.post<{ ok: boolean, msg: string }>(`${ this.baseAPI }/registrarcompra`, registrarReq)
+  public postRecomendacion(
+    numeroRecomendacion, descripcion, idVerificarDisponibilidad, idNumeroCliente
+  ): Observable<{ ok: boolean, msg: string }>{
+    const val = { numeroRecomendacion, descripcion, idVerificarDisponibilidad, idNumeroCliente };
+    return this.httpClient.post<{ ok: boolean, msg: string }>(`${ this.baseAPI }/addrecomendacion`, val)
       .pipe(
         catchError<any, any>(({ error }) => this.handleError(error))
       );
   }
 
-  public postRegistrarDetalleOrden(detalleOrdenReq: DetalleOrdenRequest): Observable<{ ok: boolean, msg: string }>{
-    return this.httpClient.post<{ ok: boolean, msg: string }>(`${ this.baseAPI }/detalleorden`, detalleOrdenReq)
+  public postDetalleRecomendacion(detalle): Observable<{ ok: boolean, msg: string }>{
+    return this.httpClient.post<{ ok: boolean, msg: string }>(`${ this.baseAPI }/detallerecomendacion`, detalle)
       .pipe(
         catchError<any, any>(({ error }) => this.handleError(error))
       );
   }
 
-  public getOrdenesCompra(): Observable<OrdenCompra[]>{
-    return this.httpClient.get<OrdenesCompraResponse>(`${ this.baseAPI }/ordencompra`)
+  public postPedido(
+    numeroOrden, fechaPedido, fechaPrometida, condiciones, idVerificarDisponibilidad, idNumeroCliente,
+    idEmpleado
+  ): Observable<{ ok: boolean, msg: string }>{
+    const val = {
+      numeroOrden, fechaPedido, fechaPrometida, condiciones, idVerificarDisponibilidad, idNumeroCliente,
+      idEmpleado
+     };
+    return this.httpClient.post<{ ok: boolean, msg: string }>(`${ this.baseAPI }/addpedido`, val)
       .pipe(
-        map( ({ items }) => items )
+        catchError<any, any>(({ error }) => this.handleError(error))
       );
   }
 
-  public getOrdenesCompraById(idOrdenCompra: string): Observable<OrdenCompra[]>{
-    return this.httpClient.get<OrdenesCompraResponse>(`${ this.baseAPI }/ordencompra?ordencompra=${ idOrdenCompra }`)
+  public postDetallePedido(detalle): Observable<{ ok: boolean, msg: string }>{
+    return this.httpClient.post<{ ok: boolean, msg: string }>(`${ this.baseAPI }/detallepedido`, detalle)
       .pipe(
-        map( ({ items }) => items )
+        catchError<any, any>(({ error }) => this.handleError(error))
       );
   }
 
-  public getOrdenesCompraDetalle(idOrdenCompra: string): Observable<OrdenCompraDetalle[]>{
-    return this.httpClient.post<OrdenesCompraDetalleResponse>(
-      `${ this.baseAPI }/detalleordencompra`, { idOrdenCompra }
-    ).pipe(
-      map( ({ items }) => items )
-    );
+  public postEnviarItems(detalle): Observable<{ ok: boolean, msg: string }>{
+    return this.httpClient.post<{ ok: boolean, msg: string }>(`${ this.baseAPI }/enviaritems`, detalle)
+      .pipe(
+        catchError<any, any>(({ error }) => this.handleError(error))
+      );
   }
 
-  public postFactura(idFactura: number): Observable<{ ok: boolean, msg: string }>{
-    return this.httpClient.post<{ ok: boolean, msg: string }>(
-      `${ this.baseAPI }/factura`, { idFactura }
-    ).pipe(
-      catchError<any, any>(({ error }) => this.handleError(error))
-    );
-  }
-
-  public postRecepcionarCompra(recepcionarCompra: RecepcionarCompraRequest): Observable<{ ok: boolean, msg: string }>{
-    return this.httpClient.post<{ ok: boolean, msg: string }>(
-      `${ this.baseAPI }/recibiritems`, recepcionarCompra
-    ).pipe(
-      catchError<any, any>(({ error }) => this.handleError(error))
-    );
-  }
-
-  public postRecepcionarDetalleCompra(detalleRecepcionRequest: DetalleRecepcionRequest): Observable<{ ok: boolean, msg: string }>{
-    return this.httpClient.post<{ ok: boolean, msg: string }>(
-      `${ this.baseAPI }/detallerecibir`, detalleRecepcionRequest
-    ).pipe(
-      catchError<any, any>(({ error }) => this.handleError(error))
-    );
-  }
-
-  public postDesembolsarEfectivo(desembolsoComprasRequest: DesembolsoComprasRequest): Observable<{ ok: boolean, msg: string }>{
-    return this.httpClient.post<{ ok: boolean, msg: string }>(
-      `${ this.baseAPI }/desembolsarefectivo`, desembolsoComprasRequest
-    ).pipe(
-      catchError<any, any>(({ error }) => this.handleError(error))
-    );
+  public postDetalleEnvio(detalle): Observable<{ ok: boolean, msg: string }>{
+    return this.httpClient.post<{ ok: boolean, msg: string }>(`${ this.baseAPI }/detalleenvio`, detalle)
+      .pipe(
+        catchError<any, any>(({ error }) => this.handleError(error))
+      );
   }
 
   private handleError(error): Observable<{ msg: string }>{

@@ -1,85 +1,53 @@
-<div class="border row">
-    <div class="d-flex">
-        <!-- --------------- -->
-        <!-- Codigo Compra -->
-        <!-- --------------- -->
-        <h3 class="text-muted ml-5 mb-5 mt-3"> LIBRO DIARIO</h3>
-    </div>
-    <div class="col-12 d-flex mb-3">
-        <div class="col-3 border-right">
-            <h6>Empresa</h6>
+<div class="container-fluid">
+    <article class="row mb-3">
+        <div class="col-12">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a class="u-pointer-events-none" href="#">Dashboard</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a class="u-pointer-events-none text-dark font-weight-bold">
+                             Libro mayor
+                        </a>
+                    </li>
+                </ol>
+            </nav>
         </div>
-        <div class="col-4">
-            <h6 class="text-primary">LAMBAYEQUE TECNOLOGIES</h6>
-        </div>
-        <div class="col-2 ">
-            <h6>Fecha prevista</h6>
-        </div>
-        <div class="col-3">
-            <h5 class="text-primary">12/01/2020 18:48:03</h5>
-        </div>
-    </div>
-    <div class="col-12 d-flex mb-3">
-        <div class="col-3 border-right">
-            <h6>Ubicacion de Origen</h6>
-        </div>
-        <div class="col-4">
-            <h5 class="text-primary">WH/Stock</h5>
-        </div>
-        <div class="col-3">
-            <h6>Documento Origen</h6>
-        </div>
-        <div class="col-2">
-            <h5 class="text-primary">SO022</h5>
-        </div>
-    </div>
-    <div class="col-12 d-flex my-3">
-        <div class="col-8 d-flex">
-            <button class="btn btn-primary">Operaciones</button>
-            <button class="btn btn-primary">Info adicional</button>
-            <button class="btn btn-primary">Nota</button>
-        </div>
-    </div>
-
-    <!-- Divider -->
-    <hr class="sidebar-divider">
-
+    </article>
+</div>
+<div class="border row mx-4">
     <table class="table table-striped">
         <thead>
             <tr>
                 <th class="text-center" scope="col">Fecha</th>
-                <th class="text-center" scope="col">Código</th>
                 <th class="text-center" scope="col">Detalle de Cuenta</th>
+                <th class="text-center" scope="col">Descripcion</th>
                 <th class="text-center" scope="col">DEBE</th>
                 <th class="text-center" scope="col">HABER</th>
-                <th class="text-center" scope="col">Glosa</th>
+                <th class="text-center" scope="col">SALDO</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <th class="text-center">01-01-2017</th>
-                <td class="text-center">111001</td>
-                <td class="text-center">Banco BNB CTA N° 0214-0124-222</td>
-                <td class="text-center">50, 000</td>
-                <td class="text-center">0.000</td>
-                <td class="text-center">Por registro de balance inicial</td>
+            <tr *ngFor="let gl of generalLedger">
+                <th class="text-center">{{ gl.fecha_pago }}</th>
+                <td class="text-center">{{ gl.numero_cuenta }}</td>
+                <td class="text-center">{{ gl.descripcion }}</td>
+                <td class="text-center">{{ gl.debe | currency }}</td>
+                <td class="text-center">{{ gl.haber | currency }}</td>
+                <td class="text-center">{{ (gl.debe - gl.haber) | currency }}</td>
             </tr>
             <tr>
-                <th class="text-center">01-01-2017</th>
-                <td class="text-center">111001</td>
-                <td class="text-center">Caja</td>
-                <td class="text-center">50, 000</td>
-                <td class="text-center">0.000</td>
-                <td class="text-center">Por registro de balance inicial</td>
-            </tr>
-            <tr>
-                <th class="text-center">01-01-2017</th>
-                <td class="text-center">111001</td>
-                <td class="text-center">Caja</td>
-                <td class="text-center">50, 000</td>
-                <td class="text-center">0.000</td>
-                <td class="text-center">Por registro de balance inicial</td>
+                <th class="text-center">TOTAL</th>
+                <td class="text-center"></td>
+                <td class="text-center"></td>
+                <td class="text-center"></td>
+                <td class="text-center"></td>
+                <td class="text-center">{{ currentTotal | currency }}</td>
             </tr>
         </tbody>
     </table>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
 </div>
