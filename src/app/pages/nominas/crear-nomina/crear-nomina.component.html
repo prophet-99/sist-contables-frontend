@@ -121,7 +121,7 @@
                         <div class="justify-content-center">
                             <label>Seleccione el numero de cuenta</label>
                             <select class="form-control" formControlName="idNumeroCuenta">
-                                <option value="">Seleccione descuento</option>
+                                <option value="">Seleccione numero de cuenta</option>
                                 <option *ngFor="let cuenta of numerocuentaSubscription$ |async" value="{{ cuenta.numero_cuenta }}">
                                     {{ cuenta.numero_cuenta }}
                                 </option>
