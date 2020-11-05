@@ -51,7 +51,10 @@
                 <th class="text-center" scope="col">Sueldo</th>
                 <th class="text-center" scope="col">Descuento</th>
                 <th class="text-center" scope="col">Numero de Cuenta</th>
-                <th class="text-center" scope="col">Acción</th>
+                <th class="text-center" scope="col">Hora Inicio</th>
+                <th class="text-center" scope="col">Hora Fin</th>
+                <th class="text-center" scope="col">Crear Nomina</th>
+                <th class="text-center" scope="col">Asignar Tiempo</th>
             </tr>
         </thead>
         <tbody>
@@ -60,11 +63,18 @@
                 <td class="text-center">{{empleado.apellidos}}</td>
                 <td class="text-center">{{empleado.rol}}</td>
                 <td class="text-center">{{empleado.tarifa_pago}}</td>
-                <td class="text-center">{{nominaForm.get('idDescuento').value}}</td>
-                <td class="text-center">{{nominaForm.get('idNumeroCuenta').value}}</td>
+                <td class="text-center">{{empleado.descuento}}</td>
+                <td class="text-center">{{empleado.numeroCuenta}}</td>
+                <td class="text-center">{{tiempoForm.get('horaInicio').value}}</td>
+                <td class="text-center">{{tiempoForm.get('horaFin').value}}</td>
                 <td class="text-center">
                     <div class="d-flex justify-content-center">
-                        <button class="btn btn-primary text-lg-center mx-1" data-toggle="modal" data-target="#modal-crear">Crear</button>
+                        <button class="btn btn-primary text-lg-center mx-1" data-toggle="modal" data-target="#modal-crear" (click)="CargarUsuarioActual(empleado)">Crear</button>
+                    </div>
+                </td>
+                <td class="text-center">
+                    <div class="d-flex justify-content-center">
+                        <button class="btn btn-primary text-lg-center mx-1" data-toggle="modal" data-target="#modal-crear-tiempo" (click)="CargarTiempo(empleado)">Crear</button>
                     </div>
                 </td>
             </tr>
@@ -83,61 +93,63 @@
 <!-- --------------------------------------------------------- -->
 
 <div class="modal fade" id="modal-crear" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Registro de Recomendación</h5>
+                <h5 class="modal-title">Registro de Nomina</h5>
             </div>
             <div class="modal-body">
                 <form [formGroup]="nominaForm">
                     <!-- Campo INGRESO PRODUCTO - INGRESO CLIENTE  -->
-                    <div class="form-group row ">
-                        <div class="col-lg-6 d-flex justify-content-center">
+                    <div class="form-group ">
+                        <div class="justify-content-center">
                             <label for="codigo" class="col-form-label">ID</label>
-                            <div class="col-6">
-                                <input type="text" class="form-control mr-2" placeholder="Jane Doe" formControlName="idEmpleado">
+                            <div class="col-12">
+                                <input type="text" class="form-control mr-2" placeholder="Jane Doe" formControlName="idEmpleado" readonly>
                             </div>
                         </div>
                         <!-- Campo INGRESO PRODUCTO - INGRESO CLIENTE  -->
-                        <div class="form-group row">
-                            <div class="col-lg-6 d-flex justify-content-md-center">
+                        <div class="form-group">
+                            <div class="justify-content-md-center">
                                 <label for="codigo" class=" col-form-label">Fecha Pago</label>
-                                <div class="col-10">
+                                <div class="col-12">
                                     <input type="date" class="form-control mr-2" formControlName="fechaPago">
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <div class="col-lg-6 d-flex justify-content-md-center">
+                        <div class="form-group">
+                            <div class="justify-content-md-center">
                                 <label for="codigo" class=" col-form-label">Fecha Pago</label>
-                                <div class="col-10">
+                                <div class="col-12">
                                     <input type="date" class="form-control mr-2" formControlName="fechaNomina">
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-6 d-flex justify-content-center">
+                        <div class="justify-content-center">
                             <label for="codigo" class="col-form-label">Cantidad</label>
-                            <div class="col-6">
+                            <div class="col-12">
                                 <input type="text" class="form-control mr-2" placeholder="Jane Doe" formControlName="cantidad">
                             </div>
                         </div>
-                        <div class="col-lg-6 d-flex justify-content-center">
-                            <select class="form-control" formControlName="idDescuento">
+                        <div class="justify-content-center">
+                            <label>Seleccione el numero de cuenta</label>
+                            <select class="form-control" formControlName="idNumeroCuenta">
                                 <option value="">Seleccione descuento</option>
                                 <option *ngFor="let cuenta of numerocuentaSubscription$ |async" value="{{ cuenta.numero_cuenta }}">
                                     {{ cuenta.numero_cuenta }}
                                 </option>
                             </select>
                         </div>
-                        <div class="col-lg-6 d-flex justify-content-center">
+                        <div class="justify-content-center">
                             <label for="codigo" class="col-form-label">Saldo Bruto</label>
                             <div class="col-12">
-                                <input type="text" class="form-control mr-2" placeholder="Jane Doe" formControlName="saldoBruto">
+                                <input type="text" class="form-control mr-2" placeholder="Jane Doe" formControlName="saldoBruto" readonly>
                             </div>
                         </div>
-                        <div class="col-lg-6 d-flex justify-content-center">
+                        <div class="justify-content-center">
+                            <label>Seleccione el descuento</label>
                             <select class="form-control" formControlName="idDescuento">
-                                <option value="">Seleccione cargo</option>
+                                <option value="">Seleccione descuento</option>
                                 <option *ngFor="let descuento of descuentosSubscription$ |async" value="{{ descuento.id }}">
                                     {{ descuento.descripcion }}
                                 </option>
@@ -148,6 +160,59 @@
                     <div class="d-flex justify-content-center">
                         <button type="button" class="btn btn-secondary mx-2" data-dismiss="modal">Cancelar</button>
                         <button type="button" class="btn btn-primary mx-2" (click)="addNomina()">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- --------------------------------------------------------- -->
+<!-- MODAL PARA CREAR REGISTRAR TIEMPO DE UNA NOMINA CREADA -->
+<!-- --------------------------------------------------------- -->
+<div class="modal fade" id="modal-crear-tiempo" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Registro de Recomendación</h5>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="tiempoForm">
+                    <!-- Campo INGRESO PRODUCTO - INGRESO CLIENTE  -->
+                    <div class="form-group row">
+                        <div class="justify-content-md-center">
+                            <label for="codigo" class=" col-form-label">Codigo Nomina Sueldo</label>
+                            <div class="col-12">
+                                <input type="text" class="form-control mr-2" placeholder="Jane Doe" formControlName="idNominaSueldo">
+                            </div>
+                        </div>
+                        <div class="justify-content-md-center">
+                            <label for="codigo" class=" col-form-label">Codigo Empleado</label>
+                            <div class="col-12">
+                                <input type="text" class="form-control mr-2" placeholder="Jane Doe" formControlName="idEmpleado">
+                            </div>
+                        </div>
+                        <div class="justify-content-md-center">
+                            <label for="codigo" class=" col-form-label">Fecha Registro</label>
+                            <div class="col-12">
+                                <input type="date" class="form-control mr-2" placeholder="Jane Doe" formControlName="fechaRegistro">
+                            </div>
+                        </div>
+                        <div class="justify-content-md-center">
+                            <label for="codigo" class=" col-form-label">Hora Inicio</label>
+                            <div class="col-12">
+                                <input type="time" class="form-control mr-2" placeholder="Jane Doe" formControlName="horaInicio">
+                            </div>
+                        </div>
+                        <div class="justify-content-md-center">
+                            <label for="codigo" class=" col-form-label">Hora Fin</label>
+                            <div class="col-12">
+                                <input type="time" class="form-control mr-2" placeholder="Jane Doe" formControlName="horaFin">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <button type="button" class="btn btn-secondary mx-2" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-primary mx-2" (click)="addTiempo()">Guardar</button>
                     </div>
                 </form>
             </div>

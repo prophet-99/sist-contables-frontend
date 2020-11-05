@@ -7,7 +7,7 @@ import { catchError, map } from 'rxjs/operators';
 import { Sueldos, SueldosModels } from '../models/sueldos.models';
 import { Nomina, NumeroCuenta } from '../models/efectivocuenta.model';
 import { DescuentoRequest, Nominas } from '../models/descuento.model';
-
+import { ObtenerTiempoRequest } from '../models/requests/obtenerTiempo.request.modal';
 @Injectable({
   providedIn: 'root'
 })
@@ -34,12 +34,12 @@ export class SueldosService {
   public getAllDescuentos(): Observable<Nominas[]>{
     return this.httpClient.get<DescuentoRequest>(`${ this.baseAPI }/descuentos`)
       .pipe(
-        map(({ nomina }) => nomina)
+        map(({ nominas }) => nominas)
       );
   }
 
-  public save(sueldoRequest: SueldoRequest): Observable<{ ok: boolean, msg: string }>{
-    return this.httpClient.post<{ ok: boolean, msg: string }>(`${ this.baseAPI }/nominasueldos`, sueldoRequest)
+  public save(sueldoRequest: SueldoRequest): Observable<{ ok: boolean, idNominaSueldo: string}>{
+    return this.httpClient.post<{ ok: boolean, idNominaSueldo: string }>(`${ this.baseAPI }/nominasueldos`, sueldoRequest)
       .pipe(
         catchError<any, any>(
           ({ error }) => {
@@ -55,5 +55,43 @@ export class SueldosService {
             }
           })
       );
+  }
+  public postObtenerTiempo(tajetas): Observable<{ ok: boolean, msg: string }>{
+    return this.httpClient.post<{ ok: boolean, idNominaSueldo: number }>(
+      `${ this.baseAPI }/obtenertiempos`, tajetas
+    ).pipe(
+      catchError<any, any>(({ error }) => this.handleError(error))
+    );
+  }
+
+  public saveTiempo(obtenerTiempo: ObtenerTiempoRequest[]): Observable<{ ok: boolean, msg: string }>{
+    return this.httpClient.post<{ ok: boolean, msg: string }>(`${ this.baseAPI }/obtenertiempos`, obtenerTiempo)
+      .pipe(
+        catchError<any, any>(
+          ({ error }) => {
+            if (error.errors){
+              const entries: any = Object.entries(error.errors);
+              let errors = '';
+              entries.forEach(([key, value]) => {
+                errors += `${value.msg}-`;
+              });
+              return throwError({ msg: errors });
+            }else{
+              return throwError({ msg: error.msg.sqlMessage });
+            }
+          })
+      );
+  }
+  private handleError(error): Observable<{ msg: string }>{
+    if (error.errors){
+      const entries: any = Object.entries(error.errors);
+      let errors = '';
+      entries.forEach(([key, value]) => {
+        errors += `${value.msg}-`;
+      });
+      return throwError({ msg: errors });
+    }else{
+      return throwError({ msg: error.msg.sqlMessage });
+    }
   }
 }
