@@ -77,6 +77,9 @@ export class SueldosComponent implements OnInit {
     this.nominaForm.get('saldoBruto').setValue(empleado.tarifa_pago);
     this.nominaForm.updateValueAndValidity();
   }
+  public printSection(): void{
+    window.print();
+  }
 
   public CargarTiempo(empleado: Empleado){
     this.tiempoActual = empleado;

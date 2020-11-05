@@ -71,6 +71,10 @@ export class CrearNominaComponent implements OnInit {
     });
   }
 
+  public printSection(): void{
+    window.print();
+  }
+
   public chargeCurrentNomina(sueldo: Sueldos): void{
     this.currentSueldo = sueldo;
   }

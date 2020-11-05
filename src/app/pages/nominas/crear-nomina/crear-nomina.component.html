@@ -1,15 +1,16 @@
 <div class="row mb-3">
 
-    <div class="col-lg-4 d-flex">
-        <select class="form-control mr-2">
-            <option>Imprimir</option>
-        </select>
-        <select class="form-control">
-            <option>Accion</option>
-        </select>
+    <div class="row mb-3 mx-4">
+        <div class="col-12 d-flex justify-content-between">
+            <section>
+                <button class="btn btn-outline-secondary mr-2" (click)="printSection()">
+                    Imprimir
+                </button>
+            </section>
+        </div>
     </div>
 </div>
-<div class="border row">
+<div class="border row sh-section-print">
     <div class="col-12 d-flex mb-3">
         <div class="col-3 border-right">
             <h6>Empresa</h6>
