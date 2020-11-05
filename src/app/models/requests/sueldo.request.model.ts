@@ -7,4 +7,6 @@ export interface SueldoRequest {
     saldoBruto: number;
     fechaNomina: Date;
     idDescuento: number;
+    descuento: string;
+    numeroCuenta: string;
 }

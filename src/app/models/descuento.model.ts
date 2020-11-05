@@ -1,7 +1,8 @@
 export interface DescuentoRequest {
     ok: boolean;
-    nomina: Nominas[];
+    nominas: Nominas[];
 }
+
 export interface Nominas {
     id: number;
     descripcion: string;

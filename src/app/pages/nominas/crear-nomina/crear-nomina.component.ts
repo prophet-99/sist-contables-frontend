@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { SueldoRequest } from '../../../models/requests/sueldo.request.model';
 import { SueldosService } from '../../../services/sueldos.service';
@@ -12,6 +12,8 @@ import { Empleado } from '../../../models/empleado.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserAuth } from 'src/app/models/user-auth.model';
 import * as moment from 'moment';
+import { map, mergeMap } from 'rxjs/operators';
+import { ObtenerTiempoRequest, ObtenerTiempo} from '../../../models/requests/obtenerTiempo.request.modal';
 declare const $: any;
 
 @Component({
@@ -27,7 +29,10 @@ export class CrearNominaComponent implements OnInit {
     public currentSueldo: Sueldos = null;
     public currentUser: UserAuth = null;
     public nominaForm: FormGroup = null;
-    public empleados: Empleado[] = [];
+    public tiempoForm: FormGroup = null;
+    public empleados: any[] = [];
+    public tiempoActual;
+    public empleadoActual;
 
   constructor(
     private sueldoService: SueldosService,
@@ -38,19 +43,30 @@ export class CrearNominaComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentUser = this.authService.currentUser;
-    this.empleadoService.findAll().subscribe( (empleados) =>{
-      this.empleados = empleados;
-    });
     this.descuentosSubscription$ = this.sueldoService.getAllDescuentos();
     this.numerocuentaSubscription$ = this.sueldoService.getdAllNumeroCuenta();
+    this.empleadoService.findAll()
+      .pipe(
+        map( (empleados) =>  empleados.map( (emp) => ({ ...emp, descuento: 0, numeroCuenta: '', nominaSueldo: ''  }) ) )
+          ).subscribe( (empleados) => {
+            this.empleados = empleados;
+            console.log(this.empleados);
+    });
     this.nominaForm = this.formBuilder.group({
       cantidad: ['', [Validators.required]],
       fechaPago: ['', [Validators.required]],
       idEmpleado: ['', [Validators.required]],
-      idNumeroCuenta: [null, [Validators.required]],
+      idNumeroCuenta: ['', [Validators.required]],
       saldoBruto: ['', [Validators.required]],
       fechaNomina: ['', [Validators.required]],
-      idDescuento: [null, [Validators.required]]
+      idDescuento: ['', [Validators.required]]
+    });
+    this.tiempoForm = this.formBuilder.group({
+      fechaRegistro: ['', [Validators.required]],
+      horaInicio: ['', [Validators.required]],
+      horaFin: ['', [Validators.required]],
+      idEmpleado: ['', [Validators.required]],
+      idNominaSueldo: ['', [Validators.required]]
     });
   }
 
@@ -83,6 +99,24 @@ export class CrearNominaComponent implements OnInit {
       idDescuento: [sueldo.id, [Validators.required]]
     });
   } */
+  public CargarUsuarioActual(empleado: Empleado){
+    this.empleadoActual = empleado;
+    this.nominaForm.get('idEmpleado').setValue(empleado.id_empleado);
+    this.nominaForm.get('saldoBruto').setValue(empleado.tarifa_pago);
+    this.nominaForm.updateValueAndValidity();
+  }
+
+  public CargarTiempo(empleado: Empleado){
+    this.tiempoActual = empleado;
+    this.tiempoForm.get('idEmpleado').setValue(empleado.id_empleado);
+    this.tiempoForm.updateValueAndValidity();
+  }
+
+  public get itemsArray(): FormArray{
+    return (this.tiempoForm) ?
+    this.tiempoForm.get('detalleItems') as FormArray :
+    null;
+  }
 
   public addNomina(): void{
     if (this.nominaForm.invalid) {
@@ -93,26 +127,59 @@ export class CrearNominaComponent implements OnInit {
       return;
     }
     const { cantidad, fechaPago, idEmpleado, idNumeroCuenta, saldoBruto,
-      fechaNomina, idDescuento } = this.nominaForm.value;
+      fechaNomina, idDescuento, descuento, numeroCuenta } = this.nominaForm.value;
     const saldoReq: SueldoRequest = {
        id: (this.currentSueldo) ? this.currentSueldo.id : 0 ,
       cantidad, fechaPago, idEmpleado, idNumeroCuenta, saldoBruto,
-      fechaNomina, idDescuento
+      fechaNomina, idDescuento, descuento, numeroCuenta
     };
+    this.empleadoActual.descuento = idDescuento;
+    this.empleadoActual.numeroCuenta = idNumeroCuenta;
     this.sueldoService.save(saldoReq)
       .subscribe(
-        ({ msg }) => {
-          $('#modal-add-empleado').modal('hide');
+        ({ idNominaSueldo }) => {
+          this.empleadoActual.idNominaSueldo = idNominaSueldo;
+          $('#modal-crear').modal('hide');
           Swal.fire({
-            icon: 'success', title: 'Satisfactorio', text: msg
+            icon: 'success', title: 'Satisfactorio',
+
           });
-          this.sueldoService.save(saldoReq);
         },
         (err) => Swal.fire({
-          icon: 'error', title: 'Error al agregar usuario', text: err.msg
+          icon: 'error', title: 'Error al agregar Nomina', text: err.msg
         })
       );
   }
+  public addTiempo(): void{
+    if (this.tiempoForm.invalid) {
+      const html = `<ul>${ this.getErrors(this.tiempoForm) }</ul>`;
+      Swal.fire({
+        icon: 'error', html
+      });
+      return;
+    }
+    const { fechaRegistro, horaInicio, horaFin, idEmpleado}
+    = this.tiempoForm.value;
+    const tarjetasTiempo = [{
+      fechaRegistro, horaInicio, horaFin, idEmpleado, idNominaSueldo: this.empleadoActual.idNominaSueldo
+    }];
+    this.empleadoActual.horaInicio = horaInicio;
+    this.empleadoActual.horaFin = horaFin;
+    this.sueldoService.postObtenerTiempo({tarjetasTiempo}).subscribe(
+      ({ msg }) => {
+        $('#modal-crear').modal('hide');
+        Swal.fire({
+          icon: 'success', title: 'Satisfactorio', text: msg
+
+        });
+      },
+      (err) => Swal.fire({
+        icon: 'error', title: 'Error al agregar Nomina', text: err.msg
+      })
+    );
+
+  }
+
 
   public getErrors(fg: FormGroup): string{
     let html = '';
