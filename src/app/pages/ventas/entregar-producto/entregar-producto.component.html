@@ -1,7 +1,12 @@
 <div class="row mb-3">
     <div class="col-lg-12 d-flex justify-content-between">
-        <button class="btn btn-outline-primary text-lg-center px-2 mr-2 w-25" data-toggle="modal" 
-            data-target="#modal-crear-orden">Crear</button>
+        <div>
+            <button class="btn btn-outline-primary text-lg-center px-2 mr-2" data-toggle="modal" 
+                data-target="#modal-crear-orden">Crear</button>
+            <button class="btn btn-outline-secondary mr-2" (click)="printSection()">
+                Imprimir
+            </button>
+        </div>
        <button type="button" class="btn btn-primary mx-2"  
         (click)="saveOrden()">
             Realizar entrega
@@ -9,7 +14,7 @@
     </div>
 </div>
 
-<div class="border row">
+<div class="border row sh-section-print">
     <div class="row col-12 mt-3">
         <div class="col-lg-2 mt-2">
             <img src="https://images.unsplash.com/photo-1521897258701-21e2a01f5e8b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" 

@@ -87,6 +87,10 @@ export class EntregarProductoComponent implements OnInit {
       );
   }
 
+  public printSection(): void{
+    window.print();
+  }
+
   public getErrors(fg: FormGroup): string{
     let html = '';
 

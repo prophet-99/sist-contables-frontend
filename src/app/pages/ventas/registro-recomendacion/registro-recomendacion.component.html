@@ -1,14 +1,19 @@
 <div class="row mb-3">
     <div class="col-lg-12 d-flex justify-content-between">
-        <button class="btn btn-outline-primary text-lg-center px-2 mr-2 w-25" data-toggle="modal" 
-            data-target="#modal-crear-recomendacion">Crear</button>
+        <div>
+            <button class="btn btn-outline-primary text-lg-center px-2 mr-2" data-toggle="modal" 
+                data-target="#modal-crear-recomendacion">Crear</button>
+            <button class="btn btn-outline-secondary mr-2" (click)="printSection()">
+                    Imprimir
+            </button>
+        </div>
         <button type="button" class="btn btn-primary mx-2"  
             (click)="saveOrden()">
             Registrar recomendación
         </button>
     </div>
 </div>
-<div class="border row">
+<div class="border row sh-section-print">
     <div class="d-flex">
         <!-- --------------- -->
         <!-- Codigo Compra -->

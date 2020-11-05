@@ -96,6 +96,10 @@ export class RegistroRecomendacionComponent implements OnInit {
     this.ordenForm.updateValueAndValidity();
   }
 
+  public printSection(): void{
+    window.print();
+  }
+
   public handleBeforePersist(): void{
     this.lstItems = [];
     this.itemsArray.value.forEach( (ia) =>{

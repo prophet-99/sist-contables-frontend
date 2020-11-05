@@ -1,12 +1,15 @@
 <div class="row mb-3">
     <div class="col-lg-12 d-flex justify-content-between">
+        <button class="btn btn-outline-secondary mr-2" (click)="printSection()">
+            Imprimir
+        </button>
        <button type="button" class="btn btn-primary mx-2"  
         (click)="saveOrden()">
             Registrar orden
         </button>
     </div>
 </div>
-<div class="border row" [formGroup]="ordenForm">
+<div class="border row sh-section-print" [formGroup]="ordenForm">
     <div class="col-12 d-flex my-3">
         <div class="col-3 border-right">
             <h6>Número de orden</h6>
