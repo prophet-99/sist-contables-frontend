@@ -6,10 +6,10 @@ export interface SueldosModels {
 export interface Sueldos {
     id: number;
     cantidad: number;
-    fechaPago: Date;
+    fecha_pago: Date;
     id_empleado: number;
-    idNumeroCuenta: string;
+    id_numero_cuenta: string;
     saldo_bruto: number;
-    fechaNomina: Date;
-    idDescuento: number;
+    fecha_nomina: Date;
+    id_descuento: number;
 }
