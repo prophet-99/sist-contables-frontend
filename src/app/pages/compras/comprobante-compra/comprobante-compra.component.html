@@ -50,8 +50,8 @@
                 <td class="text-center">{{ oc.fecha_entrega_esperada | date }}</td>
                 <td class="text-center">{{ oc.precio_total_esperado | currency }}</td>
                 <td class="text-center">
-                    <button class="btn btn-outline-primary" *ngIf="!oc.pago"  
-                         (click)="handleGoDesembolsarEfectivo()">
+                    <button class="btn btn-outline-primary" *ngIf="!oc.pago" 
+                        data-toggle="modal" data-target="#modal-pagar">
                         Cancelar
                     </button>
                     <span class="badge badge-success" *ngIf="oc.pago">
@@ -163,6 +163,38 @@
                     </div>
                     <hr class="sidebar-divider">
 
+                    <div class="d-flex justify-content-center">
+                        <button type="button" class="btn btn-primary px-4" data-dismiss="modal">Aceptar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- --------------------------------------------------------- -->
+<!-- MODAL ASIENTO -->
+<!-- --------------------------------------------------------- -->
+
+<div class="modal fade" id="modal-pagar" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Realizar pago</h5>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <section class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="d-flex align-items-center">
+                            <label class="mr-3">Cuenta</label>
+                            <select class="form-control">
+                                <option></option>
+                            </select>
+                        </div>
+                        <h5 class="mb-0 font-weight-bold text-dark">
+                            20000
+                        </h5>
+                    </section>
                     <div class="d-flex justify-content-center">
                         <button type="button" class="btn btn-primary px-4" data-dismiss="modal">Aceptar</button>
                     </div>

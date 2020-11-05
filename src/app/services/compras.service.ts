@@ -11,6 +11,7 @@ import { OrdenesCompraResponse, OrdenCompra } from '../models/ordenes-compra.mod
 import { OrdenCompraDetalle, OrdenesCompraDetalleResponse } from '../models/ordenes-compra-detalle.model';
 import { RecepcionarCompraRequest } from '../models/requests/recepcionar-compra.request';
 import { DetalleRecepcionRequest } from '../models/requests/detalle-recepcion.request';
+import { DesembolsoComprasRequest } from '../models/requests/desembolso-compras.request';
 
 @Injectable({
   providedIn: 'root'
@@ -100,6 +101,14 @@ export class ComprasService {
   public postRecepcionarDetalleCompra(detalleRecepcionRequest: DetalleRecepcionRequest): Observable<{ ok: boolean, msg: string }>{
     return this.httpClient.post<{ ok: boolean, msg: string }>(
       `${ this.baseAPI }/detallerecibir`, detalleRecepcionRequest
+    ).pipe(
+      catchError<any, any>(({ error }) => this.handleError(error))
+    );
+  }
+
+  public postDesembolsarEfectivo(desembolsoComprasRequest: DesembolsoComprasRequest): Observable<{ ok: boolean, msg: string }>{
+    return this.httpClient.post<{ ok: boolean, msg: string }>(
+      `${ this.baseAPI }/desembolsarefectivo`, desembolsoComprasRequest
     ).pipe(
       catchError<any, any>(({ error }) => this.handleError(error))
     );
