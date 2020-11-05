@@ -54,12 +54,12 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let empleado of empleados">
+            <tr *ngFor="let empleado of salariospordescuentoSubscription$ | async">
                 <th class="text-center">{{empleado.nombres}}</th>
                 <td class="text-center">{{empleado.apellidos}}</td>
                 <td class="text-center">{{empleado.tarifa_pago | currency}}</td>
-                <td class="text-center">{{empleado.descuento}}</td>
-                <td class="text-center">{{(empleado.tarifa_pago)-(empleado.tarifa_pago*(0.12)) | currency}}</td>
+                <td class="text-center">{{empleado.valor_porcentaje}}</td>
+                <td class="text-center">{{ (empleado.tarifa_pago)-(empleado.tarifa_pago*empleado.valor_porcentaje) | currency}}</td>
             </tr>
 
         </tbody>
