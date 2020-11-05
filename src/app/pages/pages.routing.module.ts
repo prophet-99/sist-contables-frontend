@@ -29,6 +29,7 @@ import { CrearNominaComponent } from './nominas/crear-nomina/crear-nomina.compon
 import { AuthGuard } from '../guards/auth.guard';
 import { CuentasCobrarComponent } from './cuentas-cobrar/cuentas-cobrar.component';
 import { CuentasPorPagarComponent } from './cuentas-por-pagar/cuentas-por-pagar.component';
+import { ActivosFijosComponent } from './inventario/activos-fijos/activos-fijos.component';
 
 const routes: Routes = [
     {
@@ -39,6 +40,7 @@ const routes: Routes = [
         children: [
             { path: 'clientes', component: ClienteComponent },
             { path: 'inventario', component: InventarioComponent },
+            { path: 'inventarioactivosfijos', component: ActivosFijosComponent },
             { path: 'proveedor', component: ProveedorComponent },
             { path: 'diario', component: LibroDiarioComponent },
             { path: 'mayor', component: LibroMayorComponent },

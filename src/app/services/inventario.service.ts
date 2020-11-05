@@ -22,10 +22,25 @@ export class InventarioService {
         map( ({ items }) => items )
       );
   }
+
+  public findAllActivosFijos(): Observable<Item[]>{
+    return this.httpClient.get<Inventario>(`${ this.baseAPI }/items/activosfijos`)
+      .pipe(
+        map( ({ items }) => items )
+      );
+  }
+
   public getAllCategoria(): Observable<Categoria[]>{
     return this.httpClient.get<CategoriaResponse>(`${ this.baseAPI }/items/categorias`)
       .pipe(
         map(({ categorias }) => categorias)
+      );
+  }
+
+  public getAllCategoriaActivosFijos(): Observable<Categoria[]>{
+    return this.httpClient.get<CategoriaResponse>(`${ this.baseAPI }/items/categorias`)
+      .pipe(
+        map(({ categorias }) => categorias.filter( (c) => c.id === 3 ))
       );
   }
 

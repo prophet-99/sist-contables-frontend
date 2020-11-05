@@ -1,6 +1,6 @@
 <!-- Main content -->
 <div class="mx-4">
-    <h1 class="text-center text-secondary">Registro del Inventario</h1>
+    <h1 class="text-center text-secondary">Registro de Activos Fijos</h1>
     <article class="d-flex justify-content-between mb-3">
         <form class="form-inline navbar-search">
             <div class="input-group">
@@ -23,9 +23,7 @@
                 <th class="text-center" scope="col">Item</th>
                 <th class="text-center" scope="col">Ubicacion</th>
                 <th class="text-center" scope="col">C. Disponible</th>
-                <th class="text-center" scope="col">Punto Reorden</th>
                 <th class="text-center" scope="col">Costo unitario</th>
-                <th class="text-center" scope="col">Tasa de Uso</th>
                 <th class="text-center" scope="col">Categoria</th>
                 <th class="text-center" scope="col" colspan="2" class="text-center">
                     ACCIÓN
@@ -38,9 +36,7 @@
                 <td>{{item.item}}</td>
                 <td>{{item.ubicacion}}</td>
                 <td>{{item.cantidad_disponible}}</td>
-                <td>{{item.punto_reorden}}</td>
                 <td>{{item.costo_unitario}}</td>
-                <td>{{item.tasa_uso}}</td>
                 <td>{{item.categoria}}</td>
                 <td class="text-center d-flex">
                     <button class="btn btn-primary text-lg-center mx-2" data-toggle="modal" data-target="#modal-add-inventario" (click)="chargeCurrentInventarioForEdit(item)">
@@ -107,15 +103,6 @@
                                     </article>
                                 </section>
                             </div>
-                            <!-- Campo COSTO DISPONIBLE DEL INVENTARIO -->
-                            <div class="col-md-12 mb-3">
-                                <section class="container">
-                                    <label for="ubicacion">Punto de Reorden</label>
-                                    <article class="col-12">
-                                        <input type="text" class="form-control" placeholder="Ubicación" formControlName="puntoReorden">
-                                    </article>
-                                </section>
-                            </div>
                             <!-- Campo COSTO PARA VENTA DEL INVENTARIO -->
                             <div class="col-md-6 mb-3">
                                 <section class="container">
@@ -125,23 +112,17 @@
                                     </article>
                                 </section>
                             </div>
-                            <!-- Campo COSTO UNITARIO DEL INVENTARIO -->
-                            <div class="col-md-6 mb-3">
-                                <section class="container">
-                                    <label for="telefono">Tasa de Uso</label>
-                                    <article class="col-12">
-                                        <input name="cuenta" type="text" class="form-control" placeholder="Tasa de Uso" formControlName="tasaUso">
-                                    </article>
-                                </section>
-                            </div>
                             <!-- Campo OBSERVACIONES DEL PROVEEDOR -->
                             <div class="col-md-6 mb-3">
                                 <section class="container">
                                     <label for="saldo">Categoria</label>
                                     <article class="col-12">
-                                        <select class="custom-select my-1 mr-sm-2" formControlName="idCategoria">
-                                            <option value="">Seleccione Categoria</option>
-                                            <option *ngFor="let categoria of categoriaSubscription$ | async" value="{{ categoria.id }}">{{categoria.descripcion}}</option>
+                                        <select class="custom-select my-1 mr-sm-2" formControlName="idCategoria" readonly="readonly">
+                                            <option value="0">Seleccione Categoria</option>
+                                            <option *ngFor="let categoria of categoriaSubscription$ | async" 
+                                                value="{{ categoria.id }}">
+                                                {{categoria.descripcion}}
+                                            </option>
                                           </select>
                                     </article>
                                 </section>

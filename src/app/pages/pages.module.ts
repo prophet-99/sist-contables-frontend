@@ -31,6 +31,7 @@ import { CrearNominaComponent } from './nominas/crear-nomina/crear-nomina.compon
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CuentasCobrarComponent } from './cuentas-cobrar/cuentas-cobrar.component';
 import { CuentasPorPagarComponent } from './cuentas-por-pagar/cuentas-por-pagar.component';
+import { ActivosFijosComponent } from './inventario/activos-fijos/activos-fijos.component';
 
 
 @NgModule({
@@ -59,6 +60,7 @@ import { CuentasPorPagarComponent } from './cuentas-por-pagar/cuentas-por-pagar.
     CrearNominaComponent,
     CuentasCobrarComponent,
     CuentasPorPagarComponent,
+    ActivosFijosComponent
   ],
   imports: [
     CommonModule,
