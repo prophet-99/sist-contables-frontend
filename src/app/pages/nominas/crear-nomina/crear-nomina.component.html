@@ -84,10 +84,6 @@
 <div class="col-lg-12 my-3">
     <p class="text-center text-white bg-dark py-1"></p>
 </div>
-
-<div class="d-flex justify-content-end">
-    <button type="button" class="btn btn-primary mx-2" data-dismiss="modal">Tarjeta de Tiempo</button>
-</div>
 <!-- --------------------------------------------------------- -->
 <!-- MODAL PARA CREAR UNA NUEVA VERIFICACION DE DISPONIBILIDAD -->
 <!-- --------------------------------------------------------- -->
@@ -105,10 +101,10 @@
                         <div class="justify-content-center">
                             <label for="codigo" class="col-form-label">ID</label>
                             <div class="col-12">
-                                <input type="text" class="form-control mr-2" placeholder="Jane Doe" formControlName="idEmpleado" readonly>
+                                <input type="text" class="form-control mr-2" formControlName="idEmpleado" readonly>
                             </div>
                         </div>
-                        <!-- Campo INGRESO PRODUCTO - INGRESO CLIENTE  -->
+                        <!-- Campo FECHA PAGO  -->
                         <div class="form-group">
                             <div class="justify-content-md-center">
                                 <label for="codigo" class=" col-form-label">Fecha Pago</label>
@@ -117,20 +113,23 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- Campo Fecha Nomina -->
                         <div class="form-group">
                             <div class="justify-content-md-center">
-                                <label for="codigo" class=" col-form-label">Fecha Pago</label>
+                                <label for="codigo" class=" col-form-label">Fecha Nomina</label>
                                 <div class="col-12">
                                     <input type="date" class="form-control mr-2" formControlName="fechaNomina">
                                 </div>
                             </div>
                         </div>
+                        <!-- Campo Cantidad de la Nomina -->
                         <div class="justify-content-center">
                             <label for="codigo" class="col-form-label">Cantidad</label>
                             <div class="col-12">
-                                <input type="text" class="form-control mr-2" placeholder="Jane Doe" formControlName="cantidad">
+                                <input type="text" class="form-control mr-2" formControlName="cantidad">
                             </div>
                         </div>
+                        <!-- Seleccione el numero de Cuenta -->
                         <div class="justify-content-center">
                             <label>Seleccione el numero de cuenta</label>
                             <select class="form-control" formControlName="idNumeroCuenta">
@@ -140,12 +139,14 @@
                                 </option>
                             </select>
                         </div>
+                        <!-- Saldo Bruto de la Nomina -->
                         <div class="justify-content-center">
                             <label for="codigo" class="col-form-label">Saldo Bruto</label>
                             <div class="col-12">
                                 <input type="text" class="form-control mr-2" placeholder="Jane Doe" formControlName="saldoBruto" readonly>
                             </div>
                         </div>
+                        <!-- Seleccione el descuento a la nomina -->
                         <div class="justify-content-center">
                             <label>Seleccione el descuento</label>
                             <select class="form-control" formControlName="idDescuento">

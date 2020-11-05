@@ -58,7 +58,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Agregar nuevo Item </h5>
+                <h5 class="modal-title" id="staticBackdropLabel">Item Inventario </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -67,7 +67,7 @@
                 <form [formGroup]="formEmployee">
                     <div class="form-group">
                         <div class="form-row">
-                            <!-- Campo ITEM DEL INVENTARIO -->
+                            <!-- Campo CODIGO ITEM DEL INVENTARIO -->
                             <div class="col-md-6 mb-3">
                                 <section class="container form_grupo">
                                     <label for="dni">Código Item</label>
@@ -76,7 +76,7 @@
                                     </article>
                                 </section>
                             </div>
-                            <!-- Campo PUNTO DE REORDEN DEL INVENTARIO-->
+                            <!-- Campo DESCRIPCION DEL INVENTARIO-->
                             <div class="col-md-6 mb-3">
                                 <section class="container">
                                     <label for="saldo">Descripcion</label>
@@ -85,7 +85,7 @@
                                     </article>
                                 </section>
                             </div>
-                            <!-- Campo DESCRIPCION DE ITEM EN EL INVENTARIO -->
+                            <!-- Campo UBICACION DEL ITEM DE INVENTARIO -->
                             <div class="col-md-12 mb-3">
                                 <section class="container">
                                     <label for="nombre">Ubicacion</label>
@@ -94,16 +94,16 @@
                                     </article>
                                 </section>
                             </div>
-                            <!-- Campo UBICACION DEL ITEM -->
+                            <!-- Campo CANTIDAD DISPONIBLE -->
                             <div class="col-md-12 mb-3">
                                 <section class="container">
                                     <label for="nombre">Cantidad Disponible</label>
                                     <article class="col-12">
-                                        <input type="text" class="form-control" placeholder="Nombre" formControlName="cantidadDiponible">
+                                        <input type="text" class="form-control" placeholder="Cantidad Disponible" formControlName="cantidadDiponible">
                                     </article>
                                 </section>
                             </div>
-                            <!-- Campo COSTO PARA VENTA DEL INVENTARIO -->
+                            <!-- Campo COSTO UNITARIO DEL ITEM -->
                             <div class="col-md-6 mb-3">
                                 <section class="container">
                                     <label for="telefono">Costo Unitario</label>
@@ -112,7 +112,7 @@
                                     </article>
                                 </section>
                             </div>
-                            <!-- Campo OBSERVACIONES DEL PROVEEDOR -->
+                            <!-- Campo CATEGORIA DEL ITEM DE INVENTARIO -->
                             <div class="col-md-6 mb-3">
                                 <section class="container">
                                     <label for="saldo">Categoria</label>
@@ -148,7 +148,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Eliminar Cliente</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">Eliminar Activo Fijo</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -161,7 +161,7 @@
                         </div>
                         <section class="justify-content-center d-flex w-100">
                             <div class="alert alert-primary" role="alert">
-                                ¿Desea eliminar Item?
+                                ¿Desea eliminar Activo Fijo?
                             </div>
                         </section>
                         <div class="form-group col-md-12" class="text-center">
