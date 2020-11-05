@@ -4,6 +4,10 @@ import { Observable } from 'rxjs';
 import { OrdenCompra } from '../../../models/ordenes-compra.model';
 import { OrdenCompraDetalle } from '../../../models/ordenes-compra-detalle.model';
 import Swal from 'sweetalert2';
+import { SueldosService } from '../../../services/sueldos.service';
+import { Nomina } from '../../../models/efectivocuenta.model';
+import { DesembolsoComprasRequest } from 'src/app/models/requests/desembolso-compras.request';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-comprobante-compra',
@@ -13,20 +17,24 @@ import Swal from 'sweetalert2';
 export class ComprobanteCompraComponent implements OnInit {
 
   public ordenCompraSubscription$: Observable<OrdenCompra[]> = null;
+  public numCuentas: Nomina[] = [];
   public currentOrdenCompra: OrdenCompra = null;
   public ordenCompraDetalle: OrdenCompraDetalle[] = [];
+  public currentMonto = 0;
 
   constructor(
-    private comprasService: ComprasService
+    private comprasService: ComprasService,
+    private sueldosService: SueldosService
   ) { }
 
   ngOnInit(): void {
     this.ordenCompraSubscription$ = this.comprasService.getOrdenesCompra();
+    this.sueldosService.getdAllNumeroCuenta()
+      .subscribe( items => this.numCuentas = items );
   }
 
   public handleGetOrdenesCompra(ordenCompra: OrdenCompra): void{
     this.currentOrdenCompra = ordenCompra;
-    console.log(this.currentOrdenCompra)
     this.comprasService.getOrdenesCompraDetalle(ordenCompra.numero_orden_compra)
       .subscribe( (items) => this.ordenCompraDetalle = items );
   }
@@ -35,23 +43,31 @@ export class ComprobanteCompraComponent implements OnInit {
     this.ordenCompraSubscription$ = this.comprasService.getOrdenesCompraById(value);
   }
 
-  public handleGoDesembolsarEfectivo(): void{
-    Swal.fire({
-      title: '¿Está seguro que desea realizar el pago?',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      cancelButtonText: 'No',
-      confirmButtonText: 'Si, realizar'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire(
-          'Cancelado',
-          'Se pagó la orden correctamente.',
-          'success'
-        )
-      }
-    })
+  public handleChargeMonto({ target: { value } }): void{
+    this.currentMonto = this.numCuentas.find( (nc) => nc.numero_cuenta === value ).monto;
+  }
+
+  public handleGoDesembolsarEfectivo(idNumeroCuenta: string): void{
+    const fecha = moment().format('YYYY-MM-DD');
+    const desCompras: DesembolsoComprasRequest = {
+      fecha, idCodigoFactura: this.currentOrdenCompra.proveedor_factura,
+      idEmpleado: this.currentOrdenCompra.id_empleado, idNumeroCuenta,
+      idNumeroOrdenCompra: this.currentOrdenCompra.numero_orden_compra,
+      idProveedor: this.currentOrdenCompra.id_proveedor,
+      monto: this.currentOrdenCompra.precio_total_esperado
+    };
+    console.log(desCompras, this.currentOrdenCompra)
+    this.comprasService.postDesembolsarEfectivo(desCompras)
+      .subscribe(
+        ({ msg }) => {
+          Swal.fire({
+            icon: 'success', title: 'Satisfactorio', text: msg
+          });
+          this.ordenCompraSubscription$ = this.comprasService.getOrdenesCompra();
+        },
+        (err) => Swal.fire({
+          icon: 'error', title: 'Error al realizar el desembolso', text: err.msg
+        })
+      );
   }
 }

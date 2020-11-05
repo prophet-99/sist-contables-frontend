@@ -1,16 +1,11 @@
 <div class="row mb-3">
-    <div class="col-lg-6 d-flex">
-        <button class="btn btn-primary text-lg-center px-2 mr-2 w-100" data-toggle="modal" data-target="#modal-crear-recomendacion">Crear</button>
-        <button class="btn btn-secondary text-lg-center px-2 mr-2 w-100" data-toggle="modal" data-target="#modal-ver">Editar</button>
-        <button class="btn btn-success text-lg-center px-2 w-100" data-toggle="modal" data-target="#modal-ver">Nuevo Item</button>
-    </div>
-    <div class="col-lg-4 d-flex">
-        <select class="form-control mr-2">
-            <option>Imprimir</option>
-        </select>
-        <select class="form-control mr-2">
-            <option>Accion</option>
-        </select>
+    <div class="col-lg-12 d-flex justify-content-between">
+        <button class="btn btn-outline-primary text-lg-center px-2 mr-2 w-25" data-toggle="modal" 
+            data-target="#modal-crear-recomendacion">Crear</button>
+        <button type="button" class="btn btn-primary mx-2"  
+            (click)="saveOrden()">
+            Registrar recomendación
+        </button>
     </div>
 </div>
 <div class="border row">
@@ -18,20 +13,14 @@
         <!-- --------------- -->
         <!-- Codigo Compra -->
         <!-- --------------- -->
-        <h3 class="text-muted ml-5 mb-5 mt-3"> /WH/OUT/000005</h3>
+        <!-- <h3 class="text-muted ml-5 mb-5 mt-3"> /WH/OUT/000005</h3> -->
     </div>
-    <div class="col-12 d-flex mb-3">
+    <div class="col-12 d-flex my-3">
         <div class="col-3 border-right">
             <h6>Empresa</h6>
         </div>
         <div class="col-4">
-            <h6 class="text-primary">LAMBAYEQUE TECNOLOGIES</h6>
-        </div>
-        <div class="col-2 ">
-            <h6>Fecha prevista</h6>
-        </div>
-        <div class="col-3">
-            <h5 class="text-primary">12/01/2020</h5>
+            <h6 class="text-primary">LAMBAYEQUE TECHNOLOGIES</h6>
         </div>
     </div>
     <div class="col-12 d-flex mb-3">
@@ -39,15 +28,7 @@
             <h6>Asistente de Ventas</h6>
         </div>
         <div class="col-4">
-            <h5 class="text-primary">Kevin Venegas Cordova</h5>
-        </div>
-    </div>
-    <div class="col-12 d-flex mb-3">
-        <div class="col-3 border-right">
-            <h6>Cliente</h6>
-        </div>
-        <div class="col-8">
-            <h5 class="text-primary">Angie Fiorella</h5>
+            <h6 class="text-primary">{{ currentUser.nombres }}  {{ currentUser.apellidos }}</h6>
         </div>
     </div>
     <div class="col-12 d-flex mb-3">
@@ -55,7 +36,8 @@
             <h6>Condicones</h6>
         </div>
         <div class="col-8">
-            <h6 class="text-primary">La cantidad de productos se entregara con un año de garantia en caso de cualquier fallo preguntar al proveedor.
+            <h6 class="text-primary">
+                La cantidad de productos se entregara con un año de garantía.
             </h6>
         </div>
     </div>
@@ -63,41 +45,33 @@
     <!-- Divider -->
     <hr class="sidebar-divider">
 
+    <ng-container *ngIf="lstItems.length > 0; else refNov">
     <table class="table table-striped">
         <thead>
             <tr>
+                <th class="text-center" scope="col">Número</th>
                 <th class="text-center" scope="col">Producto</th>
-                <th class="text-center" scope="col">Disp Venta</th>
                 <th class="text-center" scope="col">Cst Unitario</th>
                 <th class="text-center" scope="col">Cnt. Solicitada</th>
                 <th class="text-center" scope="col">Mnt. Total</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <th class="text-center">Laptop Lenovo</th>
-                <td class="text-center">1,000</td>
-                <td class="text-center">5,000.0</td>
-                <td class="text-center">3</td>
-                <td class="text-center">15000</td>
-            </tr>
-            <tr>
-                <th class="text-center">Laptop Lenovo</th>
-                <td class="text-center">1,000</td>
-                <td class="text-center">5,000.0</td>
-                <td class="text-center">3</td>
-                <td class="text-center">15000</td>
-            </tr>
-            <tr>
-                <th class="text-center">Laptop Lenovo</th>
-                <td class="text-center">1,000</td>
-                <td class="text-center">5,000.0</td>
-                <td class="text-center">3</td>
-                <td class="text-center">15000</td>
+            <tr *ngFor="let item of lstItems">
+                <th class="text-center">{{ item.idNumeroItem }}</th>
+                <td class="text-center">{{ item.nombreItem }}</td>
+                <td class="text-center">{{ item.costoUnitario | currency }}</td>
+                <td class="text-center">{{ item.cantidadSolicitada }}</td>
+                <td class="text-center">{{ item.costoTotal | currency }}</td>
             </tr>
         </tbody>
     </table>
-
+    </ng-container>
+    <ng-template #refNov>
+        <section class="w-100 my-5">
+            <h3 class="text-center">Agregue una nueva recomendación</h3>
+        </section>
+    </ng-template>
     <!-- Divider -->
     <hr class="sidebar-divider">
 
@@ -105,7 +79,7 @@
         <ul class="list-unstyled">
             <div class="d-flex">
                 <li class="mx-2">Representación impresa de la </li>
-                <li class="font-weight-bold mr-1">GUIA DE VERIFICACIÓN DE DISPONIBILIDAD</li>
+                <li class="font-weight-bold mr-1">GUÍA DE RECOMENDACIÓN</li>
                 <li class="ml-1">, para consultar el documento vista</li>
             </div>
             <li><a href="" class="mx-2">https://LambayequeTecnologies.com/pe</a></li>
@@ -116,13 +90,6 @@
     <p class="text-center text-white bg-dark py-1"></p>
 </div>
 
-<div class="d-flex justify-content-end">
-    <button type="button" class="btn btn-primary mx-2" data-dismiss="modal">TOMAR ORDEN</button>
-</div>
-
-
-
-
 
 
 <div class="modal fade" id="modal-crear-recomendacion" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -132,39 +99,26 @@
                 <h5 class="modal-title">Registro de Recomendación</h5>
             </div>
             <div class="modal-body">
-                <form id="formulario" class="formulario" method="POST" action="">
+                <form id="formulario" class="formulario" [formGroup]="ordenForm">
                     <!-- Campo INGRESO PRODUCTO - INGRESO CLIENTE  -->
                     <div class="form-group row">
                         <div class="col-lg-4 d-flex">
-                            <label for="codigo" class=" col-form-label">Producto</label>
-                            <div class="col-8">
-                                <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                    <option selected>01 REGISTRO VENTAS 1</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                  </select>
+                            <label for="codigo" class="col-form-label text-nowrap">Número Orden</label>
+                            <div class="col-12">
+                                <input type="text" formControlName="numeroOrden" class="form-control">
                             </div>
                         </div>
+                    </div>
+                    <div class="form-group row">
                         <div class="col-lg-4 d-flex">
                             <label for="codigo" class="col-form-label">Cliente</label>
-                            <div class="col-8">
-                                <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                    <option selected>01 REGISTRO VENTAS 1</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                  </select>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 d-flex">
-                            <label for="codigo" class="col-form-label">Empleado</label>
-                            <div class="col-8">
-                                <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                    <option selected>01 REGISTRO VENTAS 1</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                            <div class="col-12">
+                                <select class="custom-select my-1 mr-sm-2" formControlName="idNumeroCliente" 
+                                    (change)="handleChargeCurrentClient($event)">
+                                    <option value="">Seleccionar cliente</option>
+                                    <option *ngFor="let cliente of lstClientes" [value]="cliente.id"> 
+                                        {{ cliente.nombre }}
+                                    </option>
                                   </select>
                             </div>
                         </div>
@@ -174,35 +128,14 @@
 
                     <!-- Verificación del Producto -->
                     <div class="form-group">
-                        <p class="text-center text-muted">VERIFICACIÓN DEL PRODUCTO</p>
-                    </div>
-                    <!-- Datos de FECHA Y HORA -->
-                    <div class="form-group row">
-                        <div class="col-lg-4 d-flex">
-                            <label for="codigo" class="col-form-label">Fecha</label>
-                            <div class="col-8">
-                                <input type="date" class="form-control" id="inlineFormInputName" placeholder="Jane Doe">
-                            </div>
-                        </div>
-                        <div class="col-lg-4 d-flex">
-                            <label for="codigo" class="col-form-label">Hora Inicio</label>
-                            <div class="col-8">
-                                <input type="text" class="form-control" id="inlineFormInputName" placeholder="Jane Doe">
-                            </div>
-                        </div>
-                        <div class="col-lg-4 d-flex">
-                            <label for="codigo" class="col-form-label">Hora Fin</label>
-                            <div class="col-8">
-                                <input type="text" class="form-control" id="inlineFormInputName" placeholder="Jane Doe">
-                            </div>
-                        </div>
+                        <p class="text-center text-muted font-weight-bold">VERIFICACIÓN DEL PRODUCTO</p>
                     </div>
                     <!-- Campo CANTIDAD SOLICITADA - DESCRIPCIÓN  -->
                     <div class="form-group row">
                         <div class="col-lg-12 d-flex">
                             <label for="codigo" class="col-form-label">Descripción</label>
-                            <div class="col-10">
-                                <input type="text" class="form-control" id="inlineFormInputName" placeholder="Jane Doe">
+                            <div class="col-9">
+                                <input type="text" class="form-control" formControlName="descripcion">
                             </div>
                         </div>
                     </div>
@@ -211,17 +144,6 @@
                     <hr class="sidebar-divider">
                     <!-- Topbar Search -->
 
-                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Tipo Items" aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-
                     <div class="scroll my-3">
                         <table class="table table-striped">
                             <thead>
@@ -229,73 +151,64 @@
                                     <th class="text-center" scope="col">Producto</th>
                                     <th class="text-center" scope="col">Disp Venta</th>
                                     <th class="text-center" scope="col">Cst Unitario</th>
+                                    <th class="text-center" scope="col">Cnt. Disponible</th>
                                     <th class="text-center" scope="col">Cnt. Solicitada</th>
                                     <th class="text-center" scope="col">Mnt. Total</th>
                                     <th class="text-center" scope="col">Ordenar</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th class="text-center">Laptop Lenovo</th>
-                                    <td class="text-center">1,000</td>
-                                    <td class="text-center">5,000.0</td>
-                                    <td scope="col" class="text-center">
-                                        <div class="d-flex px-5">
-                                            <input type="text" class="form-control" placeholder="Jane Doe">
-                                        </div>
-                                    </td>
-                                    <td scope="col" class="text-center">
-                                        <div class="d-flex px-5">
-                                            <input type="text" class="form-control" placeholder="Jane Doe" readonly>
-                                        </div>
-                                    </td>
-                                    <div class="ml-5 mt-3">
-                                        <input type="checkbox" aria-label="Checkbox for following text input">
-                                    </div>
-                                </tr>
-                                <tr>
-                                    <th class="text-center">Laptop Lenovo</th>
-                                    <td class="text-center">1,000</td>
-                                    <td class="text-center">5,000.0</td>
-                                    <td scope="col" class="text-center">
-                                        <div class="d-flex px-5">
-                                            <input type="text" class="form-control" placeholder="Jane Doe">
-                                        </div>
-                                    </td>
-                                    <td scope="col" class="text-center">
-                                        <div class="d-flex px-5">
-                                            <input type="text" class="form-control" placeholder="Jane Doe" readonly>
-                                        </div>
-                                    </td>
-                                    <div class="ml-5 mt-3">
-                                        <input type="checkbox" aria-label="Checkbox for following text input">
-                                    </div>
-                                </tr>
-                                <tr>
-                                    <th class="text-center">Laptop Lenovo</th>
-                                    <td class="text-center">1,000</td>
-                                    <td class="text-center">5,000.0</td>
-                                    <td scope="col" class="text-center">
-                                        <div class="d-flex px-5">
-                                            <input type="text" class="form-control" placeholder="Jane Doe">
-                                        </div>
-                                    </td>
-                                    <td scope="col" class="text-center">
-                                        <div class="d-flex px-5">
-                                            <input type="text" class="form-control" placeholder="Jane Doe" readonly>
-                                        </div>
-                                    </td>
-                                    <div class="ml-5 mt-3">
-                                        <input type="checkbox" aria-label="Checkbox for following text input">
-                                    </div>
-                                </tr>
+                                <ng-container *ngIf="itemsArray">
+                                    <tr *ngFor="let item of itemsArray.controls; let i = index;">
+                                        <ng-container [formGroup]="item">
+                                            <th scope="col" class="text-center">
+                                                <input type="text" class="form-control" 
+                                                        formControlName="idNumeroItem" readonly="readonly">
+                                            </th>
+                                            <td scope="col" class="text-center">
+                                                <input type="text" class="form-control" 
+                                                        formControlName="nombreItem" readonly="readonly">
+                                            </td>
+                                            <td scope="col" class="text-center">
+                                                <div class="px-4">
+                                                    <input type="number" class="form-control" 
+                                                        formControlName="costoUnitario" readonly="readonly">
+                                                </div>
+                                            </td>
+                                            <td scope="col" class="text-center">
+                                                <div class="px-4">
+                                                    <input type="number" class="form-control" 
+                                                        formControlName="cantidadDisponible" readonly="readonly">
+                                                </div>
+                                            </td>
+                                            <td scope="col" class="text-center">
+                                                <div class="px-4">
+                                                    <input type="number" class="form-control" 
+                                                        formControlName="cantidadSolicitada" (keyup)="handleCalculateTotal(i)">
+                                                </div>
+                                            </td>
+                                            <td scope="col" class="text-center">
+                                                <div class="px-4">
+                                                    <input type="number" class="form-control" 
+                                                        formControlName="costoTotal" readonly="readonly">
+                                                </div>
+                                            </td>
+                                            <div class="ml-5 mt-3">
+                                                <input type="checkbox" aria-label="Checkbox for following text input" 
+                                                    formControlName="isSelected">
+                                            </div>
+                                        </ng-container>
+                                    </tr>
+                                </ng-container>
                             </tbody>
                         </table>
                     </div>
 
                     <div class="d-flex justify-content-center">
-                        <button type="button" class="btn btn-secondary mx-2" data-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-primary mx-2">Guardar</button>
+                        <button type="button" class="btn btn-primary mx-2" 
+                            data-dismiss="modal" (click)="handleBeforePersist()">
+                            Guardar
+                        </button>
                     </div>
                 </form>
             </div>
