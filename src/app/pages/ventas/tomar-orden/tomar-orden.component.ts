@@ -10,7 +10,8 @@ import { Router } from '@angular/router';
 import * as moment from 'moment';
 import { ItemByEstado } from '../../../models/items-by-estado.model';
 import { FormBuilder } from '@angular/forms';
-import { tap } from 'rxjs/operators';
+import { mergeMap, tap } from 'rxjs/operators';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-tomar-orden',
@@ -41,7 +42,7 @@ export class TomarOrdenComponent implements OnInit {
       numeroOrden: [ '', [ Validators.required ] ],
       descripcion: [ '', [ Validators.required ] ],
       fechaPedido: [ this.currentDate, [ Validators.required ] ],
-      fechaEsperada: [ this.currentDate, [ Validators.required ] ],
+      fechaPrometida: [ this.currentDate, [ Validators.required ] ],
       precioTotalEsperado: [ 0 ],
       idProveedor: [ '' ],
       idEmpleado: [ this.currentUser.idEmpleado ],
@@ -96,4 +97,67 @@ export class TomarOrdenComponent implements OnInit {
     this.ordenForm.get('precioTotalEsperado').setValue(total);
     this.ordenForm.updateValueAndValidity();
   }
+
+  public saveOrden(): void{
+    if (this.ordenForm.invalid) {
+      const html = `<ul>${ this.getErrors(this.ordenForm) }</ul>`;
+      Swal.fire({
+        icon: 'error', html
+      });
+      return;
+    }
+    const { numeroOrden, descripcion, fechaPrometida, fechaPedido,
+    precioTotalEsperado, idProveedor, idEmpleado } = this.ordenForm.value;
+
+    this.ventasService.postPedido(
+      numeroOrden, fechaPedido, fechaPrometida, descripcion, this.idVerificarDisponibilidad,
+      this.currentClient.id, idEmpleado
+    ).pipe(
+        mergeMap( ( ) => {
+          const detalleItems: any[] = [];
+          this.lstItems.forEach( (ia) =>
+            detalleItems.push({ idNumeroOrden: numeroOrden,
+            idNumeroItem: ia.idNumeroItem })
+          );
+          return this.ventasService.postDetallePedido({ detalleItems });
+        } )
+      ).subscribe(
+        ({ msg }) => {
+          Swal.fire({
+            icon: 'success', title: 'Satisfactorio', text: msg
+          });
+          this.router.navigateByUrl('/dashboard/ventas/entregarProducto');
+          setTimeout( () => {
+            this.emitterService.handleOrdenarVentas$
+              .emit({
+                lstItems: this.lstItems,
+                currentClient: this.currentClient,
+                idVerificarDisponibilidad: this.idVerificarDisponibilidad,
+                idNumeroOrden: numeroOrden
+              });
+          }, 20 );
+        },
+        (err) => Swal.fire({
+          icon: 'error', title: 'Error al agregar detalle de orden', text: err.msg
+        })
+      );
+  }
+
+  public getErrors(fg: FormGroup): string{
+    let html = '';
+
+    Object.entries(fg.controls)
+      .forEach( ([ key, value ]) => {
+        if (value.errors){
+          html += `
+          <li class="text-left">
+            <span class="text-danger">${key}</span>:
+            ${Object.keys(value.errors)}
+          </li>`;
+        }
+      } );
+
+    return html;
+  }
 }
+

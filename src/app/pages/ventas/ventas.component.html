@@ -4,17 +4,25 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <a [routerLink]="['registroRecomendacion']">Registrar Recomendación</a>
+                        <a class="u-pointer-events-none" href="#">Dashboard</a>
                     </li>
                     <li class="breadcrumb-item">
-                        <a [routerLink]="['tomarOrden']">Tomar Orden</a>
+                        <a [routerLink]="['registroRecomendacion']" routerLinkActive="text-dark font-weight-bold"
+                            class="u-pointer-events-none">Registrar Recomendación</a>
                     </li>
                     <li class="breadcrumb-item">
-                        <a [routerLink]="['entregarProducto']">Entregar Producto</a>
+                        <a [routerLink]="['tomarOrden']" routerLinkActive="text-dark font-weight-bold"
+                            class="u-pointer-events-none">Tomar Orden</a>
                     </li>
                     <li class="breadcrumb-item">
-                        <a [routerLink]="['productosDevueltos']">Producto devueltos</a>
+                        <a [routerLink]="['entregarProducto']" routerLinkActive="text-dark font-weight-bold"
+                            class="u-pointer-events-none">Entregar Producto</a>
                     </li>
+                    <!-- <li class="breadcrumb-item">
+                        <a [routerLink]="['productosDevueltos']" routerLinkActive="text-dark font-weight-bold"
+                            class="u-pointer-events-none">Producto devueltos</a>
+                    </li> -->
+                    
                 </ol>
             </nav>
         </div>

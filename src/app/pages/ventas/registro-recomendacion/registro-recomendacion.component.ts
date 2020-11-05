@@ -159,7 +159,7 @@ export class RegistroRecomendacionComponent implements OnInit {
           this.router.navigateByUrl('/dashboard/ventas/tomarOrden');
           setTimeout( () => {
             this.emitterService.handleOrdenarVentas$
-              .emit({ 
+              .emit({
                 lstItems: this.lstItems,
                 currentClient: this.currentClient,
                 idVerificarDisponibilidad: this.currentIdVerificarDisponibilidad

@@ -1,14 +1,12 @@
 <div class="row mb-3">
     <div class="col-lg-12 d-flex justify-content-between">
-        <button class="btn btn-outline-primary text-lg-center px-2 mr-2 w-25" data-toggle="modal" 
-            data-target="#modal-crear-orden">Crear</button>
-        <button type="button" class="btn btn-primary mx-2"  
-            >
+       <button type="button" class="btn btn-primary mx-2"  
+        (click)="saveOrden()">
             Registrar orden
         </button>
     </div>
 </div>
-<div class="border row">
+<div class="border row" [formGroup]="ordenForm">
     <div class="col-12 d-flex my-3">
         <div class="col-3 border-right">
             <h6>Número de orden</h6>
@@ -17,39 +15,34 @@
             <input type="text" class="form-control" 
                 formControlName="numeroOrden">
         </div>
-        <div class="col-2 ">
-            <h6>Fecha Pedido</h6>
-        </div>
-        <div class="col-3">
-            <h6 class="text-primary">{{ currentDate | date }}</h6>
-        </div>
-    </div>
-    <div class="col-12 d-flex my-3">
-        <div class="col-3 border-right">
+        <div class="col-2">
             <h6>Empresa</h6>
         </div>
-        <div class="col-4">
+        <div class="col-3">
             <h6 class="text-primary">LAMBAYEQUE TECHNOLOGIES</h6>
         </div>
-        <div class="col-2 ">
-            <h6>Fecha Pedido</h6>
-        </div>
-        <div class="col-3">
-            <h6 class="text-primary">{{ currentDate | date }}</h6>
-        </div>
+        
     </div>
     <div class="col-12 d-flex my-3">
         <div class="col-3 border-right">
-            <h6>Fecha prometida</h6>
+            <h6>Fecha Pedido</h6>
         </div>
         <div class="col-4">
+            <h6 class="text-primary">{{ currentDate | date }}</h6>
+        </div>
+        <div class="col-2">
+            <h6>Fecha prometida</h6>
+        </div>
+        <div class="col-3">
             <input type="date" class="form-control" 
                 formControlName="fechaPrometida">
         </div>
-        <div class="col-2 ">
+    </div>
+    <div class="col-12 d-flex my-3">
+        <div class="col-3 border-right">
             <h6>Condiciones</h6>
         </div>
-        <div class="col-3">
+        <div class="col-9">
             <input type="text" class="form-control" 
                 formControlName="descripcion">
         </div>
@@ -67,7 +60,7 @@
             <h6>Cliente</h6>
         </div>
         <div class="col-8">
-            <h6 class="text-primary">{{ currentClient.nombre }}</h6>
+            <h6 class="text-primary">{{ currentClient?.nombre }}</h6>
         </div>
     </div>
 
@@ -87,23 +80,23 @@
             </tr>
         </thead>
         <tbody>
-            <ng-container *ngIf="itemsArray">
+            <ng-container *ngIf="itemsArray.length > 0">
                 <tr *ngFor="let item of itemsArray.controls; let i = index;">
                     <ng-container [formGroup]="item">
                         <th scope="col" class="text-center">
-                            {{ itemsArray.get('idNumeroItem').value }}
+                            {{ item.get('idNumeroItem').value }}
                         </th>
                         <td scope="col" class="text-center">
-                            {{ itemsArray.get('nombreItem').value }}
+                            {{ item.get('nombreItem').value }}
                         </td>
                         <td scope="col" class="text-center">
-                            {{ itemsArray.get('costoUnitario').value }}
+                            {{ item.get('costoUnitario').value }}
                         </td>
                         <td scope="col" class="text-center">
-                            {{ itemsArray.get('cantidadDisponible').value }}                            
+                            {{ item.get('cantidadDisponible').value }}                            
                         </td>
                         <td scope="col" class="text-center">
-                            {{ itemsArray.get('cantidadSolicitadaAnt').value }}
+                            {{ item.get('cantidadSolicitadaAnt').value }}
                         </td>
                         <td scope="col" class="text-center">
                             <div class="px-4">
@@ -112,7 +105,7 @@
                             </div>
                         </td>
                         <td scope="col" class="text-center">
-                            {{ itemsArray.get('costoTotal').value }}                            
+                            {{ item.get('costoTotal').value }}                            
                         </td>
                     </ng-container>
                 </tr>

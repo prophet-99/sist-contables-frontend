@@ -1,26 +1,23 @@
 <div class="row mb-3">
-    <div class="col-lg-4 d-flex">
-        <button class="btn btn-primary text-lg-center mr-2 w-100" data-toggle="modal" data-target="#modal-crear-orden">Crear</button>
-        <button class="btn btn-secondary text-lg-center w-100" data-toggle="modal" data-target="#modal-ver">Editar</button>
-    </div>
-    <div class="col-lg-4 d-flex">
-        <select class="form-control mr-2">
-            <option>Imprimir</option>
-        </select>
-        <select class="form-control">
-            <option>Accion</option>
-        </select>
+    <div class="col-lg-12 d-flex justify-content-between">
+        <button class="btn btn-outline-primary text-lg-center px-2 mr-2 w-25" data-toggle="modal" 
+            data-target="#modal-crear-orden">Crear</button>
+       <button type="button" class="btn btn-primary mx-2"  
+        (click)="saveOrden()">
+            Realizar entrega
+        </button>
     </div>
 </div>
 
 <div class="border row">
-    <div class="row col-12">
-        <div class="col-lg-2">
-            <img src="" alt="">
+    <div class="row col-12 mt-3">
+        <div class="col-lg-2 mt-2">
+            <img src="https://images.unsplash.com/photo-1521897258701-21e2a01f5e8b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" 
+            alt="" style="max-width: 100%; object-fit: cover;">
         </div>
         <div class="col-lg-5">
             <ul class="list-unstyled">
-                <li>Lambayeque tecnologies SAC</li>
+                <li>Lambayeque Technologies SAC</li>
                 <li>20550117968</li>
                 <li>Calle Pedro Ruiz 129, Surquillo, Lima, Lima</li>
                 <li>Perú</li>
@@ -60,7 +57,7 @@
                 <p class="text-center text-white bg-dark py-2">Dirección de partida</p>
             </div>
             <div class="col-12 ml-3">
-                <p>Calle Pedro Ruiz, SURQUIÑÑP, LIMA, LIMA, PERÚ</p>
+                <p>Calle Pedro Ruiz, CHICLAYO, LAMBAYQUE, PERÚ</p>
             </div>
         </div>
         <div class="col-lg-6">
@@ -68,7 +65,7 @@
                 <p class="text-center text-white bg-dark py-2">Dirección de llegada</p>
             </div>
             <div class="col-12 ml-3">
-                <p>CAL. ELIAS NRO. 126 DPT. 303 LIMA, MIRAFLORES, LIMA, LIMA. PERÚ</p>
+                <p>{{ currentClient?.direccion | uppercase }}</p>
             </div>
         </div>
         <div class="col-lg-6">
@@ -76,7 +73,7 @@
                 <p class="text-center text-white bg-dark py-2">REMITENTE</p>
             </div>
             <div class="col-12 ml-3">
-                <p>SISTEMAS DE PUBLICIDAD SAC</p>
+                <p>LAMBAYEQUE TECHNOLOGIES</p>
                 <div class="d-flex">
                     <p class="font-weight-bold mr-5">RUC </p>
                     <p>20550117659</p>
@@ -88,49 +85,58 @@
                 <p class="text-center text-white bg-dark py-2">DESTINATARIO</p>
             </div>
             <div class="col-12 ml-3">
-                <p>SERVICIOS DE IMAGENES MÉDICO DENTALES E.I.R.L.- SERIMED E.I.R.L.</p>
+                <p>{{ currentClient.nombre | uppercase }}</p>
                 <div class="d-flex">
                     <p class="font-weight-bold mr-5">RUC </p>
-                    <p>20550117659</p>
+                    <p>{{ currentClient.dni }}</p>
                 </div>
             </div>
         </div>
         <div class="col-lg-12">
-            <table class="table">
-                <thead class="thead-dark">
+            <table class="table table-striped">
+                <thead>
                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Producto</th>
-                        <th scope="col">Descripcion</th>
-                        <th scope="col">Cant.</th>
-                        <th scope="col">Unid.</th>
-                        <th scope="col">Precio</th>
+                        <th class="text-center" scope="col">Producto</th>
+                        <th class="text-center" scope="col">Disp Venta</th>
+                        <th class="text-center" scope="col">Cst Unitario</th>
+                        <th class="text-center" scope="col">Cnt. Solicitada</th>
+                        <th class="text-center" scope="col">Mnt. Total</th>
                     </tr>
                 </thead>
                 <tbody>
+                    <ng-container *ngIf="listItems.length > 0">
+                        <tr *ngFor="let item of listItems">
+                            <ng-container>
+                                <th scope="col" class="text-center">
+                                    {{ item.idNumeroItem }}                                    
+                                </th>
+                                <td scope="col" class="text-center">
+                                    {{ item.nombreItem }}
+                                </td>
+                                <td scope="col" class="text-center">
+                                    {{ item.costoUnitario |currency }}
+                                </td>
+                                <td scope="col" class="text-center">
+                                    {{ item.cantidadSolicitada }}
+                                </td>
+                                <td scope="col" class="text-center">
+                                    {{ (item.cantidadSolicitada * item.costoUnitario) |currency }}
+                                </td>
+                            </ng-container>
+                        </tr>
+                    </ng-container>
                     <tr>
-                        <th scope="row">1</th>
-                        <td>33880971</td>
-                        <td>500 DVD publicitario venta</td>
-                        <td>1</td>
-                        <td>Unid.</td>
-                        <td>2,000.00</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>33880971</td>
-                        <td>500 DVD publicitario venta</td>
-                        <td>1</td>
-                        <td>Unid.</td>
-                        <td>20,000.00</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>33880971</td>
-                        <td>500 DVD publicitario venta</td>
-                        <td>1</td>
-                        <td>Unid.</td>
-                        <td>20,000.00</td>
+                        <th scope="col" class="text-center">
+                        </th>
+                        <td scope="col" class="text-center">
+                        </td>
+                        <td scope="col" class="text-center">
+                        </td>
+                        <td scope="col" class="text-center">
+                        </td>
+                        <td scope="col" class="text-center">
+                            {{ listItems[0].costoTotal | currency }}
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -143,7 +149,7 @@
                 <ul class="list-unstyled">
                     <div class="d-flex">
                         <li class="font-weight-bold mr-5">Empresa</li>
-                        <li class="ml-3">LAMBAYEQUE TECNOLOGI</li>
+                        <li class="ml-3">LAMBAYEQUE TECHNOLOGIES</li>
                     </div>
                     <div class="d-flex">
                         <li class="font-weight-bold mr-5">RUC</li>
@@ -171,8 +177,8 @@
             <div class="col-12 ml-3">
                 <ul class="list-unstyled">
                     <div class="d-flex">
-                        <li class="font-weight-bold mr-5">Nomb Producto</li>
-                        <li class="ml-2">Laptop Lenovo</li>
+                        <li class="font-weight-bold mr-5">Nomb Unidad</li>
+                        <li class="ml-2">Camioneta Jumper</li>
                     </div>
                     <div class="d-flex">
                         <li class="font-weight-bold mr-5">N° de cetificado</li>
@@ -235,95 +241,60 @@
     </div>
 </div>
 
-
-
-
 <div class="modal fade" id="modal-crear-orden" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
+    <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Registro de Entrega de Producto</h5>
             </div>
             <div class="modal-body">
-                <form id="formulario" class="formulario" method="POST" action="">
+                <form id="formulario" class="formulario" [formGroup]="ordenForm">
                     <!-- Campo INGRESO PRODUCTO - INGRESO CLIENTE  -->
                     <div class="form-group row">
-                        <div class="col-lg-3 d-flex">
-                            <label for="codigo" class=" col-form-label">Toma Orden</label>
-                            <div class="col-7">
-                                <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                    <option selected>01 REGISTRO VENTAS 1</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                  </select>
+                        <div class="col-lg-12 d-flex mb-3">
+                            <label for="codigo" class="col-form-label text-nowrap">Importe</label>
+                            <div class="col-8">
+                                <input type="number" class="form-control"
+                                    formControlName="importe">
                             </div>
                         </div>
-                        <div class="col-lg-3 d-flex">
-                            <label for="codigo" class="col-form-label">Producto</label>
+                        <div class="col-lg-12 d-flex mb-3">
+                            <label for="codigo" class="col-form-label text-nowrap">Fecha de envio</label>
                             <div class="col-8">
-                                <input type="text" class="form-control mr-2" id="inlineFormInputName" placeholder="Jane Doe" readonly>
+                                <input type="date" class="form-control" 
+                                    formControlName="fechaEnvio">
                             </div>
                         </div>
-                        <div class="col-lg-3 d-flex">
-                            <label for="codigo" class="col-form-label">Cliente</label>
+                        <div class="col-lg-12 d-flex mb-3">
+                            <label for="codigo" class="col-form-label text-nowrap">Fecha de cierre</label>
                             <div class="col-8">
-                                <input type="text" class="form-control mr-2" id="inlineFormInputName" placeholder="Jane Doe" readonly>
+                                <input type="date" class="form-control" 
+                                    formControlName="fechaCierre">
                             </div>
                         </div>
-                        <div class="col-lg-3 d-flex">
-                            <label for="codigo" class="col-form-label">Empleado</label>
+                        <div class="col-lg-12 d-flex mb-3">
+                            <label for="codigo" class="col-form-label text-nowrap">Numero de comprobante</label>
                             <div class="col-8">
-                                <input type="text" class="form-control mr-2" id="inlineFormInputName" placeholder="Jane Doe" readonly>
+                                <input type="text" class="form-control" 
+                                    formControlName="numeroComprobante">
+                            </div>
+                        </div>
+                        <div class="col-lg-12 d-flex mb-3">
+                            <label for="codigo" class="col-form-label text-nowrap">Código factura cliente</label>
+                            <div class="col-8">
+                                <input type="text" class="form-control" 
+                                    formControlName="idCodigoFacturaCliente">
                             </div>
                         </div>
                     </div>
-
-                    <!-- Campo INGRESO PRODUCTO - INGRESO CLIENTE  -->
-                    <div class="form-group row">
-                        <div class="col-lg-4 d-flex">
-                            <label for="codigo" class=" col-form-label">Fecha Envio</label>
-                            <div class="col-8">
-                                <input type="date" class="form-control mr-2" id="inlineFormInputName" placeholder="Jane Doe">
-                            </div>
-                        </div>
-                        <div class="col-lg-4 d-flex">
-                            <label for="codigo" class="col-form-label">Fecha Cierre</label>
-                            <div class="col-8">
-                                <input type="date" class="form-control mr-2" id="inlineFormInputName" placeholder="Jane Doe">
-                            </div>
-                        </div>
-                        <div class="col-lg-4 d-flex">
-                            <label for="codigo" class="col-form-label">Importe</label>
-                            <div class="col-8">
-                                <input type="text" class="form-control mr-2" id="inlineFormInputName" placeholder="Jane Doe">
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Campo INGRESO PRODUCTO - INGRESO CLIENTE  -->
-                    <div class="form-group row">
-                        <div class="col-lg-4 d-flex">
-                            <label for="codigo" class=" col-form-label">Cantidad</label>
-                            <div class="col-8">
-                                <input type="text" class="form-control mr-2" id="inlineFormInputName" placeholder="Jane Doe">
-                            </div>
-                        </div>
-                        <div class="col-lg-4 d-flex">
-                            <label for="codigo" class="col-form-label">Precio Real</label>
-                            <div class="col-8">
-                                <input type="text" class="form-control mr-2" id="inlineFormInputName" placeholder="Jane Doe">
-                            </div>
-                        </div>
-                    </div>
-
 
                     <!-- Divider -->
                     <hr class="sidebar-divider">
 
                     <div class="d-flex justify-content-center">
-                        <button type="button" class="btn btn-secondary mx-2" data-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-primary mx-2">Guardar</button>
-                        <button type="button" class="btn btn-primary mx-2">Finalizar Venta</button>
+                        <button type="button" class="btn btn-primary mx-2" data-dismiss="modal">
+                            Aceptar
+                        </button>
                     </div>
                 </form>
             </div>
