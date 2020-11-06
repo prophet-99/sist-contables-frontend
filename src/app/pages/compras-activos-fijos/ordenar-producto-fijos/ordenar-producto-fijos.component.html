@@ -9,7 +9,7 @@
         </section>
         <section>
             <button class="btn btn-outline-primary mr-2"
-                routerLink="/dashboard/compras/disponibilidad">
+                routerLink="/dashboard/comprasActivosFijos/disponibilidad">
                 Atrás
             </button>
             <button class="btn btn-primary text-lg-center" data-toggle="modal"
@@ -84,7 +84,6 @@
             <tr>
                 <th class="text-center" scope="col">Número</th>
                 <th class="text-center" scope="col">Producto</th>
-                <th class="text-center" scope="col">Cantidad disponible</th>
                 <th class="text-center" scope="col">Costo unitario</th>
                 <th class="text-center" scope="col">Cantidad solicitada</th>
                 <th class="text-center" scope="col">Costo total</th>
@@ -94,11 +93,10 @@
             <ng-container *ngIf="itemsArray">
                 <tr *ngFor="let item of itemsArray.controls; let i = index;">
                     <th class="text-center">{{ item.get('idNumeroItem').value }}</th>
-                    <td class="text-center">{{ item.get('nombreItem').value }}</td>
-                    <td class="text-center">{{ item.get('cantidadDisponible').value }}</td>
-                    <td class="text-center">{{ item.get('costoUnitario').value | currency }}</td>
+                    <td class="text-center">{{ item.get('nombreItem').value }}</td>                    
+                    <td class="text-center">{{ item.get('costoUnitario').value | currency  }}</td>
                     <td class="text-center">{{ item.get('cantidadSolicitada').value | currency }}</td>
-                    <td class="text-center">{{ item.get('costoTotal').value |currency }}</td>
+                    <td class="text-center">{{ item.get('costoTotal').value | currency }}</td>
                 </tr>
             </ng-container>
         </tbody>
@@ -180,8 +178,6 @@
                             <tr>
                                 <th scope="col" class="text-center">Número</th>
                                 <th scope="col" class="text-center">Producto</th>
-                                <th scope="col" class="text-center">Cantidad disponible</th>
-                                <th scope="col" class="text-center">Punto reorden</th>
                                 <th scope="col" class="text-center">Costo unitario</th>
                                 <th scope="col" class="text-center">Cantidad</th>
                                 <th scope="col" class="text-center">Costo total</th>
@@ -198,14 +194,6 @@
                                         <td scope="col" class="text-center">
                                             <input type="text" class="form-control" 
                                                     formControlName="nombreItem" readonly="readonly">
-                                        </td>
-                                        <td scope="col" class="text-center">
-                                            <input type="text" class="form-control" 
-                                                    formControlName="cantidadDisponible" readonly="readonly">
-                                        </td>
-                                        <td scope="col" class="text-center">
-                                            <input type="text" class="form-control" 
-                                                    formControlName="puntoReorden" readonly="readonly">
                                         </td>
                                         <td scope="col" class="text-center">
                                             <div class="px-4">

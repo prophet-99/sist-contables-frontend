@@ -29,6 +29,13 @@ export class ComprasService {
       );
   }
 
+  public getAllItemsActivosFijosByEstado(): Observable<ItemByEstado[]>{
+    return this.httpClient.get<ItemsByEstadoResponse>(`${ this.baseAPI }/itemsestadofijos`)
+      .pipe(
+        map( ({ items }) => items )
+      );
+  }
+
   public postVerificarDisponibilidad(
     hora: string, fecha: string, idEmpleado: number
   ): Observable<{ ok: boolean, idVerificar: number }>{

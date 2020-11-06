@@ -32,6 +32,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CuentasCobrarComponent } from './cuentas-cobrar/cuentas-cobrar.component';
 import { CuentasPorPagarComponent } from './cuentas-por-pagar/cuentas-por-pagar.component';
 import { ActivosFijosComponent } from './inventario/activos-fijos/activos-fijos.component';
+import {
+    ComprasActivosFijosComponent
+} from './compras-activos-fijos/compras-activos-fijos.component';
+import { DisponibilidadProductoFijosComponent } from './compras-activos-fijos/disponibilidad-producto-fijos/disponibilidad-producto-fijos.component';
+import {
+    OrdenarProductoFijosComponent
+} from './compras-activos-fijos/ordenar-producto-fijos/ordenar-producto-fijos.component';
 
 
 @NgModule({
@@ -60,7 +67,10 @@ import { ActivosFijosComponent } from './inventario/activos-fijos/activos-fijos.
     CrearNominaComponent,
     CuentasCobrarComponent,
     CuentasPorPagarComponent,
-    ActivosFijosComponent
+    ActivosFijosComponent,
+    ComprasActivosFijosComponent,
+    DisponibilidadProductoFijosComponent,
+    OrdenarProductoFijosComponent
   ],
   imports: [
     CommonModule,

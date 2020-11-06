@@ -30,6 +30,15 @@ import { AuthGuard } from '../guards/auth.guard';
 import { CuentasCobrarComponent } from './cuentas-cobrar/cuentas-cobrar.component';
 import { CuentasPorPagarComponent } from './cuentas-por-pagar/cuentas-por-pagar.component';
 import { ActivosFijosComponent } from './inventario/activos-fijos/activos-fijos.component';
+import {
+    ComprasActivosFijosComponent
+} from './compras-activos-fijos/compras-activos-fijos.component';
+import {
+    DisponibilidadProductoFijosComponent
+} from './compras-activos-fijos/disponibilidad-producto-fijos/disponibilidad-producto-fijos.component';
+import {
+    OrdenarProductoFijosComponent
+} from './compras-activos-fijos/ordenar-producto-fijos/ordenar-producto-fijos.component';
 
 const routes: Routes = [
     {
@@ -60,6 +69,13 @@ const routes: Routes = [
                     { path: '', redirectTo: 'disponibilidad', pathMatch: 'full' },
                     { path: 'disponibilidad', component: DisponibilidadProductoComponent },
                     { path: 'ordenarProducto', component: OrdenarProductoComponent },
+                ]
+            },
+            { path: 'comprasActivosFijos', component: ComprasActivosFijosComponent,
+                children: [
+                    { path: '', redirectTo: 'disponibilidad', pathMatch: 'full' },
+                    { path: 'disponibilidad', component: DisponibilidadProductoFijosComponent },
+                    { path: 'ordenarProducto', component: OrdenarProductoFijosComponent },
                 ]
             },
             { path: 'comprasRecibirProductos', component: RecibirProductoComponent },

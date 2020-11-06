@@ -30,7 +30,7 @@
         </thead>
         <tbody>
             <tr *ngFor="let gl of generalLedger">
-                <th class="text-center">{{ gl.fecha_pago }}</th>
+                <th class="text-center">{{ gl.fecha_pago | date }}</th>
                 <td class="text-center">{{ gl.numero_cuenta }}</td>
                 <td class="text-center">{{ gl.descripcion }}</td>
                 <td class="text-center">{{ gl.debe | currency }}</td>
