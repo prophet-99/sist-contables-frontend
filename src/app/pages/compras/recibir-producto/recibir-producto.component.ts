@@ -89,11 +89,10 @@ export class RecibirProductoComponent implements OnInit {
   }
 
   public handleCalculateTotal(position: number): void{
-    const unitC = this.itemsArray.get([ position, 'costoUnitarioActual' ]).value;
-    const cant = this.itemsArray.get([ position, 'cantidadRecibida' ]).value;
-    let total = 0.0;
-    this.itemsArray.value.forEach( (_) => {
-      total += unitC * cant;
+    // TODO: REVISAR EL ALGORITMO EN OTROS COMPONENTES
+    let total = 0;
+    this.itemsArray.value.forEach( (ia) => {
+      total += ia.cantidadRecibida * ia.costoUnitarioActual;
     });
     total = this.currentOrdenCompra.precio_total_esperado - total;
     this.recepcionForm.get('montoAdeuda').setValue(`$ ${ total }.00`);
@@ -144,6 +143,7 @@ export class RecibirProductoComponent implements OnInit {
           Swal.fire({
             icon: 'success', title: 'Satisfactorio', text: msg
           });
+          this.recepcionForm.reset();
         },
         (err) => Swal.fire({
           icon: 'error', title: 'Error al agregar registro de inventario', text: err.msg
