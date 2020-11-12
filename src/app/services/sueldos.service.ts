@@ -8,6 +8,7 @@ import { Sueldos, SueldosModels } from '../models/sueldos.models';
 import { Nomina, NumeroCuenta } from '../models/efectivocuenta.model';
 import { DescuentoRequest, Nominas } from '../models/descuento.model';
 import { ObtenerTiempoRequest } from '../models/requests/obtenerTiempo.request.modal';
+import { Nomi } from '../models/consulta.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -61,6 +62,14 @@ export class SueldosService {
       `${ this.baseAPI }/obtenertiempos`, tajetas
     ).pipe(
       catchError<any, any>(({ error }) => this.handleError(error))
+    );
+  }
+  public posConsultas(idEmpleado: number): Observable< Nomi[] >{
+    return this.httpClient.post<{ok: boolean, nominas: Nomi[]}>(
+      `${ this.baseAPI }/consultas`, {idEmpleado}
+    ).pipe(
+      map(({ nominas }) => nominas),
+       catchError<any, any>(({ error }) => this.handleError(error))
     );
   }
 

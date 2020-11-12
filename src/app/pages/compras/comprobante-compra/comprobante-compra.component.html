@@ -18,8 +18,7 @@
     <article class="d-flex justify-content-between mb-3">
         <form class="form-inline navbar-search">
             <div class="input-group">
-                <input type="text" class="form-control bg-light border-0 small border-search" 
-                    placeholder="Buscar" (keyup)="handleSearch($event)">
+                <input type="text" class="form-control bg-light border-0 small border-search" placeholder="Buscar" (keyup)="handleSearch($event)">
                 <div class="input-group-append">
                     <button class="btn btn-primary" type="button">
                         <i class="fas fa-search fa-sm"></i>
@@ -45,13 +44,12 @@
         <tbody>
             <tr *ngFor="let oc of ordenCompraSubscription$ | async">
                 <th class="text-center">{{ oc.numero_orden_compra }}</th>
-                <th class="text-center">{{ oc.proveedor }}</th>                
+                <th class="text-center">{{ oc.proveedor }}</th>
                 <td class="text-center">{{ oc.fecha_pedido | date }}</td>
                 <td class="text-center">{{ oc.fecha_entrega_esperada | date }}</td>
                 <td class="text-center">{{ oc.precio_total_esperado | currency }}</td>
                 <td class="text-center">
-                    <button class="btn btn-outline-primary" *ngIf="!oc.pago" 
-                        data-toggle="modal" data-target="#modal-pagar" (click)="currentOrdenCompra = oc">
+                    <button class="btn btn-outline-primary" *ngIf="!oc.pago" data-toggle="modal" data-target="#modal-pagar" (click)="currentOrdenCompra = oc">
                         Cancelar
                     </button>
                     <span class="badge badge-success" *ngIf="oc.pago">
@@ -59,8 +57,7 @@
                     </span>
                 </td>
                 <td class="text-center">
-                    <button class="btn btn-primary" data-toggle="modal" 
-                        data-target="#modal-factura" (click)="handleGetOrdenesCompra(oc)">
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#modal-factura" (click)="handleGetOrdenesCompra(oc)">
                         <i class="fas fa-eye"></i>
                     </button>
                 </td>
@@ -89,7 +86,7 @@
                             <div class="border row">
                                 <div class="row col-12 justify-content-between  align-items-center mt-3">
                                     <div class="ml-3">
-                                        FACTURA PROVEEDOR ASOCIADA: 
+                                        FACTURA PROVEEDOR ASOCIADA:
                                         <span class="font-weight-bold ml-3">
                                             {{ (currentOrdenCompra?.proveedor_factura) ? currentOrdenCompra.proveedor_factura : 'SIN FACTURA' }}
                                         </span>
@@ -111,7 +108,7 @@
                                         </ul>
                                     </div>
                                 </div>
-                            
+
                                 <div class="row col-lg-12 mt-3 border-bottom">
                                     <div class="d-flex">
                                         <ul class="list-unstyled">
@@ -129,7 +126,7 @@
                                             <li class="ml-3">{{ currentOrdenCompra?.descripcion }}</li>
                                         </ul>
                                     </div>
-                                </div>                            
+                                </div>
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
@@ -147,7 +144,7 @@
                                             <td class="text-center">{{ odDetail.precio_unitario_compra | currency }}</td>
                                             <td class="text-center">{{ odDetail.cantidad_orden }}</td>
                                             <td class="text-center">{{ odDetail.importe | currency }}</td>
-                                        </tr>                                      
+                                        </tr>
                                     </tbody>
                                 </table>
                                 <div class="row mt-3 w-100">
@@ -202,8 +199,7 @@
                         </h4>
                     </section>
                     <div class="d-flex justify-content-center">
-                        <button type="button" class="btn btn-outline-primary px-4" 
-                            data-dismiss="modal" (click)="handleGoDesembolsarEfectivo(refCuenta.value)">Aceptar</button>
+                        <button type="button" class="btn btn-outline-primary px-4" data-dismiss="modal" (click)="handleGoDesembolsarEfectivo(refCuenta.value)">Aceptar</button>
                     </div>
                 </div>
             </div>

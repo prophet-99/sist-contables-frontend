@@ -12,6 +12,10 @@ import { OrdenCompraDetalle, OrdenesCompraDetalleResponse } from '../models/orde
 import { RecepcionarCompraRequest } from '../models/requests/recepcionar-compra.request';
 import { DetalleRecepcionRequest } from '../models/requests/detalle-recepcion.request';
 import { DesembolsoComprasRequest } from '../models/requests/desembolso-compras.request';
+import { DetalleRecomendacion, Ite} from '../models/detalle-recomendacion.model';
+import { RecomendacionRespons, Recomendacion} from '../models/getdetallerecomendacion.model';
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -110,4 +114,19 @@ export class VentasService {
       return throwError({ msg: error.msg.sqlMessage });
     }
   }
+
+  public getRecomendacionCliente(): Observable<Recomendacion[]>{
+    return this.httpClient.get<RecomendacionRespons>(`${ this.baseAPI }/listarRecomendaciones`)
+      .pipe(
+        map( ({ recomendacion }) => recomendacion )
+      );
+  }
+  public getRecomendacionID(idDetalleRecomendacion: string): Observable<Ite[]>{
+    return this.httpClient.post<DetalleRecomendacion>(
+      `${ this.baseAPI }/detallexrecomendacion`, { idDetalleRecomendacion }
+    ).pipe(
+      map(({ items }) => items)
+    );
+  }
+
 }

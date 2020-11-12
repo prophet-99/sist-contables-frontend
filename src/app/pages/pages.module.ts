@@ -39,6 +39,8 @@ import { DisponibilidadProductoFijosComponent } from './compras-activos-fijos/di
 import {
     OrdenarProductoFijosComponent
 } from './compras-activos-fijos/ordenar-producto-fijos/ordenar-producto-fijos.component';
+import { DetalleRecomendacionComponent } from './ventas/detalle-recomendacion/detalle-recomendacion.component';
+import { ConsultasComponent } from './nominas/consultas/consultas.component';
 
 
 @NgModule({
@@ -70,7 +72,9 @@ import {
     ActivosFijosComponent,
     ComprasActivosFijosComponent,
     DisponibilidadProductoFijosComponent,
-    OrdenarProductoFijosComponent
+    OrdenarProductoFijosComponent,
+    DetalleRecomendacionComponent,
+    ConsultasComponent
   ],
   imports: [
     CommonModule,

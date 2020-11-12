@@ -39,6 +39,8 @@ import {
 import {
     OrdenarProductoFijosComponent
 } from './compras-activos-fijos/ordenar-producto-fijos/ordenar-producto-fijos.component';
+import { DetalleRecomendacionComponent } from './ventas/detalle-recomendacion/detalle-recomendacion.component';
+import { ConsultasComponent } from './nominas/consultas/consultas.component';
 
 const routes: Routes = [
     {
@@ -62,6 +64,7 @@ const routes: Routes = [
                     {path: 'crearNomina', component: CrearNominaComponent},
                     {path: 'registrarTiempo', component: RegistrarTiempoComponent},
                     {path: 'sueldos', component: SueldosComponent},
+                    {path: 'consultas', component: ConsultasComponent}
                 ]},
             { path: 'entregaInventario', component: EntregaInventarioComponent},
             { path: 'compras', component: ComprasComponent,
@@ -86,7 +89,8 @@ const routes: Routes = [
                     { path: 'registroRecomendacion', component: RegistroRecomendacionComponent },
                     { path: 'tomarOrden', component: TomarOrdenComponent },
                     { path: 'entregarProducto', component: EntregarProductoComponent },
-                    { path: 'productosDevueltos', component: ProductosDevueltosComponent }
+                    { path: 'productosDevueltos', component: ProductosDevueltosComponent },
+                    {path: 'detallerecomendacion', component: DetalleRecomendacionComponent}
                 ]
             }
         ]
