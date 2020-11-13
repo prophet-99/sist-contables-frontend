@@ -121,9 +121,9 @@ export class VentasService {
         map( ({ recomendacion }) => recomendacion )
       );
   }
-  public getRecomendacionID(idDetalleRecomendacion: string): Observable<Ite[]>{
+  public getRecomendacionID(idRecomendacion: string): Observable<Ite[]>{
     return this.httpClient.post<DetalleRecomendacion>(
-      `${ this.baseAPI }/detallexrecomendacion`, { idDetalleRecomendacion }
+      `${ this.baseAPI }/detallexrecomendacion`, { idRecomendacion }
     ).pipe(
       map(({ items }) => items)
     );
